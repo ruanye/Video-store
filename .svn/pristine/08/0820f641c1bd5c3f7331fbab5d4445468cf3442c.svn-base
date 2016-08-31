@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-family: "Microsoft YaHei"
+}
+body{
+  overflow:hidden;
+}
+.page{
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f1f1f1;
+  background-size: 100% auto;
+  overflow:hidden;
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+
+.page1{
+  background-color: #f1f1f1;
+  >.log{
+    position: absolute;
+    left:0.2rem;
+    top: 0.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url(../images/logo.png);
+    background-size: contain;
+  }
+  >.title{
+    position: absolute;
+    height: 1.67rem;
+    width: 6.5rem;
+    top: 5%;
+    left:50%;
+    transform: translateX(-50%);
+    background-color: blue;
+    background: url(../images/title.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  >.start{
+    position: absolute;
+    height: 1.25rem;
+    width: 4.5rem;
+    top: 43%;
+    left:50%;
+    transform: translateX(-50%);
+    background-color: #1cafc8;
+    line-height: 1.25rem;
+    font-size: .8rem;
+    text-align: center;
+    color: #FFF;
+    >.tips{
+      position: absolute;
+      width: 4.5rem;
+      // height: 1.0rem;
+      bottom: 1.25rem;
+      left:50%;
+      transform: translateX(-50%);
+      animation-name: tipsIn;
+      animation-duration: .6s;
+      // animation-delay: .5s;
+      animation-fill-mode: both;
+      background: url(../images/tips.png) no-repeat;
+      background-position: 0 0.5rem;
+      background-size: 100%;
+    }
+  }
+  >.money{
+    height: 7rem;
+    width: 4rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: blue;
+    background: url(../images/money.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  >.bord{
+    height: 7rem;
+    width:6rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    >.pople{
+      position: absolute;
+      width: 4.5rem;
+      height: 7rem;
+      background-color: red;
+      animation-name: popleShak;
+      animation-duration: 2s;
+      animation-fill-mode: both;
+      animation-iteration-count:infinite;
+      &.left{
+        animation-delay: 1s;
+        bottom: 0;
+        left: 0rem;
+        background: url(../images/popleleft.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      &.right{
+        bottom: 1.6rem;;
+        right: 0rem;
+        height: 5.5rem;
+        width: 3.5rem;
+        background: url(../images/popleright.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    }
+    .car{
+      position: absolute;
+      height: 1.3rem;
+      width: 6rem;
+      bottom: .4rem;
+      left:.8rem;
+      background: url(../images/car.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.page2{
+  background-color: #222222;
+  padding-top: 1rem;
+  .items{
+    height: 9.5rem;
+    width: 9.5rem;
+    margin: 0 auto;
+    background-color: #CCC;
+    position: relative;
+    background: url(../images/jiagsaw/bj.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    >.item{
+      position: absolute;
+      top:0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      animation-name: opacityIn;
+      animation-duration: 2s;
+      animation-fill-mode: both;
+      animation-iteration-count:1;
+    }
+  }
+  >.tips{
+    font-size: .6rem;
+    margin-top: 4vh;
+    margin-left: .5rem;
+    color: #5a7bd7;
+  }
+  >.codes{
+    text-align: center;
+    margin-top: 4vh;
+    >.code{
+      display: inline-block;
+      // background-color: red;
+      width: 2rem;
+      height: .8rem;
+      visibility: hidden;;
+      &.active{
+        visibility: visible;
+      }
+    }
+
+  }
+  >.btns{
+    width: 100%;
+    height: 1rem;
+    text-align: center;
+    margin-top: 4vh;
+    position: relative;
+    >.btn{
+      display: inline-block;
+      line-height: 1rem;
+      width: 3.8rem;
+      height: 1rem;
+      background-color: #5a7bd7;
+      color: #222;
+      line-height: 1rem;
+      font-size: 0.4rem;
+      &.disable{
+        background-color: #CCC;
+        color: #FFF;
+      }
+      >.tips{
+        display: none;
+        position: absolute;
+        height: 10.8rem;
+        width: 9rem;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: green;
+        animation-name: ruleIn;
+        animation-duration:.5s;
+        animation-fill-mode: both;
+        animation-iteration-count:1;
+        overflow: hidden;
+        padding:0px .5rem;
+        padding-top: 2rem;
+        line-height: .6rem;
+        >div{
+          text-align: left;
+          text-indent: 2em;
+        }
+      }
+      &.next{
+        >.tips{
+          padding-top: 3rem;
+          background: url(../images/tipnext.png);
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+      }
+      &.rule{
+        background-color: #1fbad6;
+        >.tips{
+          text-indent: 0em;
+          font-size: .3rem;
+          padding-top: 2rem;
+          background: url(../images/tiprule.png);
+          background-size: cover;;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+}
+
+
+
+.mask{
+  display: none;
+  position: fixed;
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.9);
+  &.active{
+    display: block;
+  }
+}
+
+
+.mask1{
+  .center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    .info{
+      color: #FFF;
+      font-size: 0.4rem;
+      margin: 0.2rem 0px;
+    }
+    .circle{
+      height: 4rem;
+      // width: 5rem;
+      // background: url('../images/circle.png') no-repeat;
+      background-size: 100%;
+    }
+    .btngo{
+      height: 1.2rem;
+      line-height: 1.2rem;
+      display: inline-block;
+      margin-top: .5rem;
+      font-size: 0.5rem;
+      color: #FFF;
+      padding: 0 0.4rem;
+      background-color: #1cafc8;
+      // transform: skew(-20deg);
+      >div{
+        // transform: skew(20deg);
+      }
+    }
+  }
+}

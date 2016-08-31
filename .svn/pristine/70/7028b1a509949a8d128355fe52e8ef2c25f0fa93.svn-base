@@ -1,0 +1,58 @@
+$gridPercentSwitch:true;
+@import "tobe/function";
+@import "base.scss";
+@import "header.scss";
+@charset "UTF-8";
+
+.courseContainer{
+	width:1110px;
+	/*height:600px;*/
+	background-color:#fff;
+	box-shadow:3px 3px 3px #eaeaea,-3px -3px 3px #eaeaea;
+	margin:30px auto;
+	border-top:1px solid transparent;
+	padding:45px;
+	.courseBorder{
+		border:1px solid #eeeeee;
+		display: block;
+		background-color: #fff;
+		min-height:510px;
+		/*overflow: auto;*/
+		.courseItem{
+			margin-left: 23px;
+			margin-right:23px;
+			height: 60px;
+			border-bottom:1px solid #eeeeee;
+			font-size:14px;
+			position:relative;
+			.courseType{
+				width:700px;
+				height: 100%;
+				display: inline-block;
+				line-height: 60px;
+				text-indent: 70px;
+				.img{
+					width:48px;
+					height: 43px;
+					margin-top:8.5px;
+					position:absolute;
+					left:0px;
+					background:url(../images/fileIcon.png) no-repeat center center;
+				}
+			}
+			.courseTime{
+				display: inline-block;
+				margin-left:0px;
+			}
+			.trigon{
+				width:16px;
+				height: 18px;
+				position:absolute;
+				right:60px;
+				top:21px;
+				cursor: pointer;
+				background:url(../images/trigon.png) no-repeat center center;
+			}
+		}
+	}
+}

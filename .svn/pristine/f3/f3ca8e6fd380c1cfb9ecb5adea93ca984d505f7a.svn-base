@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <style>
+    .btn-get.disable {
+        color: black !important;
+        background-color: grey !important;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrap-page">
+        <section id="welcome" class="page page1 ">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <p class="text text1">超级“玛”丽</p>
+            <p class="text text2">闯关赢车费</p>
+            <p class="text text3">召唤勇士即可获得三次免单
+                <br>更有专属奖励等你拿</p>
+            <div class="btn"><span>点击开始</span></div>
+            <img src="images/top-car.png" alt="" class="car">
+            <div class="text-center marybox"> <img id="start" class="maryman" src="images/man.png" alt="" style=" width: 4.375rem;
+      height: 3.96875rem;"></div>
+            <div class="btext text-center"><span>第二弹</span></div>
+            <div class="botm"><img src="images/bottom.png" alt=""></div>
+        </section>
+        <section id="login" class="page page2 hide">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="tel"><img src="images/p-1.png" alt=""></div>
+            <div class="telinput">
+                <input type="text" id="phone" placeholder="输入手机号">
+            </div>
+            <img src="images/top-car.png" alt="" class="car">
+            <button class="lq" style="background:transparent; outline:none"><img id="btn-ok" src="images/btn.png" alt=""></button>
+            <div class="botm"><img src="images/bottom.png" alt=""></div>
+            <img class="mary1" src="images/man.png" alt="">
+        </section>
+        <!-- 闯关成功 -->
+        <section id="success" class="page page3 hide">
+            <div class="logo">
+                <img src="images/black-logo.png" alt="">
+            </div>
+            <div class="qizhi"><img src="images/p-4.png" alt=""></div>
+            <p class="text1">闯关成功</p>
+            <p class="text2">消灭了魔王
+                <br>赶紧与公主一同出行吧</p>
+            <p class="text3">10元免单券已存入您的账户</p>
+            <div class="shuxian"></div>
+            <div class="circle"></div>
+            <div class="qigan">
+                <div class="triangle-left"></div>
+            </div>
+            <div class="btm"><img src="images/bg4.png" alt=""></div>
+            <div class="car1"><img src="images/car-1.png" alt=""></div>
+        </section>
+        <section id="sorry" class="page page7 hide">
+            <div class="top1"><img src="images/top1.png" alt=""></div>
+            <div class="biaobox">
+                <div class="jia"><img src="images/jia.png" alt=""></div>
+                <p class="text2 text-center">你的战斗力
+                    <br><span>过于爆表</span><img src="images/wow.png" alt="" class="wow"></p>
+                <p class="text3 text-center">-请给别人一些表现的机会-
+                    <br>-请继续关注后续的征集令-</p>
+            </div>
+            <img class="mary1" src="images/man.png" alt="">
+            <div class="botm"><img src="images/bottom.png" alt=""></div>
+        </section>
+        <section class="page page2-1 hide">
+            <div class="top1"><img src="images/top1.png" alt=""></div>
+            <div class="textbox">
+                <!--    <span class="text">使用您的<a>个人优惠码</a><br>邀请<a>1位</a>好友注册优步<br>且好友需在本周内完成<br><a>一次</a>车程<br>时间：周一至周日</span>
+                   <span class="text1 text">每邀请一位好友注册<br>即可获得<a>3次10</a>元免单机会<br>被邀请人获得<a>3次10元</a>免单机会</span> -->
+                <!-- 2 -->
+                <span class="text">使用您的<a>个人优惠码</a><br>邀请<a>2位</a>好友注册优步<br>且好友需在本周内完成<br><a>一次</a>车程<br>时间：周一至周日</span>
+                <span class="text1 text">每邀请一位好友注册<br>即可获得<a>3次10</a>元免单机会<br>专属<a>三折</a>优惠劵2张<br>被邀请人获得<a>3次10元</a>免单机会</span>
+                <!-- 2end -->
+                <!-- 3 -->
+                <!--   <span class="text">使用您的<a>个人优惠码</a><br>邀请<a>5位</a>好友注册优步<br>且好友需在本周内完成<br><a>一次</a>车程<br>时间：周一至周日</span>
+                   <span class="text1 text">每邀请一位好友注册<br>即可获得<a>3次10</a>元免单机会<br>专属<a>三折</a>优惠劵5张<br>被邀请人获得<a>3次10元</a>免单机会</span> -->
+                <!-- 3end -->
+                <img src="images/chakanbtn.png" alt="" class="btn" id="mmbtn">
+
+            </div>
+            <div class="botm"><img src="images/bottom.png" alt=""></div>
+            <div class="mask" style="display:none"></div>
+             <div class="ziti" style="display:none"></div>
+             <img src="images/xiao.gif" alt="" class="gif" style="display:none">
+        </section>
+        <section id="failure" class="page page11 hide">
+              <p style="margin-top: 40%">活动结束</p>
+           
+        </section>
+    </div>
+    <script src="vendor/underscore-min.js"></script>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <script src="vendor/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/main.js">
+    </script>
+    <script>
+        $('#mmbtn').on('click', function(event) {
+             $('.mask').show();
+             $('.ziti').show();
+            event.preventDefault();
+             event.stopPropagation()
+
+            });
+        $('.ziti').on('click',  function(event) {
+             $('.gif').show();
+            event.preventDefault();
+             event.stopPropagation()
+          
+        });
+        $(document).on('click', function(event) {
+             $('.mask').hide();
+             $('.ziti').hide();
+             $('.gif').hide()
+            event.preventDefault();
+            event.stopPropagation()
+            
+        });
+
+    </script>
+</body>
+
+
+</html>

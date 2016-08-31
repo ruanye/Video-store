@@ -1,0 +1,65 @@
+$(function() {
+    $('.header-menu .menu').show()
+    var $start = $('.stopAnswer');
+    var $studentIcon=$('.answering .studentIcon')
+
+    var Data = {
+        questionType: 1,
+        ttSerialId: SS.get(Constant.timeTableSerialId)
+    }
+    // console.log(Data);
+    function getQuickAnser() {
+        $.ajax({
+            type: "POST",
+            url: Constant.WEB_ROOT + "/manager/teacher/question/create",
+            data: Data,
+            success: function(data, xhr) {
+                if (xhr === 'success') {
+                    if (data.status == 0) {
+                        var quickId=data.obj.id
+                        var timer=setInterval(function(){
+                            $.ajax({
+                                type:"get",
+                                url:Constant.WEB_ROOT+'/manager/teacher/question/detail',
+                                data:{id:quickId},
+                                success:function(data,status){
+                                    console.log(data)
+                                    if(data.obj.studentId!==-1){
+                                        clearInterval(timer);
+                                        $start.attr('disabled',false).text('开始抢答')
+                                        $studentIcon.css('background-image','url('+data.obj.studentIcon+')')
+                                        $studentIcon.next().text(data.obj.studentName)
+                                        $studentIcon.one('click',function(e){
+                                            details(data.obj.studentId,2);
+                                        })
+                                    }
+                                },
+                                err:function(){
+                                    // console.log('ajax错误')
+                                }
+                            })
+                        },1000);
+                    } else {
+                        console.log('status!=0')
+                    }
+                } else {
+                    $.alert({
+                        title:"系统提示",
+                        contentText:"网络异常，数据加载失败！",
+                        cancleText:"确定",
+                        callback:function( event ){}
+                    });
+                }
+            },
+            error: function(xhr, status) {
+                console.log('error')
+            }
+        });
+    }
+    $start.on('click', function(e) {
+    	getQuickAnser()
+        $('.answering .text').text('抢答中...')
+        $('.answering .studentIcon').css('background-image','url(../images/quickAnswer1.png)')
+    	$(this).attr('disabled',true).text('抢答中...')
+    })
+})

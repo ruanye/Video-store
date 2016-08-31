@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>我的预约</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link rel="stylesheet" href="vendor/swiper/dist/css/swiper.min.css">
+    <link href="css/my-yuyue.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <div class="order-list">
+<!--             <div class="list-item">
+                <div class="order-number">预约号：77</div>
+                <div class="docutor-name">医生：张合</div>
+                <div class="price">价格：￥15.00</div>
+                <div class="time">时间：5月1日上午（建议就诊时间：10:00-11:00）</div>
+                <div class="order-btn">退号</div>
+            </div>            
+            <div class="list-item">
+                <div class="order-number">预约号：77</div>
+                <div class="docutor-name">医生：张合</div>
+                <div class="price">价格：￥15.00</div>
+                <div class="time">时间：5月1日上午（建议就诊时间：10:00-11:00）</div>
+                <div class="order-btn">退号</div>
+            </div>            
+            <div class="list-item">
+                <div class="order-number">预约号：77</div>
+                <div class="docutor-name">医生：张合</div>
+                <div class="price">价格：￥15.00</div>
+                <div class="time">时间：5月1日上午（建议就诊时间：10:00-11:00）</div>
+                <div class="order-btn">再次预约</div>
+            </div> -->
+        </div>
+    </div>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <script  type="text/javascript" src="js/topBar.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script type="text/javascript" src="js/static/base.js"></script>
+    <script type="text/javascript" src="js/static/parsec_weixin.js"></script> 
+    <script type="text/javascript" src="js/my-yuyue.js"></script>
+</body>
+
+</html>

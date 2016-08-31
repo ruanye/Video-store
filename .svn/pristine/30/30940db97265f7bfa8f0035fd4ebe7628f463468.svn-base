@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/tests-result.css">
+
+    <!--[if lt IE9]>
+    <script src="js/html5.js"></script>
+    <script src="js/IE7.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <header>
+        <nav id="header_menu">
+        </nav>
+    </header>
+    <div class="header-fixed">
+        <nav id="header_menu_fixed">
+        </nav>
+    </div>
+
+    <section class="container">
+        <div class="top">
+            <div class="btn back" onclick="javascript:window.history.go(-1)"><a href="javascript:void(0);">返回</a></div>
+            <div class="text" onclick="putquestions('');"></div>
+        </div>
+        <div class="questions"></div>
+        <div class="bottom">
+            <div class="btn prev" onclick="Page.prev();">上一题</div>
+            <div class="btn answer" onclick="showAnswer();">显示答案</div>
+            <div class="btn next" onclick="Page.next();">下一题</div>
+        </div>
+        <div class="mask-putquestions">
+            <div class="putquestions"></div>
+        </div>
+        <div class="mask-details">
+            <div class="details"></div>
+        </div>
+    </section>
+    <script type="text/javascript" src="js/ss.js"></script>
+    <script type="text/javascript" src="js/libs/jQuery/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/ls.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/static/src/mask-details.js"></script>
+
+
+    <!-- 答题详情开始 -->
+    <script type="text/tmpl" id="questionsTpl">
+        <div class="content">
+            <%=data.subject.subjectCode+"、"+data.subject.title%>
+        </div>
+        <div class="<%=data.isSubject?'stu':'answer'%>">
+            <%for(var i = 0;i < data.list.length && !data.isSubject;i++){%>
+            <div class="item">
+                <div class="left">
+                    <div class="text"><%=data.list[i].code%>、<%=data.list[i].content%></div>
+                    <div class="progress">
+                        <div class="percent" data-percent="<%=data.list[i].percent%>" style="background-color:<%=data.list[i].color%>"></div>
+                        <div class="text"><%=data.list[i].countOfAnswer+"人"%></div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="submit" onclick="putquestions('<%=data.list[i].code%>');">提问</div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <%}%>
+            <%for(var i= 0;i < data.allAnswers.length && data.isSubject; i++){%>
+              <div class="item">
+                <div class='left' onclick="details(<%=data.allAnswers[i].studentId%>,1)">
+                  <img src="<%=data.allAnswers[i].studentIcon%>?imageView2/1/w/200/h/200" alt="" class="avatar"/>
+                  <div class="name"><%=data.allAnswers[i].studentName%></div>
+                </div>
+                <div class='right'><%=data.allAnswers[i].answer%></div>
+                <div style="clear:both;"></div>
+              </div>
+            <%}%>
+        </div>
+        <div class="referenceAnswers">
+            <span>正确答案:</span>
+            <span><%=data.subject.referenceAnswers%></span>
+        </div>
+    </script>
+    <script type="text/javascript">
+        var request = GetRequest();
+
+
+        window.Student = [];
+        $.get(Constant.WEB_ROOT+"/manager/teacher/student/list",{
+            classId:SS.get(Constant.classId),
+        },function( data ){
+            window.Student = data.array || [];
+
+            //分页逻辑
+            window.Page = {
+              ids:[],
+              loadData:function( pageIndex ){
+                console.log(pageIndex);
+                request.id =  Page.ids[pageIndex];
+                var parm = "";
+                for( var key in request){
+                  if( parm != ""){
+                    parm +="&";
+                  }
+                  parm +=key + "=" + request[key];
+                }
+                console.log(parm);
+                window.history.replaceState(null,null,"tests-result.html?" + parm);
+                PageLoad();
+                Page.renderBtn();
+              },
+              getCurrentPageIndex:function(){
+                var currentPageId = request['id'];
+                var currentPageIndex = -1;
+                (Page.ids || []).forEach(function(item,index){
+                  if( item == currentPageId){
+                    currentPageIndex = index;
+                  }
+                });
+                return currentPageIndex;
+              },
+              renderBtn(){
+                var currentPageIndex = Page.getCurrentPageIndex();
+                if( currentPageIndex == 0 ){
+                  $(".btn.prev").css("visibility","hidden");
+                }else{
+                  $(".btn.prev").css("visibility","visible");
+                }
+                if( currentPageIndex == Page.ids.length-1 ){
+                  $(".btn.next").css("visibility","hidden");
+                }else{
+                  $(".btn.next").css("visibility","visible");
+                }
+              },
+              prev:function(){
+                var pageIndex = Page.getCurrentPageIndex()-1;
+                Page.loadData(pageIndex);
+              },
+              next:function(){
+                var pageIndex = Page.getCurrentPageIndex()+1;
+                Page.loadData(pageIndex);
+              }
+            };
+            Page.ids = SS.get("ttSerialIds").split(",");
+            Page.renderBtn();
+
+            //随机生成4个不同的颜色
+            var colors=[];
+            while (colors.length != 4) {
+                var color = ["#FFFF00","#FF9900","#FF0000","#CC9900","#CC0000","#99CC00","#990000","#666600","#33CC00","#00FFCC"][Math.floor(Math.random()*1000%10)];
+                if( $.inArray(color,colors) == -1 ){
+                    colors.push(color);
+                }
+            }
+
+            function PageLoad(){
+                function loadData( isFirst ){
+                    $.get(Constant.WEB_ROOT+"/manager/teacher/exercise/subject/answerinfo",{
+                        exerciseSerialId:request['exerciseSerialId'],
+                        subjectId:request['id'],
+                        pageNo:1,
+                        pageSize:999
+                    },function( data ){
+                        if( data.status != 0){
+                            $.alert({
+                                title:"系统提示",
+                                contentText:data.msg,
+                                cancleText:"确定",
+                                callback:function( event ){
+                                    window.history.go(-1);
+                                    return false;
+                                }
+                            });
+                            return;
+                        }
+
+                        //获取答案内容
+                        var answer = [];
+                        try{
+                            answer = JSON.parse(data.subject.itemJson);
+                        }catch(e){
+                        }
+
+                        //计算百分比
+                        var sum = window.Student.length;
+                        for(var i = 0;i<data.list.length;i++){
+                            data.list[i].content = answer[i].content;
+                        }
+                        for(var i = 0;i<data.list.length;i++){
+                            data.list[i].percent = sum==0 ?0: data.list[i].countOfAnswer/sum*100;
+                            data.list[i].color = colors[i];
+                        }
+                        data.isSubject = (data.subject.subjectType == 3 || data.subject.subjectType == 5);
+                        console.log(data.isSubject);
+                        window.questionsInfo = data;
+                        if( isFirst ){
+                            var result = tmpl($("#questionsTpl").html(),{
+                                data:data,
+                            });
+                            $(".container > .questions").html( result );
+                        }
+                        //标记已作答学生
+                        window.Student.forEach(function( item ){
+                            item.isAnswer = false;
+                            data.allAnswers.forEach(function( std){
+                                if( item.id == std.studentId ){
+                                    item.isAnswer = true;
+                                }
+                            });
+                        });
+                        //统计未作答人数
+                        var answerSum = window.Student.filter(function( item ){
+                            return !item.isAnswer;
+                        }).length;
+                        $(".container > .top > .text").html("<u>"+(answerSum)+"人未作答,点击查看</u>");
+
+                        //延时跑动画
+                        setTimeout(function(){
+                            $(".progress").each(function(index){
+                                $(this).find(".percent").css("width",data.list[index].percent+"%");
+                                $(this).find(".text").html( data.list[index].countOfAnswer+"人");
+                            });
+                        },100);
+                        setTimeout(function(){
+                            loadData(false);
+                        },1000);
+                    });
+                }
+                loadData(true);
+            };
+            PageLoad();
+
+        });
+    </script>
+    <!-- 答题详情结束 -->
+
+    <!-- 提问开始 -->
+    <script type="text/tmpl" id="putquestionsTpl">
+        <img src="images/close.png" alt="关闭" class="close" onclick="$('[class^=mask]').hide();">
+        <div class="answer"><%= data.answer.code%><%= data.answer.code?'、':''%><%= data.answer.content %></div>
+        <div class="tips"><%= data.answer.tips %></div>
+        <div class="items">
+            <%for(var i = 0;i < data.list.length;i++){%>
+            <div class="item" onclick="details(<%=data.list[i].studentId%>,1);">
+                <div class="avatar"><img src="<%= data.list[i].studentIcon %>?imageView2/1/w/200/h/200" height="100%" width="100%" onerror="noFindImg();"/></div>
+                <div class="nickname"><%= data.list[i].studentName %></div>
+            </div>
+            <%}%>
+            <div style="clear:both;"></div>
+        </div>
+    </script>
+    <script type="text/javascript">
+         function putquestions( code ){
+             function callback( data ){
+                 var result = tmpl($("#putquestionsTpl").html(),{
+                     data:data,
+                 });
+
+                 $("[class^=mask]").hide();
+                 $(".container > .mask-putquestions > .putquestions").html( result );
+                 $(".container > .mask-putquestions").show();
+             }
+             if( !code ){
+                 var data = window.Student.filter( function(item ){
+                     return !item.isAnswer;
+                 }) || [];
+                 data.forEach(function( item ){
+                     item.studentId = item.id;
+                     item.studentIcon = item.icon;
+                     item.studentName = item.name;
+                 });
+                 callback({
+                     answer:{
+                         code:"",
+                         content:"",
+                         tips:"",
+                     },
+                     list:data,
+                 });
+             }else{
+                 $.get(Constant.WEB_ROOT+"/manager/teacher/exercise/subject/answerlist",{
+                     exerciseSerialId:request['exerciseSerialId'],
+                     subjectId:request['id'],
+                     answer:code,
+                     pageNo:1,pageSize:999
+                 },function( data ){
+                     data.answer = window.questionsInfo.list.filter(function( item ){
+                         if( item.code == code ){
+                             return true;
+                         }
+                     })[0];
+                     window.answerInfo = data;
+                     data.answer.tips = "请选择此答案的学生:";
+                     //return false;
+                     callback( data );
+                 });
+             }
+         }
+    </script>
+
+    <!-- 提问结束 -->
+    <script type="text/javascript">
+        //结束测试
+        function closeX(){
+            $.post(Constant.WEB_ROOT+"/manager/teacher/exercise/serial/close",{id:request['exerciseSerialId']},function( data ){
+                if( data.status === 0){
+                    window.location.href ="tests-push.html";
+                }else{
+                    $.alert({
+                        title:"测试提示",
+                        contentText:"关闭失败，请稍后重试...",
+                        submitText:"确定",
+                        callback:function( event ){}
+                    });
+                }
+            });
+        }
+        //显示答案
+        function showAnswer(){
+            $(".referenceAnswers").show();
+            $.post(Constant.WEB_ROOT+"/manager/teacher/exercise/showAnswer",{
+                exerciseSerialId:request['exerciseSerialId'],
+                subjectId:questionsInfo.subject.id,
+            },function(){});
+        }
+
+    </script>
+
+
+    <script type="text/javascript">
+        $("[class^=mask]").on("click",function( event ){
+            if( this != event.target){
+                return;
+            }
+            $(this).hide();
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+$('.label-switch input[type=checkbox]').live('change',function (e) {
+
+    e.preventDefault();
+if($('#recivebox').is(':checked')){
+    $('#recive-man').hide();
+    $("#reciveName").val("");
+    $("#reciveID").val("");
+}
+else{$('#recive-man').show();}
+
+if($('#sendbox').is(':checked')){
+    $('#send-man').hide();
+    $("#sendName").val("");
+    $("#sendID").val("");
+}
+else{$('#send-man').show();}
+
+});
+
+
+var ECT = {
+    init:function() {
+
+        //显示数据
+        var user = LS.getObj("user");
+        $("#carNumberDiv").html(user.lpn);
+        $("#carNameDiv").html(user.ownerName);
+        $("#brandInput").val(user.brand == undefined ? "" : user.brand);
+        $("#engineNoInput").val(user.engineNo == undefined ? "" : user.engineNo);
+        $("#firstTimeInput").val(user.firstTime == undefined ? "" : user.firstTime);
+        $("#ownIDInput").val(user.ownID == undefined ? "" : user.ownID);
+        $("#ownerNumberInput").val(user.ownerNumber == undefined ? "" : user.ownerNumber);
+        $("#vinInput").val(user.vin == undefined ? "" : user.vin);
+
+        //是否过户
+        var portals = document.getElementsByName("opinions");
+        for(var i = 0; i < portals.length; i++) {
+            if(portals[i].value == user.transfer) {
+                portals[i].checked="checked";
+            }
+        }
+
+        //如果是新车未上牌,则隐藏车牌号码
+        var isSelect = LS.get("isSelected");
+        if (isSelect == 1) {
+            $("#carNumberLi").hide();
+        }
+
+        //点击确认录入
+        $(document).on('click', '.col-100', function () {
+            //判断投保以及被保人
+            var reciveName = $("#reciveName").val();
+            var reciveID = $("#reciveID").val();
+            var sendName = $("#sendName").val();
+            var sendID = $("#sendID").val();
+            if(!$('#recivebox').is(':checked')){
+                if (reciveName == null || reciveName == "") {
+                    $.alert("请输入被保人姓名");
+                    return;
+                }
+                if (reciveID == null || reciveID == "") {
+                    $.alert("请输入被保人的身份证号码");
+                    return;
+                }
+            }
+            if(!$('#sendbox').is(':checked')){
+                if (sendName == null || sendName == "") {
+                    $.alert("请输入投保人姓名");
+                    return;
+                }
+                if (sendID == null || sendID == "") {
+                    $.alert("请输入投保人的身份证号码");
+                    return;
+                }
+            }
+
+
+            $.showPreloader('保存中....');
+
+            var jsonStr = {
+                "brand": $("#brandInput").val(),
+                "engineNo": $("#engineNoInput").val(),
+                "firstTime": $("#firstTimeInput").val(),
+                "id": user.id,
+                "lpn": user.lpn,
+                "ownID": $("#ownIDInput").val(),
+                "ownerName": user.ownerName,
+                "ownerNumber": $("#ownerNumberInput").val(),
+                "transfer": $("input[name='opinions']:checked").val(),
+                "userId": user.userId,
+                "vin": $("#vinInput").val(),
+                "recognizeeName": reciveName,
+                "recognizeeNumber": reciveID,
+                "applicantName": sendName,
+                "applicantNumber": sendID
+            }
+            $.ajax({
+                url: 'http://synsunny.parsec.com.cn/Dorado/weixin/trade/commitVehicle',
+                type: 'post',
+                // timeout: 5000,
+                dataType:'json',
+                data: jsonStr,
+                success: function(data, status) {
+                    $.hidePreloader();
+                    if (status == 'success' && data.status == 0) {
+                        $.toast("录入成功");
+                        if (isSelect == 1) {
+                            $.alert(user.ownerName+"您好,由于您的爱车是新车,帮小妹需要亲自为您服务,请保持电话畅通哦^_^", function () {
+                                window.location.href = 'index.html';
+                            })
+
+                        }else {
+                            sessionStorage.currentCar = LS.getObj("user").lpn;
+                            window.location.href = 'select-set.html?suit=' + sessionStorage.suitIndex;
+                        }
+                    }else {
+                        $.alert(data.msg);
+                    }
+                },
+                error: function(err) {
+                    $.hidePreloader();
+                    console.log(err);
+                    $.toast("保存失败");
+                }
+            })
+        });
+    }
+}
+
+ECT.init();
+$.init();

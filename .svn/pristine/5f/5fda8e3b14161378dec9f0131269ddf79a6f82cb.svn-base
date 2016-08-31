@@ -1,0 +1,44 @@
+var scrolltoMenu = {
+    setting : {
+        _width : jQuery(window).width(),
+        _top : jQuery(window).scrollTop()
+    },
+    
+    init:function(){
+        this.setting._width = jQuery(window).width();
+        this.setting._top = jQuery(window).scrollTop();
+        scrolltoMenu.initFixedMenu(this.setting._width,this.setting._top);
+        jQuery(window).scroll(function(){
+            var mainobj=scrolltoMenu;
+            mainobj.setting._width = jQuery(window).width();
+            mainobj.setting._top = jQuery(window).scrollTop();
+            scrolltoMenu.initFixedMenu(mainobj.setting._width,mainobj.setting._top);
+        });
+    },
+    initFixedMenu:function(w,t){
+        if(w > 1366){
+            if(t >= 170){
+                $(".header-fixed").css({'position':'fixed','top':0});
+                $(".container").css({'margin-top':100+'px'});
+            }else{
+                $(".header-fixed").css({'position':'static'});
+                $(".container").css({'margin-top':25+'px'});
+            }
+        }else{
+            if(t >= 110){
+                $(".header-fixed").css({'position':'fixed','top':0});
+                $(".container").css({'margin-top':100+'px'});
+            }else{
+                $(".header-fixed").css({'position':'static'});
+                $(".container").css({'margin-top':25+'px'});
+            }
+        }
+    }
+}
+
+$(function(){
+    scrolltoMenu.init();
+    $(window).resize(function() {
+      scrolltoMenu.init();
+    });
+})

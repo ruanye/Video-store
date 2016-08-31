@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>冠军之争，竞猜共享十万奖金</title>
+        <script src="vendor/lib-flexible/build/flexible.js"></script>
+        <link href="css/main.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="css/animate.css">
+    </head>
+    <body >
+   
+        <div class="wrap-page">
+            <section class="page page1 hide">
+                <img class="logo " src="images/logo.png" alt="">
+                <div class="text-center title"><img src="images/title.png" alt=""></div>
+                <div class="text-center box">
+                    <img class="gj" src="images/dg.png" alt="">
+                    <span><img class="vs" src="images/vs.png" alt=""></span>
+                    <img class="gj" src="images/pty.png" alt="">
+                </div>
+            </section> 
+            
+            <section class="page page2  ">
+                <img src="images/car1.png" alt="" class="car1 poscar animated infinite toTopcar1">
+                <img src="images/car2.png" alt="" class="car2 poscar animated infinite toTopcar2">
+                <img src="images/car3.png" alt="" class="car3 poscar animated infinite toTopcar3">
+                <img src="images/car4.png" alt="" class="car4 poscar animated infinite toTopcar4">
+               
+                <img src="images/car5.png" alt="" class="car5 poscar  animated infinite toTopcar5">
+
+               <div class="text-center topimg"><img src="images/page2top.png" alt=""></div>
+               <div class="centercar text-center"><img src="images/car.png" alt=""></div>
+               <div class="twocon a">
+                     <div class="text-center"><img src="images/qicar.png" class="qicar" alt=""></div>
+                     <p class="text-center black">20345</p>                   
+                   <div class="zhuzi one"><p>德国</p></div>
+                   
+                  
+               </div> 
+                <div class="twocon b">
+                      <div class="text-center"><img src="images/qicar.png" class="qicar" alt=""></div>
+                    <p class="text-center red">20345</p>    
+                   <div class="zhuzi two"><p>德国</p></div>
+                 </div> 
+                 <div class="twocon c">
+                   <p class="text-center ">活动规则</p>
+                 </div>
+               <div class="bottom"></div>
+
+            </section>
+
+            <section class="page page3 hide">
+                <div class="contry">
+                    <div class="realy">
+                        <img src="images/dgcar.png" alt="" class="car animated toTop">
+                        <p class="numbertext text-center">(1,100)</p>
+                        <span class="contyrtext">德国</span>
+                    </div>
+                    <div class="realy">
+                        <img src="images/dgcar.png" alt="" class="car">
+                        <p class="numbertext text-center">(1,100)</p>
+                        <span class="contyrtext">葡萄牙</span>
+                    </div>
+                </div>
+            </section>
+            <section class="page4 page hide">
+                <div class="text-center"><img class="page4top" src="images/page4top.png" alt=""></div>
+                <div class="jj">
+                    <p>100000</p>
+                </div>
+                <p class="text-center white">你已为你喜爱的球队投注一元乘车金<br> 获胜一方将平分资金池中全部奖金 <br>平均分配的奖金将作为优步乘车金<br> 留下你的手机号，让我们找到你</p>
+                <div class="text-center inputbox"><input type="text" placeholder="请输入手机号码"></div> 
+                <div class="text-center btnbox"><span>立即抢奖金</span></div>
+                 <div class="text-center tiptext"><span>还没有优步账号?<a >立即注册</a></span></div>
+
+            </section>
+            <section class="page page5 hide">
+                <img class="logo" src="images/logo.png" alt="">
+                <div class="text-center title">
+                    <img src="images/title.png" alt="">
+                </div>
+                <div class="text-center sharetext">
+                    <img  src="images/sharetext.png" alt="">
+                </div>
+                <div class="text-center sharebtn"><span>点击分享</span></div>
+                <div class="mask" style="display:none">
+                    <img class="hander animated fadeIn infinite" src="images/hander.png" alt="">
+                </div>
+            </section>
+            
+            
+        </div>
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+        var page = document.querySelectorAll('.page');
+        var doch = window.screen.height;
+        for (var i = 0; i < page.length; i++) {
+        page[i].style.height = doch + 'px';
+        }
+        $('.sharebtn').on('click',  function(event) {
+        $('.mask').show();
+        event.preventDefault();
+        /* Act on the event */
+        });
+        </script>
+    </body>
+</html>

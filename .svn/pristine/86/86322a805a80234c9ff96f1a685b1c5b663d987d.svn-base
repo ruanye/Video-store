@@ -1,0 +1,377 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "header.scss";
+@charset "UTF-8";
+
+.container {
+  width: 1170px;
+  min-height: 600px;
+  margin: 25px auto;
+  border: 1px solid #ffffff;
+  -webkit-box-shadow: 0 0 10px #e2e2e2;
+  -moz-box-shadow: 0 0 10px #e2e2e2;
+  box-shadow: 0 0 10px #e2e2e2;
+  background: #ffffff;
+  position: relative;
+  /*font:normal normal normal normal 16px / normal Simsun;
+  font:normal normal normal 16px/18px -webkit-standard;*/
+  font: 16px/18px "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+  > .top {
+    margin: 20px 60px;
+    text-align: left;
+    height: 35px;
+    position: relative;
+    > .btn {
+      position: absolute;
+      display: inline-block;
+      padding: 0px 10px;
+      line-height: 35px;
+      font-size: 16px;
+      width: 110px;
+      background-color: rgb(210, 0, 20);
+      border-radius: 3px;
+      text-align: center;
+      cursor: pointer;
+      > a {
+        color: #ffffff;
+      }
+      &.back {
+        left:0;
+        background-color: rgb(185, 185, 185);
+      }
+      &:hover {
+        background: #de0313;
+      }
+      &.close {
+        right:0;
+      }
+    }
+  }
+  > .left {
+    position: absolute;
+    top: 12%;
+    left: 5%;
+    width: 330px;
+    height: 460px;
+    border: 1px solid #CCC;
+    border-radius: 0;
+    padding: 20px 50px;
+    > .item {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 10px 0;
+      /*>.before{
+        position: absolute;
+        display: block;
+        left: 15px;
+        width: 35px;
+        height: 35px;
+        overflow: hidden;
+        &:before{
+          position: absolute;
+          top:0;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          content: '';
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          background: radial-gradient(transparent 40%, #cccccc 40%);
+        }
+      }
+      >.after{
+        position: absolute;
+        display: block;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        overflow: hidden;
+        &:after{
+          position: absolute;
+          top:0;
+          right: 15px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          content: '';
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          display: block;
+          z-index: 2;
+          background: radial-gradient(transparent 40%, #cccccc 40%);
+        }
+      }*/
+      &.avatar {
+        height: 140px;
+        width: 140px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 40px auto 30px auto;
+        > img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      div{
+        float: left;
+        margin: 3px 0;
+        padding:2px 5px;
+      }
+      .name,.studentNo{
+        width: 180px;
+        border-bottom: 1px solid #000000;
+      }
+      &.result {
+        margin-top: 10px;
+        width: 100%;
+        padding: 10px 0px;
+        text-align: center;
+        color: #CE2121;
+        font-weight: bold;
+      }
+      &:after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+        zoom: 1;
+      }
+    }
+  }
+}
+
+.container {
+  *{
+    position: relative;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.cn-button {
+  position: absolute;
+  top: 50%;
+  right: 23.2%;
+  z-index: 11;
+  margin-top: -54px;
+  margin-left: -54px;
+  padding-top: 0em;
+  width: 108px;
+  height: 108px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: #52be7f;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+}
+
+.cn-button:before {
+  content: url("../images/cj.png");
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  margin-left: -78px;
+  margin-top: -109px;
+  z-index:11;
+}
+
+.csstransforms .cn-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  z-index: 1;
+  margin-top: -211px;
+  margin-left: -211px;
+  width: 422px;
+  height: 422px;
+  border-radius: 50%;
+  background: transparent;
+  opacity: 0;
+  -webkit-transition: all 3s cubic-bezier(0.33, 0.45, 0, 0.84);;
+  -moz-transition: all 3s cubic-bezier(0.33, 0.45, 0, 0.84);;
+  transition: all 3s cubic-bezier(0.33, 0.45, 0, 0.84);;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/*cover to prevent extra space of anchors from being clickable*/
+
+:focus {
+  outline: none;
+}
+
+.csstransforms .opened-nav {
+  border-radius: 50%;
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.csstransforms .cn-wrapper li {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  margin-top: -1.2em;
+  margin-left: -10em;
+  width: 10em;
+  height: 10em;
+  font-size: 1.5em;
+  -webkit-transform: rotate(60deg) skew(30deg);
+  -moz-transform: rotate(60deg) skew(30deg);
+  -ms-transform: rotate(60deg) skew(30deg);
+  transform: rotate(60deg) skew(30deg);
+  -webkit-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
+  pointer-events: none;
+  border: 4px solid #fff;
+}
+
+.csstransforms .cn-wrapper li a {
+  position: absolute;
+  right: -7.25em;
+  bottom: -7.25em;
+  display: block;
+  width: 14.5em;
+  height: 14.5em;
+  border-radius: 50%;
+  background: #429a67;
+  color: #46362c;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  line-height: 2;
+  -webkit-transform: skew(-30deg) rotate(-60deg) scale(1);
+  -moz-transform: skew(-30deg) rotate(-60deg) scale(1);
+  -ms-transform: skew(-30deg) rotate(-60deg) scale(1);
+  transform: skew(-30deg) rotate(-60deg) scale(1);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  pointer-events: auto;
+}
+
+.csstransforms .cn-wrapper li a span {
+  position: relative;
+  top: 2.8em;
+  display: block;
+  font-size: .5em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.csstransforms .cn-wrapper li a:hover,
+.csstransforms .cn-wrapper li a:active,
+.csstransforms .cn-wrapper li a:focus {
+  background: -webkit-radial-gradient(transparent 35%, #449e6a 35%);
+  background: -moz-radial-gradient(transparent 35%, #449e6a 35%);
+  background: radial-gradient(transparent 35%, #449e6a 35%);
+}
+
+.csstransforms .cn-wrapper li a:focus {
+  position: fixed; /* fix the displacement bug in webkit browsers when using tab key */
+}
+
+.csstransforms .opened-nav li {
+  -webkit-transition: all .3s ease .3s;
+  -moz-transition: all .3s ease .3s;
+  transition: all .3s ease .3s;
+}
+
+.csstransforms .opened-nav li:first-child {
+  -webkit-transform: rotate(0deg) skew(30deg);
+  -moz-transform: rotate(0deg) skew(30deg);
+  -ms-transform: rotate(0deg) skew(30deg);
+  transform: rotate(0deg) skew(30deg);
+}
+
+.csstransforms .opened-nav li:nth-child(2) {
+  -webkit-transform: rotate(60deg) skew(30deg);
+  -moz-transform: rotate(60deg) skew(30deg);
+  -ms-transform: rotate(60deg) skew(30deg);
+  transform: rotate(60deg) skew(30deg);
+}
+
+.csstransforms .opened-nav li:nth-child(3) {
+  -webkit-transform: rotate(120deg) skew(30deg);
+  -moz-transform: rotate(120deg) skew(30deg);
+  -ms-transform: rotate(120deg) skew(30deg);
+  transform: rotate(120deg) skew(30deg);
+}
+
+.csstransforms .opened-nav li:nth-child(4) {
+  -webkit-transform: rotate(180deg) skew(30deg);
+  -moz-transform: rotate(180deg) skew(30deg);
+  -ms-transform: rotate(180deg) skew(30deg);
+  transform: rotate(180deg) skew(30deg);
+}
+
+.csstransforms .opened-nav li:nth-child(5) {
+  -webkit-transform: rotate(240deg) skew(30deg);
+  -moz-transform: rotate(240deg) skew(30deg);
+  -ms-transform: rotate(240deg) skew(30deg);
+  transform: rotate(240deg) skew(30deg);
+}
+
+.csstransforms .opened-nav li:nth-child(6) {
+  -webkit-transform: rotate(300deg) skew(30deg);
+  -moz-transform: rotate(300deg) skew(30deg);
+  -ms-transform: rotate(300deg) skew(30deg);
+  transform: rotate(300deg) skew(30deg);
+}
+
+.csstransforms .opened-nav li:first-child a {
+  background: -webkit-radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+  background: -moz-radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+  background: radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+
+}
+
+.csstransforms .opened-nav li:nth-child(2) a {
+  background: -webkit-radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+  background: -moz-radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+  background: radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+
+}
+
+.csstransforms .opened-nav li:nth-child(3) a {
+  background: -webkit-radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+  background: -moz-radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+  background: radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+
+}
+
+.csstransforms .opened-nav li:nth-child(4) a {
+  background: -webkit-radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+  background: -moz-radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+  background: radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+
+}
+
+.csstransforms .opened-nav li:nth-child(5) a {
+  background: -webkit-radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+  background: -moz-radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+  background: radial-gradient(transparent 21%, #3bbaf3 21%, #3bbaf3 32%, transparent 32%, transparent 40%, #3bbaf3 40%);
+
+}
+
+.csstransforms .opened-nav li:nth-child(6) a {
+  background: -webkit-radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+  background: -moz-radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+  background: radial-gradient(transparent 21%, #95dbfb 21%, #95dbfb 32%, transparent 32%, transparent 40%, #95dbfb 40%);
+
+}

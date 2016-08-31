@@ -1,0 +1,103 @@
+/**
+ * Created by yanghc on 16/6/16.
+ */
+//模态框插件
+$.alert = function (option) {
+    option = $.extend({
+        title: "提示",
+        contentText: "这是一个提示框,点击去小关闭",
+        cancleText: "确定",
+        cancleClass: "btn-cancle",
+        callback: function () {
+        },
+    }, option);
+    var htmlString = '<div class="alert-mask">' +
+        '<div class="alert-modal">' +
+        '<div class="alert-title">' + option.title + '</div>' +
+        '<div class="alert-body">' +
+        '<div class="contet">' + option.contentText + '</div>' +
+        '</div>' +
+        '<div class="alert-footer">' +
+        '<div class="alert-btn ' + option.cancleClass + '">' + option.cancleText + '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    var $modal = $(htmlString);
+    $modal.find(".alert-btn").on("click", function () {
+        var event = {
+            index: $(this).index(),
+        }
+        $modal.remove();
+        option.callback.call(this, event);
+    })
+    $("body").append($modal);
+};
+$.confirm = function (option) {
+    option = $.extend({
+        title: "提示",
+        contentText: "这是一个提示框,点击去小关闭",
+        submitText: "提交",
+        submitClass: "btn-submit",
+        cancleText: "取消",
+        cancleClass: "btn-cancle",
+        callback: function () {
+        },
+    }, option);
+    var htmlString = '<div class="confirm-mask">' +
+        '<div class="confirm-modal">' +
+        '<div class="confirm-title">' + option.title + '</div>' +
+        '<div class="confirm-body">' +
+        '<div class="confirm-contet">' + option.contentText + '</div>' +
+        '</div>' +
+        '<div class="confirm-footer">' +
+        '<div class="confirm-btn ' + option.cancleClass + '">' + option.cancleText + '</div>' +
+        '<div class="confirm-btn ' + option.submitClass + '">' + option.submitText + '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    var $modal = $(htmlString);
+    $modal.find(".confirm-btn").on("click", function () {
+        var event = {
+            index: $(this).index(),
+        }
+        $modal.remove();
+        option.callback.call(this, event);
+    })
+    $("body").append($modal);
+};
+
+var coupon = {
+    pageIds:['#page8','#page3_b','#page4_b'],
+    getPrize: function (txt) {
+        if (txt.indexOf("再转一次") >= 0) {
+            $.alert({
+                title: "系统提示",
+                contentText: '恭喜您获得:' + txt,
+                cancleText: "确定",
+                callback: function (event) {
+                }
+            });
+        } else {
+            $.confirm({
+                title: "系统提示",
+                contentText: '恭喜您获得:' + txt,
+                cancleText: "再转一次",
+                submitText: "否",
+                callback: function (event) {
+                    switch (event.index) {
+                        case 0:
+                            $('#page1').hide();
+                            $(coupon.pageIds[Math.floor(Math.random()*coupon.pageIds.length)]).show();
+                            break;
+                        case 1:
+                            $('.pointer').unbind('click'); //移除click
+                            $('#page1').hide();
+                            $("#page2").show();
+                            break;
+                    }
+                },
+            });
+
+        }
+    }
+};

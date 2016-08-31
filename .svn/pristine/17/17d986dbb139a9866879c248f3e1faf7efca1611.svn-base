@@ -1,0 +1,298 @@
+$('.label-switch input[type=checkbox]').live('change',function (e) {
+
+    e.preventDefault();
+if($('#recivebox').is(':checked')){
+    $('#recive-man').hide();
+    $("#reciveName").val("");
+    $("#reciveID").val("");
+}
+else{$('#recive-man').show();}
+
+if($('#sendbox').is(':checked')){
+    $('#send-man').hide();
+    $("#sendName").val("");
+    $("#sendID").val("");
+}
+else{$('#send-man').show();}
+
+});
+
+
+var ECT = {
+    init:function() {
+
+        var uid = localStorage.getItem(Constants.userid);
+        $('#carNameInput').val(sessionStorage.ownerName||'');
+        var lpn1 = sessionStorage.lpn;
+        if (lpn1 != undefined && lpn1 != null && lpn1 != "") {
+            $("#capital").html(lpn1.substr(0, 2));
+            $('#carNumberInput').val(lpn1.substr(2, lpn1.length));
+        }
+
+        // $('#carNumberInput').attr("disabled", true);
+        // $('#brandInput').attr("disabled", true);
+        // $('#vinInput').attr("disabled", true);
+        // $('#engineNoInput').attr("disabled", true);
+        // $('#firstTimeInput').attr("disabled", true);
+
+
+        $.ajax({
+            url: Constants.hostIp+'weixin/trade/loadVehicleById',
+            type: 'post',
+            // timeout: 5000,
+            dataType:'json',
+            data: "vid="+sessionStorage.vehicleId,
+            success: function(data, status) {
+                if (status == 'success' && data.status == 0) {
+                    var vehicle = data.vehicle;
+                    $('#carNameInput').val(vehicle.ownerName);
+
+                    var lpn = vehicle.lpn;
+                    $("#capital").html(lpn.substr(0, 2));
+                    $('#carNumberInput').val(lpn.substr(2, lpn.length));
+
+                    $('#brandInput').val(vehicle.brand);
+                    $('#vinInput').val(vehicle.vin);
+                    $('#engineNoInput').val(vehicle.engineNo);
+                    $('#firstTimeInput').val(vehicle.firstTime);
+                    $('#ownIDInput').val(vehicle.ownID);
+                    $('#ownerNumberInput').val(vehicle.ownerNumber);
+
+                    //过户
+                    var portals = document.getElementsByName("opinions");
+                    for(var i = 0; i < portals.length; i++) {
+                        if(portals[i].value == vehicle.transfer) {
+                            portals[i].checked="checked";
+                        }
+                    }
+                    
+                    //是否同车主
+                    var recognizeeName = vehicle.recognizeeName;
+                    var applicantName = vehicle.applicantName;
+                    if (recognizeeName != null && recognizeeName != "") {
+                        $('#recivebox').removeAttr("checked");
+                        $('#recive-man').show();
+                        $("#reciveName").val(recognizeeName);
+                        $("#reciveID").val(vehicle.recognizeeNumber);
+                    }
+                    if (applicantName != null && applicantName != "") {
+                        $('#sendbox').removeAttr("checked");
+                        $('#send-man').show();
+                        $("#sendName").val(applicantName);
+                        $("#sendID").val(vehicle.applicantNumber);
+                    }
+                }else {
+                    $.alert(data.msg);
+                    return;
+                }
+            },
+            error: function(err) {
+                $.hidePreloader();
+                console.log(err);
+                $.toast("保存失败");
+            }
+        })
+
+        //点击确认录入
+        $(document).on('click', '.col-100', function () {
+
+            //判断是否填入数据
+            if ($("#carNumberInput").val() == null || $("#carNumberInput").val() == "") {
+                $.alert("请输入车牌号");
+                return;
+            }
+            if ($("#carNameInput").val() == null || $("#carNameInput").val() == "") {
+                $.alert("请输入车主姓名");
+                return;
+            }
+            if ($("#brandInput").val() == null || $("#brandInput").val() == "") {
+                $.alert("请输入车辆品牌型号");
+                return;
+            }
+            if ($("#vinInput").val() == null || $("#vinInput").val() == "") {
+                $.alert("请输入车辆识别代号");
+                return;
+            }
+            if ($("#engineNoInput").val() == null || $("#engineNoInput").val() == "") {
+                $.alert("请输入车辆发动机号");
+                return;
+            }
+            if ($("#firstTimeInput").val() == null || $("#firstTimeInput").val() == "") {
+                $.alert("请输入行驶证注册日期");
+                return;
+            }
+            if ($("#ownIDInput").val() == null || $("#ownIDInput").val() == "") {
+                $.alert("请输入身份证号");
+                return;
+            }
+            if ($("#ownerNumberInput").val() == null || $("#ownerNumberInput").val() == "") {
+                $.alert("请输入车主手机号");
+                return;
+            }
+            
+            //判断投保以及被保人
+            var reciveName = $("#reciveName").val();
+            var reciveID = $("#reciveID").val();
+            var sendName = $("#sendName").val();
+            var sendID = $("#sendID").val();
+            if(!$('#recivebox').is(':checked')){
+                if (reciveName == null || reciveName == "") {
+                    $.alert("请输入被保人姓名");
+                    return;
+                }
+                if (reciveID == null || reciveID == "") {
+                    $.alert("请输入被保人的身份证号码");
+                    return;
+                }
+            }
+            if(!$('#sendbox').is(':checked')){
+                if (sendName == null || sendName == "") {
+                    $.alert("请输入投保人姓名");
+                    return;
+                }
+                if (sendID == null || sendID == "") {
+                    $.alert("请输入投保人的身份证号码");
+                    return;
+                }
+            }
+
+            $.showPreloader('保存中....');
+
+            var jsonStr = {
+                "brand": $("#brandInput").val(),
+                "engineNo": $("#engineNoInput").val(),
+                "firstTime": $("#firstTimeInput").val(),
+                "id": sessionStorage.vehicleId,
+                "lpn": $("#capital").html()+$('#carNumberInput').val(),
+                "ownID": $("#ownIDInput").val(),
+                "ownerName": $('#carNameInput').val(),
+                "ownerNumber": $("#ownerNumberInput").val(),
+                "transfer": $("input[name='opinions']:checked").val(),
+                "userId": uid,
+                "vin": $("#vinInput").val(),
+                "recognizeeName": reciveName,
+                "recognizeeNumber": reciveID,
+                "applicantName": sendName,
+                "applicantNumber": sendID
+            }
+            $.ajax({
+                url: Constants.hostIp+'weixin/lpn/saveVehicle',
+                type: 'post',
+                // timeout: 5000,
+                dataType:'json',
+                data: jsonStr,
+                success: function(data, status) {
+                    $.hidePreloader();
+                    if (status == 'success' && data.status == 0) {
+                        $.toast("保存成功");
+                        // if (isSelect == 1) {
+                        //     $.alert(user.ownerName+"您好,由于您的爱车是新车,帮小妹需要亲自为您服务,请保持电话畅通哦^_^", function () {
+                        //         window.location.href = 'index.html';
+                        //     })
+                        //
+                        // }else {
+                        //     sessionStorage.currentCar = LS.getObj("user").lpn;
+                        //     window.location.href = 'select-set.html?suit=' + sessionStorage.suitIndex;
+                        // }
+                        location.href="index.html"
+                    }else {
+                        $.alert(data.msg);
+                        return;
+                    }
+                },
+                error: function(err) {
+                    $.hidePreloader();
+                    console.log(err);
+                    $.toast("保存失败");
+                }
+            })
+        });
+    }
+}
+
+ECT.init();
+$.init();
+
+function checkNumberAndLetterInput(m_this, info, type) {
+    if ($(m_this).val() == "") {
+        return;
+    }
+    if (type == 1) {
+        var reg = /^[0-9a-zA-Z ]+$/;
+        if ( !reg.test($(m_this).val()) ) {
+            $.toast(info + "只能输入数字和字母");
+            $(m_this).val("");
+            return;
+        }
+    } else {
+        var reg = /^[0-9a-zA-Z]+$/;
+        if ( !reg.test($(m_this).val()) ) {
+            $.toast(info + "只能输入数字和字母");
+            $(m_this).val("");
+            return;
+        }
+        $(m_this).val($(m_this).val().toUpperCase());
+    }
+
+}
+
+//验证品牌型号
+function checkBrand(m_this, info) {
+    if ($(m_this).val() == "") {
+        return;
+    }
+    if (/[\u4E00-\u9FA5]/i.test($(m_this).val())) {
+        $.toast(info + "不能包含中文");
+        $(m_this).val("");
+        return;
+    }
+}
+
+function checkCellPhoneInput(m_this) {
+    if ($(m_this).val() == "") {
+        return;
+    }
+    var reg = /^1[34578][0-9]\d{8}$/;
+    if ( !reg.test($(m_this).val()) ) {
+        $.toast("请输入正确的手机号码");
+        $(m_this).val("");
+        return;
+    }
+    $(m_this).val($(m_this).val().toUpperCase());
+    $("#ownerNumberInput").val($(m_this).val().toUpperCase());
+}
+
+function checkIdentifyInput(m_this) {
+    if ($(m_this).val() == "") {
+        return;
+    }
+    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if (!reg.test($(m_this).val())) {
+        $.toast("请输入正确身份证号");
+        $(m_this).val("");
+        return;
+    }
+    $(m_this).val($(m_this).val().toUpperCase());
+    $("#ownIDInput").val($(m_this).val().toUpperCase());
+}
+
+function hideAll() {
+    $(".screen_mask").hide();
+    $(".maskcontent1").hide();
+}
+
+function showInfo(type) {
+    $(".screen_mask").show();
+    $(".maskcontent1").show();
+
+    if (type == "brandType") {
+        $(".maskcontent1").attr("src", "images/example1.png");
+    } else if (type == "vin") {
+        $(".maskcontent1").attr("src", "images/example2.png");
+    } else if (type == "engineNo") {
+        $(".maskcontent1").attr("src", "images/example3.png");
+    } else {
+        hideAll();
+    }
+
+}

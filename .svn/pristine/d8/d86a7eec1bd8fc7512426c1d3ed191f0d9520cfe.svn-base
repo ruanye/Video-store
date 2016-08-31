@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script>
+    var musicsrc = 'music.mp3',
+        isplay = true;
+    var playmusicobj = {
+        isplay:true,
+        loadHandler: function() {
+            // This is fired for each sound that is registered.
+            var instance = createjs.Sound.play("sound"); // play using id.  Could also use full sourcepath or event.src.
+            instance.on("complete", this.handleComplete, this);
+            instance.volume = 0.5;
+        }
+        playSound: function() {
+            if (isplay) {
+                createjs.Sound.stop("sound");
+            } else {
+                createjs.Sound.play("sound");
+            }
+            playmusicobj.isplay = !isplay;
+
+        }
+    }
+    createjs.Sound.alternateExtensions = ["mp3"];
+    createjs.Sound.on("fileload", this.loadHandler, this);
+    createjs.Sound.registerSound("" + musicsrc + "", "sound");
+    </script>
+</head>
+
+<body>
+    <button onclick="playSound();">Play Sound</button>
+</body>
+
+</html>

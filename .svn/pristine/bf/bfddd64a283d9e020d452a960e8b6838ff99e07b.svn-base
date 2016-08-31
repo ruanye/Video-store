@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>70万免费乘车红包等你来抢，坐优步吃遍支付宝无限美食！</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/index.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="wrap-page">
+    <section class="page flex-m page1" id="page1" style="display: none;">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="flex-1 flex-m bg-bottom">
+            <div class="inner content">
+                <div class="top-content bounceInDown">
+                    <p class="info-top-title">
+                        快点击你最爱的重庆美食<br>
+                        参与投票即可领取乘车券
+                    </p>
+                </div>
+                <div class="ranking-content">
+                    <div class="row">
+                        <div class="child-4">
+                            <div class="progress roast-fish-bar">
+                                <p class="quantity">150</p>
+                            </div>
+                        </div>
+                        <div class="child-4">
+                            <div class="progress powder-bar">
+                                <p class="quantity">10050</p>
+                            </div>
+                        </div>
+                        <div class="child-4">
+                            <div class="progress hot-pot-bar">
+                                <p class="quantity">250</p>
+                            </div>
+                        </div>
+                        <div class="child-4">
+                            <div class="progress facet-bar">
+                                <p class="quantity">5500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <div class="child-4">
+                    <img src="images/roast-fish.png" class="icon roast-fish">
+                    <button class="btn btn-sm" onclick="$('#page1').hide();$('#page2').show();">烤鱼</button>
+                </div>
+                <div class="child-4">
+                    <img src="images/hot-and-sour-rice-noodles.png" class="icon powder">
+                    <button class="btn btn-sm" onclick="">酸辣粉</button>
+                </div>
+                <div class="child-4">
+                    <img src="images/hot-pot.png" class="icon hot-pot">
+                    <button class="btn btn-sm" onclick="">火锅</button>
+                </div>
+                <div class="child-4">
+                    <img src="images/facet.png" class="icon facet">
+                    <button class="btn btn-sm" onclick="">小面</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page flex-m page2" id="page2" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo-02">
+        <button class="btn-back">返回</button>
+        <div class="flex-1 flex-m bg-bottom">
+            <div class="inner">
+                <div class="content">
+                    <div class="display-board bounceInRight">
+                        <p class="board-desc"><span>烤鱼</span>当前票数</p>
+                        <p class="board-quantity">888888票</p>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress roast-fish-bar">
+                            <p class="quantity">30000</p>
+                        </div>
+                    </div>
+                    <div class="vote">
+                        <button class="btn-vote bounceInOpen">投他一票</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer flex-m">
+            <div class="footer-left">
+                <img src="images/roast-fish.png" class="icon" />
+                <p class="info-title">烤鱼</p>
+            </div>
+            <div class="flex-1 flex-m">
+                <p class="footer-info">
+                    重庆烤鱼是一种发源于重庆万州的汉族风味小吃，属于川菜或重庆菜。在流传过程中，融合腌、烤、炖三种烹饪工艺技术，充分借鉴传统的川菜及川味火锅用料特点，口味奇绝、营养丰富
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="page flex-m page3" id="page3" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <div class="input-group">
+                <input type="number" name="" class="ipt" placeholder="请输入您的手机号领取奖励，参与投票">
+            </div>
+            <div class="row">
+                <button class="btn-sm x-flip" id="btn-sm" onclick="$('#page3').hide();$('#page1').show();">参与投票</button>
+            </div>
+            <div class="cloud">
+                <img src="images/cloud-02.png" alt="" class="cloud-01 cloud1" />
+                <img src="images/cloud-01.png" alt="" class="cloud-02 cloud2" />
+                <img src="images/cloud-03.png" alt="" class="cloud-03 cloud2" />  
+            </div>  
+        </div>
+    </section>
+
+
+    <sectiont class="page page4" id="page4" style="display: none;">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="flex-1 flex-m">
+            <div class="inner content">
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <p class="info-msg">新用户输入优惠码<span>美味山城</span></p>
+                <p class="info-desc">即可获得2程8元乘车优惠</p>
+            </div>
+        </div>
+    </sectiont>
+
+    <sectiont class="page flex-m page5" id="page5" style="display: none;">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <p class="info-title">红包已经被抢完啦！</p>
+            <p class="info-title-large">想免费乘车？<span>可以</span></p>
+            <img src="images/p5.png" alt="" class="icon">
+            <p class="info-msg">1、分享您的个人优惠码给好友 </p>
+            <p class="info-msg">2、好友输入即可获得3次10元乘车优惠</p>
+            <p class="info-msg">3、好友成功乘坐1次</p>
+            <p class="info-desc">您就可立即获得3次10元乘车优惠！</p>
+        </div>
+    </sectiont>
+    
+
+    <sectiont class="page flex-m page6" id="page6" style="display: none;">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <img src="images/share-icon.png" alt="" class="share-icon">
+        <div class="inner content">
+            <div class="card-content">
+                <div class="card-01">
+                    <p class="card-desc">投票截止6月22日，人气最高的食物的投票者</p>
+                    <p class="card-msg">每人额外享3元乘车券<span>(限5000名)</span></p>
+                    <p class="card-desc">快呼朋唤友来参与投票，<span>瓜分乘车金</span>啦！</p>
+                </div>
+                <div class="card-02">
+                    <p class="card-info">更多美味<br>请登录支付宝口碑品鉴</p>
+                </div>
+                <div class="card-03">
+                </div>
+            </div>
+            <div class="cloud">
+                <img src="images/cloud-02.png" alt="" class="cloud-01 cloud1" />
+                <img src="images/cloud-01.png" alt="" class="cloud-02 cloud2" />
+                <img src="images/cloud-03.png" alt="" class="cloud-03 cloud2" />  
+            </div>  
+        </div>
+    </sectiont>
+
+    <sectiont class="page flex-m page7" id="page7">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <img src="images/page7-top.png" alt="" class="top-icon bounceInDown">
+        <div class="inner content">
+            <img src="images/7.0_04.png" class="content-icon">
+            <div class="cloud">
+                <img src="images/cloud-02.png" alt="" class="cloud-01 cloud1" />
+                <img src="images/cloud-01.png" alt="" class="cloud-02 cloud2" />
+                <img src="images/cloud-03.png" alt="" class="cloud-03 cloud2" />  
+            </div>
+            <div class="vote">
+                <button class="btn-vote bounceInOpen" onclick="$('#page7').hide();$('#page3').show();">点击投票,领取美食乘车金</button>
+            </div>  
+        </div>
+    </sectiont>
+
+    <!--老用户 页面-->
+    <section class="page flex-m page8" id="page8" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <img src="images/page8-img.png" alt="" class="content-icon">
+            <p class="info-lg-title">恭喜您，投票成功。您将获得</p>
+            <div class="discount x-flip"></div>
+            <p class="info-msg">优惠券6月22日<span>（星期一）当天有效</span></p>
+            <p class="info-desc">主城每程减免8元，区县每程减免6元</p>
+            <button class="btn bounceInLeft" onclick="$('#page4_a').hide();$('#page5').show();">获得更多免费乘车金</button>
+            <button class="btn bounceInLeft" onclick="$('#page4_a').hide();$('#page7').show();">呼朋唤友瓜分乘车金</button>
+            <div class="cloud">
+                <img src="images/cloud-02.png" alt="" class="cloud-01 cloud1" />
+                <img src="images/cloud-01.png" alt="" class="cloud-02 cloud2" />
+                <img src="images/cloud-03.png" alt="" class="cloud-03 cloud2" />  
+            </div>
+        </div>
+    </section>
+
+
+    <section class="page flex-m page9" id="page9" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="flex-1  flex-m">
+            <div class="inner content">
+                <img src="images/page8-img.png" alt="" class="content-icon">
+                <p class="info-lg-title">恭喜您，投票成功。您将获得</p>
+                <div class="discount"></div>
+                <p class="info-msg">优惠券6月22日<span>（星期一）当天有效</span></p>
+                <p class="info-desc">主城每程减免8元，区县每程减免6元</p>
+                <button class="btn bounceInLeft" onclick="window.location.href='https://get.uber.com.cn/invite/'">立即注册领取乘车优惠券</button>
+                <button class="btn bounceInLeft" onclick="$('#page4_a').hide();$('#page5').show();">获得更多免费乘车金</button>
+                <button class="btn bounceInLeft" onclick="$('#page4_a').hide();$('#page7').show();">呼朋唤友瓜分乘车金</button>
+                <div class="cloud">
+                    <img src="images/cloud-02.png" alt="" class="cloud-01 cloud1" />
+                    <img src="images/cloud-01.png" alt="" class="cloud-02 cloud2" />
+                    <img src="images/cloud-03.png" alt="" class="cloud-03 cloud2" />  
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <p class="info-msg">新用户输入优惠码<span>美味山城</span></p>
+                <p class="info-desc">即可获得2程10元乘车优惠</p>
+            </div>
+        </div>
+    </section>    
+
+</div>
+
+<script src="vendor/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.roast-fish-bar').parent('.child-4').height(150 /100);
+        $('.powder-bar').parent('.child-4').height(10050 /100);
+        $('.hot-pot-bar').parent('.child-4').height(250 /100);
+        $('.facet-bar').parent('.child-4').height(5500 / 100);
+        $('.page2 .roast-fish-bar').parent('.progress-bar').height(30000 / 100);
+    });
+
+    //模态框插件
+    $.alert = function( option ){
+        option = $.extend({
+            title:"提示",
+            contentText:"这是一个提示框,点击去小关闭",
+            cancleText:"确定",
+            cancleClass:"btn-cancle",
+            callback:function(){},
+        },option);
+        var htmlString = '<div class="alert-mask">'+
+                '<div class="alert-modal">'+
+                '<div class="alert-title">'+option.title+'</div>'+
+                '<div class="alert-body">'+
+                '<div class="contet">'+option.contentText+'</div>'+
+                '</div>'+
+                '<div class="alert-footer">'+
+                '<div class="alert-btn '+option.cancleClass+'">'+option.cancleText+'</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+        var $modal = $(htmlString);
+        $modal.find(".alert-btn").on("click",function(){
+            var event = {
+                index:$(this).index(),
+            }
+            $modal.remove();
+            option.callback.call(this,event);
+        })
+        $("body").append( $modal );
+    };
+    $.confirm = function( option ){
+        option = $.extend({
+            title:"提示",
+            contentText:"这是一个提示框,点击去小关闭",
+            submitText:"提交",
+            submitClass:"btn-submit",
+            cancleText:"取消",
+            cancleClass:"btn-cancle",
+            callback:function(){},
+        },option);
+        var htmlString = '<div class="confirm-mask">'+
+                '<div class="confirm-modal">'+
+                '<div class="confirm-title">'+option.title+'</div>'+
+                '<div class="confirm-body">'+
+                '<div class="confirm-contet">'+option.contentText+'</div>'+
+                '</div>'+
+                '<div class="confirm-footer">'+
+                '<div class="confirm-btn '+option.cancleClass+'">'+option.cancleText+'</div>'+
+                '<div class="confirm-btn '+option.submitClass+'">'+option.submitText+'</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>';
+        var $modal = $(htmlString);
+        $modal.find(".confirm-btn").on("click",function(){
+            var event = {
+                index:$(this).index(),
+            }
+            $modal.remove();
+            option.callback.call(this,event);
+        })
+        $("body").append( $modal );
+    };
+</script>
+</body>
+</html>

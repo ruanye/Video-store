@@ -1,0 +1,117 @@
+/**
+ * Created by zhangji on 16/6/11
+ */
+
+var SET = {
+    init:function() {
+        var _this=this
+        $.init();
+            if(_this.GetRequest()['type']==2){
+                $('.content-block').hide()
+            }else{
+                $('.content-block').show()
+            }
+            var optionJson = JSON.parse(sessionStorage.optionJson || "{}");
+            var companyObj = JSON.parse(sessionStorage.company || "{}");
+            var itemkindList = optionJson.options;
+            var s = '';
+            for (var i=0;i<itemkindList.length;i++) {
+                var tmp = itemkindList[i];
+                s += '<div class="item-inner2"><div class="item-title">'+tmp.name+'</div><div class="item-after">'+tmp.price+'</div></div>';
+            }
+            $(".item-content-row").html(s);
+            var startDate = optionJson.startDate.substr(0, 10);
+            var endDate = optionJson.endDate.substr(0, 10);
+
+            $("#insure-period").html(startDate+" - "+endDate);
+            $("#insure-lpn").html(sessionStorage.lpn);
+            $("#insure-name").html(sessionStorage.ownerName);
+            $("#sure-btn").html("确认投保（"+companyObj.price+"元）");
+
+            //加载优惠券
+            $.ajax({
+                type:'get',
+                url:Constants.hostIp+'/weixin/user/coupon/list',
+                data:{
+                    userId:8,
+                    pageNo:1,
+                    pageSize:9999
+                }, 
+                success:function(data,status){
+                    console.log(data);
+                    var Str='';
+                    data.map.list.forEach(function(item,index){
+                        Str+='<div class="coupon-item" data-id="'+item.id+'">'+item.couponName+' '+item.discount+'元'+'</div>'
+                    })
+                    $('#couponList').html(Str)
+                }               
+            })
+            var data={
+                ip:document.querySelector("#keleyivisitorip").innerHTML,
+                openid:LS.get(Constants.openid),
+                orderId:sessionStorage.orderId,
+                paymethod:0,
+                couponId:''
+            }
+            $("#sure-btn").on('click',function(e){
+                console.log(data);
+                _this.pay(data)
+            })
+        //弹层
+        $('#select-btn').on('click',function(e){
+            e.stopPropagation()
+            $('.button-slide').show()
+        })
+        $('#couponList').on('click','.coupon-item',function(e){
+            // console.log($(this).data('id'));
+            data.couponId=$(this).data('id')
+            e.stopPropagation()
+            $('.button-slide').hide()
+        })
+        // $(document).on('click',function(e){
+        //     $('.button-slide').hide()
+        // })
+    },
+    pay:function(data){
+        $.ajax({
+            type:'post',
+            url:Constants.hostIp+'/weixin/readypay',
+            data:data,
+            success:function(data,status){
+                console.log(data);
+                if(data.status==0){
+                    console.log(data);
+                    js_params=data.jsapi
+                    paybill(function(){
+                        //成功后的回掉
+                        location.href="policyList.html"
+                    },function(){
+                        //失败后或者取消后的回掉
+                        //do somethings
+                    })
+                }else{
+                    $.alert(data.msg)
+                }
+            },
+            error:function(){
+                // $.alert('err')
+            }
+        })
+    },
+    //url请求参数
+    GetRequest:function() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+};
+
+SET.init();
+

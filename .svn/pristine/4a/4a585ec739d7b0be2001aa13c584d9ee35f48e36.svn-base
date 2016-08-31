@@ -1,0 +1,152 @@
+$base-primary-color:#a6ce38;
+$base-primary-bg-color:#f1f2f7;
+$white:#ffffff;
+@mixin font-dpr($fonts-size) {
+    font-size: $fonts-size;
+    [data-dpr="2"] & {
+        font-size: $fonts-size * 2;
+    }
+    [data-dpr="3"] & {
+        font-size: $fonts-size * 3;
+    }
+}
+
+body {
+    background: $white;
+    //font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight:normal;
+    font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+}
+
+a {
+    color: $base-primary-color;
+}
+
+.actions-modal-button.bg-danger,
+.actions-modal-label.bg-danger {
+    background: $base-primary-color;
+}
+
+input[type=checkbox]:checked+.checkbox {
+    background: $base-primary-color !important;
+}
+
+.mt15 {
+    margin-top: 0.46875rem !important;
+}
+
+.button-success {
+    background: $base-primary-color !important;
+}
+.modal-button{
+    color:$base-primary-color;
+}
+
+@font-face {font-family: "iconfont";
+    src: url('fonts/iconfont.eot?t=1464155471'); /* IE9*/
+    src: url('fonts/iconfont.eot?t=1464155471#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('fonts/iconfont.woff?t=1464155471') format('woff'), /* chrome, firefox */
+    url('fonts/iconfont.ttf?t=1464155471') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('fonts/iconfont.svg?t=1464155471#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-qian:before { content: "\e600"; }
+.icon-gou:before { content: "\e605"; }
+.icon-shouqi:before { content: "\e601"; }
+.icon-fanli:before { content: "\e606"; }
+.icon-tianjia:before { content: "\e607"; }
+.icon-xuanzegou:before { content: "\e60c"; }
+.icon-baocun:before { content: "\e608"; }
+.icon-shuangjiantou:before { content: "\e604"; }
+.icon-yiguoqi:before { content: "\e609"; }
+.icon-yishiyong:before { content: "\e60a"; }
+.icon-40kanjia:before { content: "\e60b"; }
+
+
+/**
+ * Custom checkboxes
+ */
+label.label-checkbox{
+    input[type=checkbox],
+    input[type=radio] {
+        position: relative;
+        margin-right: 10px;
+        background-color: #FFF;
+        border: 2px solid #aaa;
+        border-radius:0.15625rem;
+        background-clip: padding-box;
+        -webkit-appearance: none
+    }
+    input[type=checkbox] {
+        width: 0.9375rem;
+        height: 0.9375rem;
+        background:#ffffff;
+        display: inline-block;
+        vertical-align: text-top;
+    }
+    input[type="checkbox"] + label{
+        &:before{
+            display:inline-block;
+            vertical-align:text-top;
+        }
+        &:active{
+            background:#ffffff;
+        }
+    }
+    input[type=checkbox]:checked:after,
+    input[type=radio]:checked:after {
+        display: inline-block;
+        font-family: icomoon;
+        color: $base-primary-color;
+        font-size: .1875rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0.78125rem;
+        height: 0.78125rem;
+        line-height: 0.78125rem;
+        background:#ffffff;
+        text-align: center;
+        font-weight: 700
+    }
+    input[type=checkbox]:checked,
+    input[type=radio]:checked {
+        background-color: #fff;
+        border: 2px solid $base-primary-color;
+    }
+    input[type=checkbox]:checked:after {
+        content: '';
+        background: url("../images/checked.png") center center no-repeat;
+    }
+    input[type=checkbox]:focus,
+    input[type=checkbox]:hover,
+    input[type=radio]:focus,
+    input[type=radio]:hover {
+        outline: 0
+    }
+}
+.list-block{
+    margin: 0 auto !important;
+}
+
+/* flex-box style*/
+.flex-box{display: flex;}
+.flex-1{flex: 1;text-align: center}
+.flex-m{-webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: flex;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link rel="stylesheet" href="css/weui/jquery-weui.css">
+    <link rel="stylesheet" href="css/weui/weui.min.css">
+    <link href="css/shoplist.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- 选择框 -->
+    <div class="myselect">商品分类</div>
+    <div class="listbox">
+        <div class="sellist">
+            <div class="btnbox">
+                <a href="" class="btn">全部</a>
+            </div>
+        </div>
+        <ul class="listcontainer">
+            <!--      <li class="list">
+            <a href="">
+              <div class="imgbox"><img src="images/shoplist/shangping.jpg" alt=""></div>
+            	
+            	<div class="text">
+            		<h4>云南白药牙膏</h4>
+            		<p>规格:120g装</p>
+            		<p>厂商:云南白药</p>
+            		<b>¥ 19.90</b>
+            	</div>
+            </a>
+            </li> -->
+        </ul>
+    </div>
+    <div class="weui-infinite-scroll">
+        <div class="infinite-preloader"></div>
+        <!-- 菊花 -->
+        正在加载中，请稍后
+        <!-- 文案，可以自行修改 -->
+    </div>
+    <script src="js/weui/jquery-2.1.4.js"></script>
+    <script src="js/weui/jquery-weui.js"></script>
+    <script src="vendor/zepto/zepto.min.js"></script>
+     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script src="js/static/base.js"></script>
+    <script type="text/javascript" src="js/static/parsec_weixin.js"></script> 
+    <script type="text/javascript" src="js/topBar.js"></script>
+    <script src="js/shoplist.js"></script>
+   
+ </body>
+</html>

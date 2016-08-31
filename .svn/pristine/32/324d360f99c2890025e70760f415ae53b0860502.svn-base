@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-family: "Microsoft YaHei"
+}
+
+.page{
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: url('../images/background.png') bottom center no-repeat;
+  background-size: 100% auto;
+  display: none;
+  &.active{
+    display: block;
+  }
+}
+
+/**第一页开始**/
+.page1{
+  >.left{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4.5rem;
+  }
+  >.right{
+    position: absolute;
+    top:0;
+    right: 0;
+    height: 4.5rem;
+  }
+  .center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    .circle{
+      height: 5rem;
+      width: 5rem;
+      background: url('../images/circle.png') no-repeat;
+      background-size: 100%;
+    }
+    .btngo{
+      height: 1.2rem;
+      line-height: 1.2rem;
+      display: inline-block;
+      margin-top: .5rem;
+      font-size: 0.5rem;
+      color: #FFF;
+      padding: 0 0.4rem;
+      background-color: rgb(219,0,0);
+      transform: skew(-20deg);
+      >div{
+        transform: skew(20deg);
+      }
+    }
+  }
+}
+/**第一页结束**/
+
+/**第三页开始**/
+.page2{
+  background: #313131;
+  .items{
+    width: 95vw;
+    height: 90vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    >.item{
+      height: 100%;
+      width: 100%;
+      border: 0;
+      padding: 0;
+      position: absolute;
+      top:0;
+      left: 0;
+    }
+  }
+}
+/**第三页结束**/
+
+
+.mask{
+  display: none;
+  position: fixed;
+  top:0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,.9);
+  &.active{
+    display: block;
+  }
+}
+
+
+.mask1{
+  .center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    .info{
+      color: red;
+      margin: 0.2rem 0px;
+    }
+    .circle{
+      height: 5rem;
+      // width: 5rem;
+      // background: url('../images/circle.png') no-repeat;
+      background-size: 100%;
+    }
+    .btngo{
+      height: 1.2rem;
+      line-height: 1.2rem;
+      display: inline-block;
+      margin-top: .5rem;
+      font-size: 0.5rem;
+      color: #FFF;
+      padding: 0 0.4rem;
+      background-color: rgb(219,0,0);
+      transform: skew(-20deg);
+      >div{
+        transform: skew(20deg);
+      }
+    }
+  }
+}

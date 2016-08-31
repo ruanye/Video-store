@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>我的处方订单列表</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/prescriptionorder_list.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+            <div class="nav-bar">
+                <div class="nav-bar-detail active">全部订单</div>
+                <div class="nav-bar-2 nav-bar-detail">待付款</div>
+            </div>
+            <div class="all-order detail-tab active">
+            </div>
+    </div>
+    <span id="keleyivisitorip" style="display: none"></span>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script type="text/javascript" src="js/static/base.js"></script>
+    <script type="text/javascript" src="js/topBar.js"></script>
+    <script type="text/javascript" src="http://tool.keleyi.com/ip/visitoriphost/"></script>
+    <script type="text/javascript" src="js/static/parsec_weixin.js"></script>
+    <script type="text/javascript" src="js/static/parsec_wxpay.js"></script>
+    <script type="text/javascript" src="js/prescriptionorder_list.js"></script>
+</body>
+
+</html>

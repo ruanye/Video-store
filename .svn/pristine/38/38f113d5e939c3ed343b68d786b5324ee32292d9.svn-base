@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <style>
+        .btn-get.disable {
+            color: black !important;
+            background-color: grey !important;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap-page">
+    <section id="welcome" class="page page1 hide">
+        <div class="top">
+            <div class="ulogo"><img src="images/uber.png" alt=""></div>
+            <img src="images/top-car.png" alt="" class="car">
+            <div class="con">
+                <img id="start" class="mary1" src="images/man.png" alt="">
+                <img src="images/zi.png" alt="" class="start fadeOut">
+            </div>
+            <p class="text">救出公主可获&nbsp<span>十次免单</span></p>
+            <div class="renwu">
+                <span>任务1</span>
+                <span>任务2</span>
+                <span>任务3</span>
+            </div>
+        </div>
+        <div class="zi"><img src="images/topic.png" alt=""></div>
+
+    </section>
+    <section id="login" class="page page2 hide">
+        <div class="tel"><img src="images/p-1.png" alt=""></div>
+        <div class="telinput">
+            <input type="text" id="phone" placeholder="输入手机号">
+        </div>
+        <div class="lq"><img id="btn-ok" src="images/btn.png" alt=""></div>
+        <div class="bottom"><img src="images/bg2.png" alt=""></div>
+        <img class="mary1" src="images/man.png" alt="">
+    </section>
+    <section id="success" class="page page3 hide">
+        <div class="logo">
+            <img src="images/black-logo.png" alt="">
+        </div>
+        <div class="qizhi"><img src="images/p-4.png" alt=""></div>
+        <p class="text1">闯关成功</p>
+        <p class="text2">消灭了魔王<br>赶紧与公主一同出行吧</p>
+        <p class="text3">10张免单券<br>已汇入您的账户</p>
+        <div class="shuxian"></div>
+        <div class="circle"></div>
+        <div class="qigan">
+            <div class="triangle-left"></div>
+
+        </div>
+        <div class="btm"><img src="images/bg4.png" alt=""></div>
+        <div class="car"><img src="images/car-1.png" alt=""></div>
+    </section>
+    <section id="task-1" class="page page4 hide">
+        <div class="logo"><img src="images/black-logo.png" alt=""></div>
+        <div class="selbox">
+            <img src="images/p-2.png" alt="" class="gongxi">
+            <p class="text-center title">成功解锁
+                <br><span>第一关</span></p>
+            <p class="opt"><b>装备</b>七折周一劵<span class="btn-get">领取</span></p>
+            <p class="opt opt1"><b>任务</b>周一20:00<br>完成一次车程</p>
+            <p class="opt opt1" ><b>奖励</b><i class="i2" style="margin-top: 0.3rem;"><img src="images/p-3.png" alt="">五折劵2张</i><i class="i2"><img
+                    src="images/p-3.png" alt="">关卡2钥匙，开启更多奖励！</i></p>
+        </div>
+        <div class="bottom"><img src="images/bg3.png" alt=""></div>
+    </section>
+    <section id="task-2" class="page page5 page4 hide">
+        <div class="logo"><img src="images/black-logo.png" alt=""></div>
+        <div class="selbox">
+            <img src="images/p-2.png" alt="" class="gongxi">
+            <p class="text-center title">成功解锁
+                <br><span>第二关</span></p>
+            <p class="opt"><b>装备</b>五折券2张<span class="btn-get">领取</span></p>
+            <p class="opt opt1"><b>任务</b>&nbsp;&nbsp;&nbsp;&nbsp;周二12点至周四12<br>点完成两次车程</p>
+            <p class="opt opt1"><b>奖励</b><i class="i2"><img src="images/p-3.png" alt="">三折券3张</i><i class="i2"><img
+                    src="images/p-3.png" alt="">最终关卡钥匙，开启终极奖励！</i></p>
+        </div>
+        <div class="bottom"><img src="images/bg3.png" alt=""></div>
+    </section>
+    <section id="task-3" class="page page6 page4 hide ">
+        <div class="logo"><img src="images/black-logo.png" alt=""></div>
+        <div class="selbox">
+            <img src="images/p-2.png" alt="" class="gongxi">
+            <p class="text-center title">成功解锁
+                <br><span>终极关卡</span></p>
+            <p class="opt"><b>装备</b>三折券3张<span class="btn-get">领取</span></p>
+            <p class="opt opt1"><b>任务</b>&nbsp;&nbsp;&nbsp;&nbsp;周五0点至周日24点<br>完成三次车程</p>
+            <p class="opt opt1"><b>奖励</b><i class="i2"><img src="images/p-3.png" alt="">10张免单券</i><i class="i2"><img
+                    src="images/p-3.png" alt="">限量版礼品套装<br><a>50套，先到先得</a></i></p>
+        </div>
+        <div class="bottom"><img src="images/bg3.png" alt=""></div>
+    </section>
+    <section id="sorry" class="page page7 hide">
+        <div class="logo">
+            <img src="images/black-logo.png" alt="">
+        </div>
+        <div class="jia"><img src="images/jia.png" alt=""></div>
+        <p class="text2 text-center">你的战斗力<br><span>过于爆表</span><img src="images/wow.png" alt="" class="wow"></p>
+        <p class="text3 text-center">-给别人一些表现的机会-<br>-更难更多的挑战在等你-<br>-请继续关注我们的英雄召集令-</p>
+        <img class="mary1" src="images/man.png" alt="">
+
+
+        <div class="btm"><img src="images/bg5.png" alt=""></div>
+
+    </section>
+    <section id="failure" class="page page11 hide">
+        <div class="textbox">
+            <p class="text1">未能按时完成任务</p>
+            <p class="text2">任务失败</p>
+            <p class="text3">别灰心下次征程继续</p>
+            <div class="shuxian"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="mary"><img src="images/man.png" alt=""></div>
+        <div class="btom"><img src="images/bg6.png" alt=""></div>
+    </section>
+    <section id="task-1-on" class="page page8 page11 page10 hide">
+        <div class="logo"><img src="images/black-logo.png" alt=""></div>
+        <div class="textbox t1">
+            <p class="text2">激战正酣中</p>
+            <p class="text2">-关卡1-</p>
+            <p class="text4">周一20:00
+                <br>完成一次车程</p>
+            <div class="shuxian"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="mary1"><img src="images/man.png" alt=""></div>
+        <div class="btom"><img src="images/bg5.png" alt=""></div>
+    </section>
+    <section id="task-2-on" class="page page9 page11 page10 hide">
+        <div class="logo"><img src="images/black-logo.png" alt=""></div>
+        <div class="textbox t1">
+            <p class="text2">激战正酣中</p>
+            <p class="text2">-关卡2-</p>
+            <p class="text4">周二12点至周四12
+                <br>点完成两次车程</p>
+            <div class="shuxian"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="mary1"><img src="images/man.png" alt=""></div>
+        <div class="btom"><img src="images/bg5.png" alt=""></div>
+    </section>
+    <section id="task-3-on" class="page page11 page10 hide">
+        <div class="logo"><img src="images/black-logo.png" alt=""></div>
+        <div class="textbox t1">
+            <p class="text2">激战正酣中</p>
+            <p class="text2">-关卡3-</p>
+            <p class="text4">周五0点至周日24点
+                <br>完成三次车程</p>
+            <div class="shuxian"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="mary1"><img src="images/man.png" alt=""></div>
+        <div class="btom"><img src="images/bg5.png" alt=""></div>
+    </section>
+</div>
+<script src="vendor/underscore-min.js"></script>
+<script src="vendor/zepto/zepto.min.js"></script>
+<script src="vendor/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/main.js">
+</script>
+</body>
+
+</html>

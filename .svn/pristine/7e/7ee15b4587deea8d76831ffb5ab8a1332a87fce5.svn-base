@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>老司机俱乐部</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/index.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<!-- <div id="wx_pic" style="display: none;margin: 0 auto;">
+    <img src="images/icon.png"/>
+</div> -->
+<div class="wrap-page">
+    <section class="page" id="page1" >
+        <div class="p1"><span>老司机俱乐部</span>(Uber Driver UIP)</div>
+        <div class="p2">是优步成都为平台车主精心打造的</div>
+        <div class="p3">专属会员体系</div>
+        <div class="p4">合作车主可以凭借行程数,推荐车主数，车</div>
+        <div class="p5">主之家签到等方式<span>累积积分</span></div>
+        <div class="p6">积分可用于</div>
+        <div class="p7"><span>兑换超值奖品：</span>加油卡，电话卡等</div>
+        <div class="join_btn"></div>
+    </section>
+</div>
+
+<script src="vendor/zepto/zepto.min.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

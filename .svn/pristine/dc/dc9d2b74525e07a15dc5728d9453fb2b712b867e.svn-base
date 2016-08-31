@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>麦可思智能助教平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/choujiang.css"/>
+    <script type="text/javascript" src="js/libs/modernizr-2.6.2.min.js"></script>
+    <!--[if lt IE9]>
+    <script src="js/html5.js"></script>
+    <script src="js/IE7.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <header>
+        <nav id="header_menu">
+        </nav>
+    </header>
+    <div class="header-fixed">
+        <nav id="header_menu_fixed">
+        </nav>
+    </div>
+
+    <section class="container">
+        <div class="top">
+            <div class="btn back" onclick="javascript:window.history.go(-1)"><a href="javascript:void(0);">返回</a></div>
+        </div>
+        <div class="left">
+            <div class="item">
+                <div class="before"></div>
+                <div class="after"></div></div>
+            <div class="item avatar">
+                <img src="" alt="学生头像">
+            </div>
+            <div class="item"><div>姓名:</div><div class="name"></div></div>
+            <div class="item"><div>学号:</div><div class="studentNo"></div></div>
+            <div class="item text"><div>抽奖结果:</div></div>
+            <div class="item result"></div>
+        </div>
+        <button class="cn-button" id="cn-button"></button>
+        <div class="cn-wrapper opened-nav" id="cn-wrapper" style="-webkit-transform:rotate(60deg);transform:rotate(60deg)">
+			<ul>
+				<li><a href="#"><span></span></a></li>
+				<li><a href="#"><span></span></a></li>
+				<li><a href="#"><span></span></a></li>
+				<li><a href="#"><span></span></a></li>
+				<li><a href="#"><span></span></a></li>
+				<li><a href="#"><span></span></a></li>
+			 </ul>
+		</div>
+    </section>
+    <script type="text/javascript" src="js/libs/jQuery/jquery-1.12.3.min.js"></script>
+
+    <script type="text/javascript" src="js/ss.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+        var request = GetRequest();
+        (function(){
+            //获取学生信息
+            $.get(Constant.WEB_ROOT+"/manager/teacher/student/students",{
+                studentId:request['id'],
+            },function( data ){
+                $(".item.avatar img").attr("src",data.student.icon);
+                $(".item>.name").html(data.student.name);
+                $(".item>.studentNo").html(data.student.studentNo);
+                window.pageData = data ;
+            });
+            $.get(Constant.WEB_ROOT+"/manager/teacher/course/setting/detail",{
+                courseId:SS.get('courseId'),
+                teacherId:SS.get("teacherId"),
+            },function(data){
+                //随机分布奖品
+                var prizes = ["谢谢参与","谢谢参与","谢谢参与","谢谢参与","谢谢参与","谢谢参与"];
+                (data.lotteryList || []).forEach(function(item){
+                    do {
+                        var random = random = Math.floor(Math.random()*1000000%6);
+                        if( prizes[random] == "谢谢参与" ){
+                            prizes[random] = item;
+                            break;
+                        }
+                    }while(1);
+                });
+
+                //显示到页面
+                $(".cn-wrapper.opened-nav span").each(function(index,item) {
+                    item.innerHTML = prizes[index].lotteryName || prizes[index];
+                });
+                window.prizes = prizes;
+            });
+
+            var oldRand = 60;
+            var isLock = false;
+            $('#cn-button').click(function(){
+                if( isLock ){
+                    return;
+                }
+                isLock = true;
+                var Rand = 0;
+                var vRand = Math.floor(Math.random()*6);
+                // vRand = 0;
+                while( true ){
+                    Rand = 1440 - vRand*60 ;
+                    //补全成360的倍数
+                    oldRand -= oldRand%360;
+                    oldRand += 360 + 60 ; //60是默认偏移
+                    if( oldRand != Rand ){
+                        Rand+=oldRand;
+                        oldRand = Rand;
+                        break;
+                    }
+                }
+                setTimeout(function(){
+                    isLock = false;
+                    var prize = window.prizes[vRand];
+                    var text = "谢谢参与";
+                    if( prize.lotteryName ){
+                        text = "恭喜你抽到\""+prize.lotteryName+"\"!";
+                        $.post(Constant.WEB_ROOT+"/manager/teacher/lotterySerial",{
+                            classId:SS.get("classId"),
+                            ttSerialId:SS.get(Constant.timeTableSerialId),
+                            lotteryFrom:prize.lotteryName,
+                            lotteryName:prize.lotteryName,
+                            studentId:window.pageData.student.id,
+                            courseId:SS.get('courseId'),
+                        },function( data ){
+                            if( data.status != 0){
+                                alert(data.msg);
+                            }
+                        });
+                    }
+                    $(".item.result").html(text);
+                },3300);
+                $('.cn-wrapper').css({'-webkit-transform' : 'rotate('+Rand+'deg)' , 'transform' : 'rotate('+Rand+'deg)'});
+
+            });
+        })();
+    </script>
+</body>
+
+</html>

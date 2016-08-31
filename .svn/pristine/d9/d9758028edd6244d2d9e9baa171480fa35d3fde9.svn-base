@@ -1,0 +1,109 @@
+//url请求参数
+var REQUEST = (function GetRequest() {
+	var url = location.search;
+	var theRequest = new Object();
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		strs = str.split("&");
+		for(var i = 0; i < strs.length; i ++) {
+			theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+		}
+	}
+	return theRequest;
+})();
+Config = {
+  hostUrl:""
+}
+
+//调试时直接显示page
+if( REQUEST.page ){
+  togglePage(REQUEST.page);
+}
+//调试时直接显示提示框遮罩
+if( REQUEST.mask ){
+  toggleMask(REQUEST.mask);
+}
+//切换页
+function togglePage( pageIndex ){
+  $(".page").removeClass("active");
+	$(".mask").removeClass("active");
+  $(".page"+pageIndex).addClass("active");
+	$('.page').removeClass('blur');
+}
+//切换遮罩
+function toggleMask( maskIndex ){
+  $(".mask").removeClass("active");
+  $(".mask"+maskIndex).addClass("active");
+	$('.page').addClass('blur');
+}
+$(".mask").on('click',function(){
+	$(".mask").removeClass("active");
+	$('.page').removeClass('blur');
+});
+
+$('.page1 .center,.page1 .top').on('click',function(){
+	if($(this).hasClass('disable')){
+		return;
+	}
+	toggleMask('fetch');
+	$(this).addClass('disable');
+	$.post(Config.hostUrl + '/promo-ex/grab/'+REQUEST.phaseId,{
+		phone:REQUEST.phone,
+		uberId:REQUEST.uuid || REQUEST.phone
+	},function(data){
+		$(this).removeClass('disable');
+		if( data.errorCode == 0 ){
+			$(".maskget .circle").attr({
+				src:"images/"+(data.object.promoExPieceId)+".min.png"
+			});
+			toggleMask('get');
+			setTimeout(loadData,3000);
+		}else{
+			//alert(data.message);
+			loadData();
+		}
+	});
+
+});
+
+$('.page2 .btn.go').on('click',function(){
+	toggleMask('go');
+});
+$('.page2 .btn.rule').on('click',function(){
+	toggleMask('rule');
+});
+
+if( REQUEST.phaseId == '5775de176be3ff006af3fabd'){
+	loadData();
+}else{
+	togglePage(1);
+}
+function loadData(){
+	$.get(Config.hostUrl + '/promo-ex/myPieces/'+REQUEST.promoId,{
+		phone:REQUEST.phone,
+		uberId:REQUEST.uuid || REQUEST.phone
+	},function(data){
+		var items = '<img src="images/bg.png" class="item">';
+		var codeArr = [null,null,null,null];
+		data.list = data.list || [];
+		data.list.forEach(function(item,index){
+			items += '<img src="images/'+item.promoExPieceId+'.png" >';
+			codeArr[item.pieceType-1] = item;
+		});
+
+		$(".page2 .items").html(items);
+
+		var codes = '';
+		codeArr.forEach(function(code,index){
+			if(!!code){
+				codes += '<img src="images/'+code.promoExPieceId+'.min.png">';
+			}else{
+				codes += '<img src="images/wenhao.png">';
+			}
+		});
+		$(".page2 .codes").html(codes);
+
+		$('.maskgo img').attr('src','images/go'+(data.list.length+1)+'.png');
+		togglePage(2);
+	});
+}

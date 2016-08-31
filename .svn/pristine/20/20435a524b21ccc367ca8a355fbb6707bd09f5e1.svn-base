@@ -1,0 +1,272 @@
+/**
+ * Created by zhangji on 16/6/11
+ */
+
+var SET = {
+    ajaxData: {
+        ip: document.querySelector("#keleyivisitorip").innerHTML,
+        openid: LS.get(Constants.openid),
+        orderId: sessionStorage.orderId,
+        paymethod: '',
+        couponId: [] //-1是不用优惠券
+    },
+    //优惠券
+    resCoupon: [],
+    init: function() {
+        var _this = this
+        $.init();
+        if (_this.GetRequest()['ispay'] == 2) {
+            $('.content-block').hide()
+        } else {
+            $('.content-block').show()
+        }
+        var optionJson = JSON.parse(sessionStorage.optionJson || "{}");
+        var companyObj = JSON.parse(sessionStorage.company || "{}");
+        var itemkindList = optionJson.options;
+        itemkindList.sort(function(a, b) {
+            if (a.path == b.path) {
+                return 0;
+            } else {
+                return a.path < b.path ? -1 : 1;
+            }
+        });
+        var s = '';
+        for (var i = 0; i < itemkindList.length; i++) {
+            var tmp = itemkindList[i];
+            s += '<div class="item-inner2"><div class="item-title" style="margin-left:'+(tmp.path.match(/\//g).length-1)*12+'px">' + tmp.name + '</div><div class="item-after">' + parseFloat(tmp.price).toFixed(2) + '</div></div>';
+        }
+        if (optionJson.compulsory && optionJson.compulsory != "0") {
+            s += '<div class="item-inner2"><div class="item-title">机动车交通事故责任强制保险</div><div class="item-after">' + optionJson.compulsory + '</div></div>';
+        }
+        if (optionJson.tax && optionJson.tax != "0") {
+            s += '<div class="item-inner2"><div class="item-title">车船税</div><div class="item-after">' + optionJson.tax + '</div></div>';
+        }
+        $(".item-content-row").html(s);
+        var startDate = optionJson.startDate.substr(0, 10);
+        var endDate = optionJson.endDate.substr(0, 10);
+
+        $("#insure-period").html(startDate + " - " + endDate);
+        $("#insure-lpn").html(sessionStorage.lpn);
+        $("#insure-name").html(sessionStorage.ownerName);
+
+        //获取支付方式,type时候
+        if (_this.GetRequest()['type'] == 0) {
+            $("#sure-btn").html("确认投保（" + companyObj.price + "元）");
+            _this.ajaxData.paymethod = _this.GetRequest()['paymethod'];
+            //加载优惠券
+            $.ajax({
+                type: 'get',
+                url: Constants.hostIp + '/weixin/user/coupon/list/canUse',
+                data: {
+                    userId: localStorage.userId,
+                    paymethod: _this.ajaxData.paymethod,
+                    orderId: _this.ajaxData.orderId
+                },
+                success: function(data, status) {
+                    console.log(data);
+                    _this.resCoupon = data
+                    var Str = '';
+                    if (data.status == 0) {
+                        if (data.list.length > 0) {
+                            data.list.forEach(function(item, index) {
+                                Str += '<div class="coupon-item active" data-id="' + item.id + '">' +
+                                    '<div class="left">' +
+                                    '<div class="circle"></div>' +
+                                    '</div>' +
+                                    '<div class="right">' + item.couponName + ' ' + item.discount + '元' + '</div>' +
+                                    '</div>'
+                                _this.ajaxData.couponId.push(item.id)
+                            })
+                            Str += '<div class="coupon-item" data-id="-1">' +
+                                '<div class="left">' +
+                                '<div class="circle"></div>' +
+                                '</div>' +
+                                '<div class="right">不使用优惠券</div>' +
+                                '</div>'
+                            $('#couponList').html(Str)
+                            console.log(_this.ajaxData.couponId);
+                        } else {
+                            $('#couponList').html('<div class="title">暂无优惠券</div>')
+                        }
+                    }
+                }
+            })
+        } else {
+            $('#select-btn').css('background-color', '#ddd')
+            $('#pay-type').show()
+            $('#pay-type').on('click', function(e) {
+                $('.paymethod-slide').show()
+            })
+            $('.paymethod-slide .list').on('click', '.item', function(e) {
+                $('#select-btn').css('background-color', '#6FBFF4')
+                var $index = $(this).index();
+                var $text = $(this).text();
+                $('#pay-type').text($text)
+                _this.ajaxData.paymethod = $index;
+                $('.paymethod-slide').hide()
+                    //加载优惠券
+                $.ajax({
+                    type: 'get',
+                    url: Constants.hostIp + '/weixin/user/coupon/list/canUse',
+                    data: {
+                        userId: localStorage.userId,
+                        paymethod: _this.ajaxData.paymethod,
+                        orderId: _this.ajaxData.orderId
+                    },
+                    success: function(data, status) {
+                        console.log(data);
+                        _this.resCoupon = data
+                        var Str = '';
+                        if (data.status == 0) {
+                            if (data.list.length > 0) {
+                                data.list.forEach(function(item, index) {
+                                    Str += '<div class="coupon-item active" data-id="' + item.id + '">' +
+                                        '<div class="left">' +
+                                        '<div class="circle"></div>' +
+                                        '</div>' +
+                                        '<div class="right">' + item.couponName + ' ' + item.discount + '元' + '</div>' +
+                                        '</div>'
+                                })
+                                Str += '<div class="coupon-item" data-id="-1">' +
+                                    '<div class="left">' +
+                                    '<div class="circle"></div>' +
+                                    '</div>' +
+                                    '<div class="right">不使用优惠券</div>' +
+                                    '</div>'
+                                $('#couponList').html(Str)
+                            } else {
+                                $('#couponList').html('<div class="title">暂无优惠券</div>')
+                            }
+                        }
+                    }
+                })
+            })
+        }
+        //支付按钮
+        $("#sure-btn").on('click', function(e) {
+                _this.ajaxData.ip = document.querySelector("#keleyivisitorip").innerHTML;
+                if (_this.ajaxData.paymethod === '') {
+                    $.alert('请选择支付方式');
+                    return false;
+                }
+                var $textPrice = $(this).text()
+                var data = {
+                    ip: _this.ajaxData.ip,
+                    openid: LS.get(Constants.openid),
+                    orderId: sessionStorage.orderId,
+                    paymethod: _this.ajaxData.paymethod,
+                    couponId: _this.ajaxData.couponId.join(',')
+                }
+                $(this).attr('disabled', 'disabled')
+                $.showPreloader('提交中...');
+                console.log(data);
+                _this.pay(data)
+            })
+            //弹层
+        $('#select-btn').on('click', function(e) {
+                e.stopPropagation()
+                if (_this.ajaxData.paymethod === '') {
+                    $.alert('请选择支付方式');
+                    return false;
+                }
+                $('.coupon-slide').show()
+            })
+            //选择优惠券
+        $('#couponList').on('click', '.coupon-item', function(e) {
+            var id = $(this).data('id')
+            if ($(this).hasClass('active')) {
+                if (id == -1) {
+
+                } else {
+                    _this.ajaxData.couponId = _this.ajaxData.couponId.filter(function(item, index) {
+                        return item != id
+                    })
+                }
+                $(this).removeClass('active')
+                if (_this.ajaxData.couponId < 1) {
+                    $(this).siblings('.coupon-item:last-child').addClass('active')
+                    _this.ajaxData.couponId = [-1]
+                }
+            } else {
+                if (id == -1) {
+                    $(this).addClass('active').siblings().removeClass('active')
+                    _this.ajaxData.couponId = [-1]
+                } else {
+                    $(this).addClass('active')
+                    $(this).siblings('.coupon-item:last-child').removeClass('active')
+                    _this.ajaxData.couponId = _this.ajaxData.couponId.filter(function(item, index) {
+                        return item != -1
+                    })
+                    tempCouponId = _this.ajaxData.couponId
+                    _this.ajaxData.couponId.push(id)
+                }
+            }
+            console.log(_this.ajaxData.couponId);
+            var $index = $(this).index()
+            var $text = $(this).find('.right').text();
+            if (_this.GetRequest()['type'] == 0) {
+                if ($(this).data('id') != -1) {
+                    var $count = _this.resCoupon.list[$index].discount;
+                    var $tempPrice = companyObj.price - $count;
+                    $("#sure-btn").html("确认投保（" + $tempPrice + "元）");
+                } else {
+                    $("#sure-btn").html("确认投保（" + companyObj.price + "元）");
+                }
+            }
+            $('#select-btn').text($text)
+            e.stopPropagation()
+                // setTimeout(function() {
+                //     $('.coupon-slide').hide()
+                // }, 600);
+        })
+        $(document).on('click', function(e) {
+            $('.coupon-slide').hide()
+        })
+    },
+    pay: function(data) {
+        $.ajax({
+            type: 'post',
+            url: Constants.hostIp + '/weixin/readypay',
+            data: data,
+            success: function(data, status) {
+                console.log(data);
+                if (data.status == 0) {
+                    console.log(data);
+                    js_params = data.jsapi;
+                    $.hidePreloader()
+                    paybill(function() {
+                        //成功后的回掉
+                        location.href = "policyList.html"
+                    }, function() {
+                        //失败后或者取消后的回掉
+                        //do somethings
+                        $("#sure-btn").removeAttr('disabled')
+                    })
+                } else {
+                    $("#sure-btn").removeAttr('disabled')
+                    $.hidePreloader()
+                    $.alert(data.msg)
+                }
+            },
+            error: function() {
+                // $.alert('err')
+                $.hidePreloader()
+            }
+        })
+    },
+    //url请求参数
+    GetRequest: function() {
+        var url = location.search;
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+        }
+        return theRequest;
+    }
+};
+
+SET.init();

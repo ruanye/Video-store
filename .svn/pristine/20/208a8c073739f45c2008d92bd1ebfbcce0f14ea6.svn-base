@@ -1,0 +1,276 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+
+body, html {
+    height: 100%;
+}
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+$bgcolor: #8acbb7;
+$width: 10rem;
+
+.wrap-page {
+    height: 100%;
+    width: 10.0rem;
+    margin: 0 auto;
+}
+.page {
+    width: 10rem;
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+}
+%rel {
+    position: relative;
+}
+%posa {
+    position: absolute;
+}
+%colorf {
+    color: #fff;
+}
+.text-center {
+    text-align: center;
+}
+img, span, input {
+    @include inline-block;
+}
+button {
+    background-color: transparent;
+    outline: none;
+}
+.page {
+    background-image: url(../images/bg.png);
+    background-size: cover;
+}
+.logo {
+    padding: 0.46875rem 0 0 0.59375rem;
+
+    img {
+        width: 2.046875rem;
+        height: 2.03125rem;
+    }
+}
+.theme {
+    height: 8.828125rem;
+
+    img {
+        width: 8.5625rem;
+        height: 8.828125rem
+    }
+}
+.start {
+    padding-top: 0.234375rem;
+    height: 3.828125rem;
+
+    img {
+        width: 5.109375rem;
+        height: 3.828125rem;
+    }
+}
+.question {
+    padding-top: 0.9375rem;
+    margin: 0 auto;
+    position: relative;
+    width: 9.046875rem;
+    height: 11.5625rem;
+}
+.answer {
+    position: absolute;
+    top: 4.09375rem;
+    z-index: 10;
+    width: 9.046875rem;
+    height: 6.71875rem;
+    background-color: #88cbb7;
+    border-radius: 0.78125rem;
+    color: #fff;
+    font-size: 0.5rem;
+}
+.anwserbtn {
+    position: absolute;
+    bottom: 0;
+    z-index: 20;
+    padding-left: 0.21875rem;
+    width: 8.609375rem;
+    height: 3.46875rem;
+    background-image: url(../images/sb2.png);
+    background-size: 100% 100%;
+}
+.tv {
+    position: absolute;
+    width: 100%;
+    z-index: 20;
+
+    img {
+        width: 7.796875rem;
+        height: 5.328125rem;
+    }
+}
+.selectbtn {
+    float: right;
+    width: 2.9375rem;
+    height: 2.8125rem;
+    margin-right: 0.46875rem;
+
+    span {
+        &:nth-child(1) {
+            width: 1.09375rem;
+            height: 1.3125rem;
+            background-image: url(../images/A.png);
+            background-size: 100% 100%;
+        }
+        &:nth-child(2) {
+            margin-left: 0.25rem;
+            width: 1.09375rem;
+            height: 1.3125rem;
+            background-image: url(../images/B.png);
+            background-size: 100% 100%;
+        }
+        &:nth-child(3) {
+            width: 1.21875rem;
+            height: 1.46875rem;
+            background-image: url(../images/C.png);
+            background-size: 100% 100%;
+        }
+        &:nth-child(4) {
+            margin-left: 0.25rem;
+            width: 1.203125rem;
+            height: 1.46875rem;
+            background-image: url(../images/D.png);
+            background-size: 100% 100%;
+        }
+    }
+}
+.anwter-title {
+    padding-top: 2.1875rem;
+    text-indent: 1.25rem;
+}
+.answercontent {
+    text-align: left;
+
+    span {
+        line-height: 1.8;
+    }
+}
+.left {
+    float: left;
+    margin-left: 1.25rem;
+}
+.right {
+    float: left;
+    margin-left: 0.625rem;
+}
+.bqtheme {
+    margin-top: 0.75rem;
+    margin-left: 1.0rem;
+
+    img {
+        width: 5.4375rem;
+        height: 9.15625rem;
+    }
+}
+.lqbtn {
+    margin-left: 1.0rem;
+    margin-top: 0.65625rem;
+
+    span {
+        width: 4.15625rem;
+        height: 1.09375rem;
+        line-height: 1.09375rem;
+        background-color: #c56da8;
+        color: #fff;
+        text-align: center;
+        font-size: 0.4375rem;
+    }
+}
+.halfphone {
+    padding-top: 3.3125rem;
+
+    img {
+        width: 5.546875rem;
+        height: 4.765625rem;
+    }
+}
+.text4 {
+    padding-top: 0.625rem;
+
+    img {
+        width: 6.765625rem;
+        height: 1.859375rem
+    }
+}
+#phoneNumber {
+    margin-top: 1.09375rem;
+    width: 7.234375rem;
+    height: 1.0rem;
+    line-height: 1.0rem;
+    border: 1px solid #888685;
+    font-size: 0.4375rem;
+    text-indent: 0.234375rem;
+}
+.save-btn {
+    width: 2.703125rem;
+    height: 0.71875rem;
+    line-height: 0.71875rem;
+    background-color: #c56da8;
+    color: #fff;
+    text-align: center;
+    font-size: 0.4375rem;
+    margin-top: 0.234375rem;
+    margin-left: 1.34375rem;
+}
+.congratulations {
+    padding-top: 4.25rem;
+
+    .congratulation {
+        width: 4.8125rem;
+        height: 1.71875rem
+    }
+}
+.jl{
+     height:2.609375rem;
+    &.one{
+        margin-top: 0.5625rem;
+    }
+    &.two{
+        margin-top: 0.375rem;
+    }
+   img{
+         width:7.921875rem;
+         height:2.609375rem;
+     }
+}
+.share-btn{
+    width:3.890625rem;
+    height:1.03125rem;
+    line-height: 1.03125rem;
+    background-color: #c56da8;
+    color: #fff;
+    font-size: 0.65625rem;
+    margin-top: 0.625rem;
+}
+.congratulation1{
+    width:5.859375rem;
+    height:1.71875rem;
+}
+.congratulation2{
+    width:4.8125rem;
+    height:1.71875rem;
+}
+.congratulation12{
+    width:6.15625rem;
+    height:0.84375rem
+}
+.congratulation11{
+    width:4.8125rem;
+    height:1.71875rem;
+}
+.mask{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}

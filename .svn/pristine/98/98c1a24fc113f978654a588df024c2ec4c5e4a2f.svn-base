@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>发起测试</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/tests-push.css">
+
+    <!--[if lt IE9]>
+    <script src="js/html5.js"></script>
+    <script src="js/IE7.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <header>
+        <nav id="header_menu">
+        </nav>
+    </header>
+    <div class="header-fixed">
+        <nav id="header_menu_fixed">
+        </nav>
+    </div>
+
+    <section class="container">
+
+    </section>
+    <script type="text/javascript" src="js/ss.js"></script>
+    <script type="text/javascript" src="js/libs/jQuery/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/ls.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/libs/jQuery/QRcode/jquery.qrcode.min.js"></script>
+
+    <!-- 测试试卷列表 -->
+    <script type="text/tmpl" id="leftTpl">
+            <div class="list">
+                <%if( data.length == 0){%>
+                    <div class="info">暂无随堂测试</div>
+                <%}%>
+                <%for(var i = 0;i < data.length ;i++){%>
+                <div class="item">
+                    <div class="icon"></div>
+                    <div class="name">
+                        <%=data[i].exerciseName%>
+                        </div>
+                    <%if( !data[i].isOpen ){%>
+                        <div class="btn" onclick="pushTest('<%= data[i].exerciseId %>',false)">开始测试</div>
+                    <%}else{%>
+                        <div class="btn" onclick="pushTest('<%= data[i].exerciseId %>',true)">查看结果</div>
+                    <%}%>
+                    <div style="clear:both"></div>
+                </div>
+                <%}%>
+            </div>
+    </script>
+    <script type="text/javascript">
+        (function(){
+            $.get(Constant.WEB_ROOT+"/manager/teacher/exercise/list",{
+                classId:SS.get(Constant.classId),
+                baseCourseId:SS.get(Constant.baseCourseId),
+                ttSerialId:SS.get(Constant.timeTableSerialId)
+            },function( data ){
+                if( data.status != 0){
+                    alert(data.msg);
+                    return ;
+                }
+                console.table( data.lst );
+                data.lst.forEach(function( item ){
+                    item.isOpen =  false;
+                    (data.usedExerciseIds || []).forEach(function( id ){
+                        if( item.exerciseId == id ){
+                            item.isOpen =  true;
+                        }
+                    });
+                });
+                var result = tmpl($("#leftTpl").html(),{
+                    data:data.lst
+                });
+                $(".container").html( result );
+                PgaeData = data;
+            });
+        })();
+        function pushTest( id ,isConfirm){
+            var data = null;
+            PgaeData.lst.forEach(function( item ){
+                if( item.exerciseId == id ){
+                    data = item;
+                }
+            });
+
+            if(!!data){
+                function callback(){
+                    $.post(Constant.WEB_ROOT+"/manager/teacher/exercise/serial/create",{
+                        exerciseId:id,
+                        ttSerialId:SS.get(Constant.timeTableSerialId)
+                    },function( data ){
+                        if(data.status == 0){
+                            window.location.href = "tests.html?displayCode="+data.obj.displayCode
+                            +"&ttSerialId="+data.obj.ttSerialId
+                            +"&exerciseSerialId="+data.obj.id
+                            +"&exerciseId="+id;
+                        }else{
+                            $.alert({
+                                title:"系统提示",
+                                contentText:data.msg,
+                                cancleText:"确定",
+                                callback:function( event ){}
+                            });
+                        }
+
+                    });
+                }
+                if( isConfirm ){
+                    callback();
+                }else{
+                    $.confirm({
+                        title:"测试提示",
+                        contentText:"是否开始:\n"+data.exerciseName,
+                        submitText:"开始测试",
+                        callback:function( event ){
+                            switch ( event.index ) {
+                                case 0:
+                                    break;
+                                case 1:
+                                    callback();
+                                    break;
+                            }
+                        },
+                    });
+                }
+
+            }
+        }
+    </script>
+    <!-- 测试试卷列表 -->
+</body>
+</html>

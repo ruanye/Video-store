@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>车牌编辑</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <script src="vendor/lib-flexible/build/flexible.js"></script> -->
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/entry-car.css">
+    <style>
+        #capital {
+            border-right: 1px solid #acacac;
+            width: 20%;
+            font-size: 13px;
+            font-family: "微软雅黑";
+            color: #009cf1;
+            height: .859375rem;
+            line-height: .84375rem;
+            background: url(images/arrow_down.png) no-repeat 2.2rem .3rem;
+            background-size: .4rem .4rem;
+            padding: 0.13rem .4rem 0.15rem 0.45rem;
+            margin: 4px 0;
+        }
+        .screen_mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #000;
+            opacity: .6;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 3000;
+        }
+        .maskcontent{
+            -webkit-transition: .5s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            z-index: 9999;
+        }
+        .capital_list {
+            position: fixed;
+            bottom: 0;
+            height: 12rem;
+            background-color: #d1d6db;
+            width: 100%;
+            -webkit-transition: .5s;
+        }
+        .capital_list table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            height: 100%;
+            padding-left: .1rem;
+            padding-right: .1rem;
+        }
+        .capital_list td {
+            margin-right: .1rem;
+        }
+        .capital_list p {
+            border: solid 1px rgba(0, 0, 0, .2);
+            border-radius: 2px;
+            -webkit-box-shadow: 0 1px 0 #000;
+            font-size: 13px;
+            font-family: "微软雅黑";
+            width: 85%;
+            height:30px;
+            line-height:28px;
+            background-color: #fff;
+            margin-left: .05rem;
+            margin-right: .05rem;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <div class="page" id="entryPage">
+        <div class="content entry-content">
+            <div class="list-block">
+                <ul>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">车牌号码:</div>
+                                <div class="item-input">
+                                    <input id="carNumber" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">车主姓名:</div>
+                                <div class="item-input">
+                                    <input id="carName" type="text" placeholder="请输入车主姓名"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">车主电话:</div>
+                                <div class="item-input">
+                                    <input id="carTel" type="text" placeholder="请输入车主电话"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">投保人姓名:</div>
+                                <div class="item-input">
+                                    <input id="applicantName" type="text" placeholder="请输入投保人姓名"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">投保人电话:</div>
+                                <div class="item-input">
+                                    <input id="applicantNumber" type="text" placeholder="请输入投保人电话"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">车主身份证:</div>
+                                <div class="item-input">
+                                    <input id="ownID" type="text" placeholder="请输入车主身份证"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">被保人姓名:</div>
+                                <div class="item-input">
+                                    <input id="recognizeeName" type="text" placeholder="请输入被保人姓名"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                                <div class="item-title label">被保人电话:</div>
+                                <div class="item-input">
+                                    <input id="recognizeeNumber" type="text" placeholder="请输入被保人电话"/>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-100"><a href="#" class="button button-big button-fill button-success">保存</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="js/static/libs/base.js"></script>
+<script src="js/static/libs/ls.js"></script>
+<script src="js/public/car-edit.js"></script>
+
+<script>
+    
+</script>
+</body>
+</html>

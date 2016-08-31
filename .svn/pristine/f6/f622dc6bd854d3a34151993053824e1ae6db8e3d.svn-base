@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>麦可思智能助教平台</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/check-in.css">
+
+    <!--[if lt IE9]>
+    <script src="js/html5.js"></script>
+    <script src="js/IE7.js"></script>
+    <![endif]-->
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="header_menu">
+        </nav>
+    </header>
+    <div class="header-fixed">
+        <nav id="header_menu_fixed">
+        </nav>
+    </div>
+
+    <section class="container">
+        <div class="content">
+            <div class="content-title">
+                <ul>
+                    <li><span>应到</span><span class="num" id="totalNum">0</span><span>人</span></li>
+                    <li><span>已到</span><span class="num" id="signedNum">0</span><span>人</span></li>
+                    <li><span>未到</span><span class="num" id="noSignNum">0</span><span>人</span></li>
+                </ul>
+            </div>
+
+            <div class="content-left">
+                <div class="student">
+                </div>
+            </div>
+
+            <div class="content-right">
+                <div class="qrcode-img" id="qrcode"></div>
+                <div class="qrcode-code"><span></span><span id="code"></span></div>
+                <div class="qrcode-countdown" id="timer">00:00:00</div>
+                <div class="qrcode-btn">
+                    <button class="close-sign-btn" id="sign-switch-btn">开始签到</button>
+                </div>
+            </div>
+
+            <div class="mask-details">
+                <div class="details"></div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="js/libs/jQuery/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/ss.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/libs/jQuery/QRcode/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="js/static/src/mask-details.js"></script>
+    <script type="text/javascript" src="js/static/src/check-in.js"></script>
+    <script type="text/tmpl" id="student-user">
+        <% for(var i=0;i < data.length;i++){ %>
+            <%if(i%2==0){%>
+            <div class="child6" id="stu_user_<%=data[i].id%>" onclick="CI.selectedStu(<%=data[i].id%>)">
+                <div class="user-pic">
+                    <img src="<%=data[i].icon %>?imageView2/1/w/200/h/200" alt=""  onerror="noFindImg();">
+                </div>
+                <div class="user-name"><%=data[i].name %></div>
+            </div>
+            <% } else{%>
+            <div class="child6" id="stu_user_<%=data[i].id%>" onclick="CI.selectedStu(<%=data[i].id%>)">
+                <div class="user-pic">
+                    <img src="<%=data[i].icon %>?imageView2/1/w/200/h/200" alt=""  onerror="noFindImg();">
+                </div>
+                <div class="user-name"><%=data[i].name %></div>
+            </div>
+            <%}%>
+        <%}%>
+    </script>
+
+    <script type="text/javascript">
+        $("[class^=mask]").on("click",function( event ){
+            if( this != event.target){
+                return;
+            }
+            $(this).hide();
+
+        });
+    </script>
+</body>
+
+</html>

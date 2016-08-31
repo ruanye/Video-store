@@ -1,0 +1,282 @@
+body {
+  background: #ffffff;
+  font-weight: normal;
+  font: 12px/1.5 tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif; }
+
+a {
+  color: #a6ce38; }
+
+.actions-modal-button.bg-danger,
+.actions-modal-label.bg-danger {
+  background: #a6ce38; }
+
+input[type=checkbox]:checked + .checkbox {
+  background: #a6ce38 !important; }
+
+.mt15 {
+  margin-top: 0.46875rem !important; }
+
+.button-success {
+  background: #a6ce38 !important; }
+
+.modal-button {
+  color: #a6ce38; }
+
+@font-face {
+  font-family: "iconfont";
+  src: url("fonts/iconfont.eot?t=1464155471");
+  /* IE9*/
+  src: url("fonts/iconfont.eot?t=1464155471#iefix") format("embedded-opentype"), url("fonts/iconfont.woff?t=1464155471") format("woff"), url("fonts/iconfont.ttf?t=1464155471") format("truetype"), url("fonts/iconfont.svg?t=1464155471#iconfont") format("svg");
+  /* iOS 4.1- */ }
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-qian:before {
+  content: "\e600"; }
+
+.icon-gou:before {
+  content: "\e605"; }
+
+.icon-shouqi:before {
+  content: "\e601"; }
+
+.icon-fanli:before {
+  content: "\e606"; }
+
+.icon-tianjia:before {
+  content: "\e607"; }
+
+.icon-xuanzegou:before {
+  content: "\e60c"; }
+
+.icon-baocun:before {
+  content: "\e608"; }
+
+.icon-shuangjiantou:before {
+  content: "\e604"; }
+
+.icon-yiguoqi:before {
+  content: "\e609"; }
+
+.icon-yishiyong:before {
+  content: "\e60a"; }
+
+.icon-40kanjia:before {
+  content: "\e60b"; }
+
+/**
+ * Custom checkboxes
+ */
+label.label-checkbox input[type=checkbox],
+label.label-checkbox input[type=radio] {
+  position: relative;
+  margin-right: 10px;
+  background-color: #FFF;
+  border: 2px solid #aaa;
+  border-radius: 0.15625rem;
+  background-clip: padding-box;
+  -webkit-appearance: none; }
+
+label.label-checkbox input[type=checkbox] {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  background: #ffffff;
+  display: inline-block;
+  vertical-align: text-top; }
+
+label.label-checkbox input[type="checkbox"] + label:before {
+  display: inline-block;
+  vertical-align: text-top; }
+
+label.label-checkbox input[type="checkbox"] + label:active {
+  background: #ffffff; }
+
+label.label-checkbox input[type=checkbox]:checked:after,
+label.label-checkbox input[type=radio]:checked:after {
+  display: inline-block;
+  font-family: icomoon;
+  color: #a6ce38;
+  font-size: .1875rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.78125rem;
+  height: 0.78125rem;
+  line-height: 0.78125rem;
+  background: #ffffff;
+  text-align: center;
+  font-weight: 700; }
+
+label.label-checkbox input[type=checkbox]:checked,
+label.label-checkbox input[type=radio]:checked {
+  background-color: #fff;
+  border: 2px solid #a6ce38; }
+
+label.label-checkbox input[type=checkbox]:checked:after {
+  content: '';
+  background: url("../images/checked.png") center center no-repeat; }
+
+label.label-checkbox input[type=checkbox]:focus,
+label.label-checkbox input[type=checkbox]:hover,
+label.label-checkbox input[type=radio]:focus,
+label.label-checkbox input[type=radio]:hover {
+  outline: 0; }
+
+.list-block {
+  margin: 0 auto !important; }
+
+/* flex-box style*/
+.flex-box {
+  display: flex; }
+
+.flex-1 {
+  flex: 1;
+  text-align: center; }
+
+.flex-m {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  display: flex; }
+
+.flex-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.flex-1 {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1; }
+
+.flex-m {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+#page-confirm .content {
+  padding-bottom: 2.5rem; }
+
+#page-confirm .bar {
+  line-height: 2.2rem;
+  background: #fff;
+  z-index: 999 !important; }
+
+#page-confirm .footer {
+  background: #707071;
+  position: fixed;
+  color: #fff;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 2.5rem;
+  text-align: center;
+  line-height: 2.5rem;
+  z-index: 999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  #page-confirm .footer .footer-num {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1; }
+  #page-confirm .footer .footer-btn {
+    width: 6.2rem;
+    background: #a7cc45;
+    color: #fff; }
+
+#page-confirm .content .list-block {
+  margin: 0 auto !important; }
+
+#page-confirm .list-block {
+  margin: .5rem auto !important;
+  font-size: .75rem;
+  color: #8a8a8a; }
+
+#page-confirm .list-block .item-content {
+  padding-left: 0 !important; }
+
+#page-confirm .list-block .item-inner {
+  margin-left: 0 !important;
+  padding-left: .75rem;
+  font-size: .75rem; }
+  #page-confirm .list-block .item-inner .item-title {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1; }
+  #page-confirm .list-block .item-inner .item-after {
+    width: 4rem;
+    text-align: center;
+    color: #8a8a8a !important;
+    display: block !important; }
+  #page-confirm .list-block .item-inner .item-after:last-child {
+    text-align: right; }
+
+#page-confirm .lst-h4 {
+  padding: 0 0.625rem;
+  border-left: 2px solid #a6ce38;
+  display: inline-block; }
+
+#page-confirm .text-right {
+  text-align: right; }
+
+#page-confirm .text-left {
+  text-align: left; }
+
+#page-confirm .text-center {
+  text-align: center; }
+
+#page-confirm .company-lst {
+  background: #fff;
+  padding: 0;
+  margin: 0; }
+
+#page-confirm .company-lst li {
+  padding: 0.9375rem;
+  position: relative; }
+
+#page-confirm .company-lst li .lst-logo, #page-confirm .company-lst li .price-info {
+  padding: 0 0.9375rem; }
+
+#page-confirm .info-s {
+  font-size: 0.75rem;
+  color: #aaaaaa; }
+  #page-confirm .info-s span {
+    color: #df7878; }
+
+#page-confirm .price {
+  font-size: 0.625rem;
+  color: #aaaaaa;
+  text-decoration: line-through; }
+  #page-confirm .price span {
+    color: #df7878; }
+
+#page-confirm .price-info {
+  text-align: left !important; }
+
+#page-confirm .lst-logo {
+  width: 5.625rem;
+  border-right: 1px solid #ccc;
+  text-align: center; }
+
+#page-confirm .lst-logo img {
+  width: 3.125rem; }
+
+/*# sourceMappingURL=maps/confirm.css.map */

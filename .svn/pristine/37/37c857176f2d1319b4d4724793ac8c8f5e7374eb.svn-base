@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>选择套餐</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <script src="vendor/lib-flexible/build/flexible.js"></script> -->
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/fonts/iconfont.css">
+    <link rel="stylesheet" href="css/select-set.css">
+</head>
+
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <div class="content native-scroll">
+            <div class="row no-gutter set-top">
+                <div class="col-50 set-meal"><input type="text" class="cst-title" value="经济型"><i class="iconfont icon-xiajiantou"></i>
+                </div>
+                <div class="col-50 car-num"><a href="#" class="open-panel" data-panel='#panel-car-list'><span id="car-num">渝AJH416</span></a></div>
+            </div>
+            <div class="set-content">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item" id="opt-1">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,1)">
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">车辆损失险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg active"><span><i class="iconfont icon-gou"></i>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-2">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" onchange="checkOption(this,2)">
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">全车盗抢险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-3">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,3)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">车身划痕损失险</span></div>
+                                        <div class="col-20">
+                                            <input type="text" name="" class="opt-extra item-price-2k2w" value="1万" />
+                                        </div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-4">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,4)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">玻璃单独破碎险</span></div>
+                                        <div class="col-20">
+                                            <input type="text" name="" class="opt-extra item-glass" value="国产" />
+                                        </div>
+                                        <div class="col-25 item-msg"></div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-5">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,5)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">自燃损失险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-6">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,6)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">发加动机涉水损失险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-7">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,7)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">修理期间费用补偿险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"></div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-8">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,8)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">指定修理厂险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"></div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-9">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,9)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">机动车损失保险无法找到第三方特约险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"></div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-10">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,10)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">新增设备损失险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item" id="opt-11">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,11)">
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">第三者责任险</span></div>
+                                        <div class="col-20">
+                                            <input type="text" name="" class="opt-extra item-price-5w100w" value="10万" />
+                                        </div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-12">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,12)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">司机座位险</span></div>
+                                        <div class="col-20">
+                                            <input type="text" name="" class="opt-extra item-price-1w20w" value="20万" />
+                                        </div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-13">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" checked onchange="checkOption(this,13)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">乘客座位险</span></div>
+                                        <div class="col-20">
+                                            <input type="text" name="" class="opt-extra item-price-1w20w" value="5万" />
+                                        </div>
+                                        <div class="col-25 item-msg"><i class="iconfont icon-gou"></i><span>不计免赔</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item" id="opt-15">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" onchange="checkOption(this,15)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">交强险</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg">&nbsp;</div>
+                                    </div>
+                                </li>
+                                <li class="item" id="opt-16">
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox" onchange="checkOption(this,16)"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-40"><span class="item-title">车船税</span></div>
+                                        <div class="col-20">&nbsp;</div>
+                                        <div class="col-25 item-msg">&nbsp;</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="more-btn"><a href="#"><!--更多险种<i class="iconfont icon-shuangjiantou"></i> --></a></div>
+
+                <div class="card more-content hide">
+                    <div class="card-content">
+                        <div class="list-block">
+                            <ul>
+                                <li class="item" >
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-85"><span class="item-title">指定维修厂特约险</span></div>
+                                    </div>
+                                </li>
+                                <li class="item" >
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-85"><span class="item-title">修理期间费用补偿险</span></div>
+                                    </div>
+                                </li>
+                                <li class="item" >
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-85"><span class="item-title">机动车损失无法找到第三方特约险</span></div>
+                                    </div>
+                                </li>
+                                <li class="item" >
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-85"><span class="item-title">新增设备损失险</span></div>
+                                    </div>
+                                </li>
+                                <li class="item" >
+                                    <div class="row no-gutter">
+                                        <div class="col-15">
+                                            <div class="item-state">
+                                                <label class="label-switch">
+                                                    <input type="checkbox"/>
+                                                    <div class="checkbox"></div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-85"><span class="item-title">精神损失抚慰金责任险</span></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-100"><a href="javascript:void(0)" class="button button-big button-fill button-success" onclick="onOptionSubmit()">查询报价</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="panel-overlay"></div>
+<!-- 加上这行代码可以点击侧栏外部关闭侧栏 -->
+<!-- Left Panel with Reveal effect -->
+<div class="panel panel-right panel-reveal" id="panel-car-list">
+    <div class="panel-content">
+        <div class="car-list-top">
+            <label class="panel-car-num">川AD2J69</label>
+            <i class="iconfont plus icon-tianjia" id="addCarInfo"></i>
+        </div>
+        <div class="car-list">
+            <div class="list-block">
+                <div class="list-group">
+                    <ul id="car-list-ul">
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">川AD2J69</div>
+                                </div>
+                            </div>
+                            <div class="edit-content">
+                                <img src="images/edit-icon.png" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="js/static/libs/base.js"></script>
+<script src="js/static/libs/ls.js"></script>
+<script type="text/javascript" src="js/public/select-set.js"></script>
+</body>
+
+</html>

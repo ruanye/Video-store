@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>关注公众号</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <script src="vendor/lib-flexible/build/flexible.js"></script> -->
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .normal img {
+            border: solid 1px #a6ce38;
+            -webkit-border-radius: 26px;
+            -moz-border-radius: 26px;
+            border-radius: 26px;
+            -webkit-box-shadow: inset 0 1px 5px rgba(0,0,0,.5);
+            -moz-box-shadow: inset 0 1px 5px rgba(0,0,0,.5);
+            box-shadow: inset 0 1px 5px rgba(0,0,0,.5);
+        }
+        .parent{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            /* 注意这里需要设置高度来查看垂直居中效果 */
+            background: #AAA;
+            height: 100vh;
+        }
+        .item{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);  /* 使用css3的transform来实现 */
+        }
+        p{font-size: 16px;font-weight: 700;line-height: 1.5;color: #a6ce38;text-align: center;}
+    </style>
+</head>
+<body>
+<div class="page-group" >7
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page page-current" id="page-input">
+
+        <!-- 这里是页面内容区 -->
+        <div class="content" style="height: 100vh;">
+            <div class="card-content item">
+                <div class="list-block media-list">
+                    <img src="images/ewm.jpg" alt="" style="max-width: 100%;height: auto;">
+                    <p>请先关注公众号<br/>长按二维码即可关注</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script src="js/static/libs/base.js"></script>
+<script src="js/static/libs/ls.js"></script>
+
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src='js/static/libs/parsec_weixin.js'></script>
+<script type="text/javascript">
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+$gridPercentSwitch:true;
+@import "d:/tobe/function";
+
+@charset "UTF-8";
+
+.wrap-page,
+body,
+html {
+    height: 100%
+}
+
+.ipt,
+button:focus {
+    outline: 0
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    font-family: "Microsoft YaHei"
+}
+
+button {
+    border: none
+}
+
+.wrap-page {
+    -webkit-background-origin: content-box;
+    -webkit-overflow-scrolling: touch;
+    background: #0e1b45;
+    background-size: 100% auto;
+    text-align: center;
+    width: 100%
+}
+
+.page {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.flex-box,
+.flex-m {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox
+}
+
+.inner {
+    padding: 0 .5625rem;
+    width: 100vw
+}
+
+#page1 {
+    background: url(../images/changsha/bg1.png) center bottom no-repeat, url(../images/changsha/fenxiang.png) right top no-repeat;
+    background-size: 100% auto, 2.65625rem auto
+}
+#page5 {
+    background: url(../images/changsha/page5-bg.png) center bottom no-repeat;
+    background-size: 100% 100%
+}
+#page6 {
+    background: url(../images/changsha/page6-bg.png) center bottom no-repeat;
+    background-size: 100% 100%
+}
+.flex-box {
+    display: flex
+}
+
+.flex-1 {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.flex-m {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: flex
+}
+
+.flex-d {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.text-left {
+    text-align: left
+}
+
+.com-btn,
+.ipt {
+    margin: .15625rem;
+    height: 1.375rem;
+    line-height: 1.375rem;
+    -webkit-appearance: none;
+    text-align: center
+}
+
+.ipt {
+    min-width: 5.5rem;
+    border-radius: 0;
+    color: #757677;
+    background: #fff;
+    padding: .078125rem;
+    border: 0;
+    font-size: 16px
+}
+
+[data-dpr="2"] .ipt {
+    font-size: 32px
+}
+
+[data-dpr="3"] .ipt {
+    font-size: 48px
+}
+
+.com-btn {
+    min-width: 5rem;
+    padding-left: .46875rem;
+    padding-right: .46875rem;
+    border-radius: 0;
+    color: #fff;
+    font-weight: 700;
+    background: #f90052;
+    border: 0;
+    font-size: 16px
+}
+
+[data-dpr="2"] .com-btn {
+    font-size: 32px
+}
+
+[data-dpr="3"] .com-btn {
+    font-size: 48px
+}
+
+hr {
+    margin: .46875rem auto;
+    border-color: #F90052;
+    height: 0;
+    border-style: solid;
+    width: 80%
+}
+
+.face {
+    width: 1.671875rem;
+    height: 1.671875rem;
+    margin: .34375rem
+}
+
+.m-info {
+    font-size: 22px
+}
+
+[data-dpr="2"] .m-info {
+    font-size: 36px
+}
+
+[data-dpr="3"] .m-info {
+    font-size: 54px
+}
+
+.s-info,
+.s-info1 {
+    font-size: 16px
+}
+
+[data-dpr="2"] .s-info,
+[data-dpr="2"] .s-info1 {
+    font-size: 24px
+}
+
+[data-dpr="3"] .s-info,
+[data-dpr="3"] .s-info1 {
+    font-size: 36px
+}
+
+.l-info,
+.l-info1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+[data-dpr="2"] .l-info,
+[data-dpr="2"] .l-info1 {
+    font-size: 40px
+}
+
+[data-dpr="3"] .l-info,
+[data-dpr="3"] .l-info1 {
+    font-size: 60px
+}
+
+.l-info,
+.m-info,
+.r-span,
+.s-info {
+    color: #f90052;
+    font-weight: 700;
+    line-height: 1.5
+}
+
+.l-info1,
+.num,
+.s-info1 {
+    color: #fff
+}
+
+.left-img {
+    width: 3.90625rem
+}
+
+.left-img img {
+    width: 90%
+}
+
+.img-lst {
+    margin: .3125rem auto
+}
+
+.num {
+    font-size: 32px
+}
+
+[data-dpr="2"] .num {
+    font-size: 64px
+}
+
+[data-dpr="3"] .num {
+    font-size: 96px
+}
+
+.topic {
+    width: 5.28125rem;
+    margin: .46875rem auto
+}
+
+.logo {
+    width: 1.875rem;
+    height: 1.875rem;
+    position: absolute;
+    top: .3125rem;
+    right: .3125rem
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>地址管理</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link rel="stylesheet" href="css/weui/jquery-weui.css">
+    <link rel="stylesheet" href="css/weui/weui.min.css">
+    <link rel="stylesheet" href="css/addressManage.css">
+</head>
+
+<body>
+    <div class="allcontainer">
+        <ul class="listcontainer">
+        </ul>
+        <div class="bottom">
+            <a id="hrefadd" href="javascript:0">
+          
+                新增收货地址
+                <span><i class="iconfont">&#xe60c;</i></span>
+           
+        </a>
+        </div>
+    </div>
+    <script src="js/weui/jquery-2.1.4.js"></script>
+     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script type="text/javascript" src="js/static/base.js"></script>
+    <script type="text/javascript" src="js/static/parsec_weixin.js"></script> 
+    <script type="text/javascript" src="js/topBar.js"></script>
+    <script src="js/addressManage.js"></script>
+</body>
+
+</html>

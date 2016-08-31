@@ -1,0 +1,293 @@
+/**
+ * Created by yanghc on 16/6/2.
+ */
+
+
+/*
+ * Simple To Introduction
+ *
+ * REGISTER JAVASCRIPT FILE
+ *
+ * @auther liuzhen
+ * @date 16/4/26
+ * v 0.0.1
+ * Copyright © 2016 重庆市秒差距科技有限公司. All Rights Reserved.
+ */
+var flag = false;
+
+$(function(){
+    getValidCode('checkimg');
+    emptyForm();
+    //获取短信验证码
+    $('#getSmsCode').bind('click',function(){
+        //获取短信验证码
+        var $code = $(".hqyz");
+        var $Btn = $(this);
+        var validCode=true;
+        var mobile=$("#myphone").val();
+        var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+        if(!myreg.test(mobile)){
+            $('#myphone').addClass('input-error error-ico');
+            $("#phone_error").removeClass().addClass("error-msg").html("手机号码格式有误，请输入正确的手机号");
+            $("#phone_error").show();
+            return false;
+        }
+
+        $Btn.attr("disabled","disabled").css("cursor","not-allowed");
+        $.post(Constant.WEB_ROOT+"/api/teacher/sendSMS",{mobilePhoneNumber:mobile}, function(data) {
+            if(data.status != 0){
+                $("#sms_error").removeClass().addClass('error-msg').html("验证码发送失败!请稍后重试...");
+                $Btn.removeAttr("disabled").css("cursor","auto");
+            }else{
+                $("#sms_error").removeClass().addClass('succeed-msg').html("验证码发送成功!");
+                setTimeout(function(){
+                    $("#sms_error").removeClass().html("").hide();
+                },5000);
+            }
+        });
+        var time=60;
+        if (validCode) {
+            validCode=false;
+            var t=setInterval(function  () {
+                time--;
+                $Btn.text(time+"s后重新获取");
+                if (time==0) {
+                    clearInterval(t);
+                    $Btn.text("获取短信验证");
+                    $Btn.removeAttr("disabled").css("cursor","auto");
+                    validCode=true;
+                }
+            },1000)
+        }
+    });
+    //手机验证
+    $('#myphone').bind('blur', function () {
+        var mobile = $("#myphone").val();
+        if (validateRules.isNull(mobile)) {
+            $("#phone_error").removeClass().html("");
+            $("#phone_error").hide();
+            return;
+        }
+        if (!validateRules.isMobile(mobile)) {
+            $('#myphone').addClass('input-error error-ico');
+            $("#phone_error").removeClass().addClass("error-msg").html("手机号码格式有误，请输入正确的手机号");
+            $("#phone_error").show();
+            return;
+        }
+        $("#myphone").removeClass('input-error error-ico').addClass("succeed");
+        $('#phone_error').removeClass().html("").hide();
+    });
+    $('#myphone').bind('focus',function(){
+        $('.msg-info').html("").hide();
+        $('#myphone').removeClass('input-error error-ico succeed');
+        $("#phone_error").removeClass().addClass("focus-msg").html("请输入您注册时,使用的手机号码");
+        $("#phone_error").show();
+        $('#phone_succeed').removeClass();
+    });
+
+    //短信验证码
+    $('#smsCode').bind('focus',function(){
+        $('.msg-info').html("").hide();
+        $('#smsCode').removeClass('input-error error-ico succeed');
+        $("#sms_error").removeClass().addClass("tip").html("");
+        $("#sms_error").hide();
+        $('#sms_succeed').removeClass();
+    });
+
+    //图片验证码
+    $('#forgetcode').bind('focus',function(){
+        $('.msg-info').html("").hide();
+        $('#forgetcode').removeClass('input-error error-ico succeed');
+        $("#authcode_error").removeClass().addClass("tip").html("");
+        $("#authcode_error").hide();
+        $('#authcode_succeed').removeClass();
+    });
+
+    //setp 2
+    //验证密码
+    $('#passworld1').bind('blur', function () {
+        var pwd = $("#passworld1").val();
+        if (pwd == "") {
+            $('#pwd_error').removeClass("error-msg");
+            $("#pwd_error").hide();
+            $('#pwd_succeed').removeClass();
+            return;
+        }
+        pwd = strTrim(pwd);
+        var format = validateRules.isPwd(pwd);
+        var format2 = validateRules.betweenLength(pwd, 6, 20);
+        if (!format) {
+            $('#pwd_error').removeClass().addClass("error-msg").html("密码只能由英文、数字及标点符号组成");
+            $('#passworld1').addClass('input-error error-ico');
+            return;
+        } else {
+            if (!format2) {
+                $('#pwd_error').removeClass().addClass("error-msg").html("密码长度只能在6-20位字符之间");
+                $('#passworld1').addClass('input-error error-ico');
+                return;
+            }
+            $("#passworld1").removeClass('input-error error-ico').addClass("succeed");
+            $('#pwd_error').removeClass().html("").hide();
+        }
+    });
+    $('#passworld1').bind('focus',function(){
+        $('.msg-info').html("").hide();
+        $('#passworld1').removeClass('input-error error-ico succeed');
+        $("#pwd_error").removeClass().addClass("focus-msg").html("6-20位字符，建议由字母，数字和符号两种以上组合");
+        $("#pwd_error").show();
+        $('#pwd_succeed').removeClass();
+    });
+
+    //验证确认密码
+    $('#passworld2').bind('blur', function () {
+        var pwd = $("#passworld1").val();
+        var pwdRepeat = $("#passworld2").val();
+        if (pwdRepeat == "") {
+            $('#pwdRepeat_error').removeClass("error-msg");
+            $("#pwdRepeat_error").hide();
+            $('#pwdRepeat_succeed').removeClass();
+            return;
+        }
+        pwdRepeat = strTrim(pwdRepeat);
+        var format = validateRules.isPwd(pwdRepeat);
+        var format2 = validateRules.betweenLength(pwdRepeat, 6, 20);
+        var format3 = validateRules.isPwdRepeat(pwd, pwdRepeat);
+        if (!format) {
+            $('#pwdRepeat_error').removeClass().addClass("error-msg").html("密码只能由英文、数字及标点符号组成");
+            $('#passworld2').addClass('input-error error-ico');
+            return;
+        } else {
+            if (!format2) {
+                $('#pwdRepeat_error').removeClass().addClass("error-msg").html("密码长度只能在6-20位字符之间");
+                $('#passworld2').addClass('input-error error-ico');
+                return;
+            }else{
+                if(!format3){
+                    $('#pwdRepeat_error').removeClass().addClass("error-msg").html("两次输入密码不一致");
+                    $('#passworld2').addClass('input-error error-ico');
+                    return;
+                }
+            }
+            $("#passworld2").removeClass('input-error error-ico').addClass("succeed");
+            $('#pwdRepeat_error').removeClass().html("").hide();
+        }
+    });
+    $('#passworld2').bind('focus',function(){
+        $('.msg-info').html("").hide();
+        $('#passworld2').removeClass('input-error error-ico succeed');
+        $("#pwdRepeat_error").removeClass().addClass("focus-msg").html("请再次输入密码");
+        $("#pwdRepeat_error").show();
+        $('#pwdRepeat_succeed').removeClass();
+    });
+});
+
+//获取验证码
+function getValidCode(id){
+    var code = getCode();
+    SS.set(Constant.randomStr, code);
+    jQuery('#'+id).attr('src',Constant.WEB_ROOT+'/xuan/verifyCode?randomStr='+code);
+}
+
+function strTrim(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+function emptyForm(){
+    $("#myphone").val("");
+    $("#smsCode").val("");
+    $("#regincode").val("");
+}
+
+function checkVal(){
+    var myphone = $("#myphone").val();
+    if(myphone == ""){
+        $("#myphone").addClass('input-error error-ico');
+        $("#phone_error").removeClass().addClass('error-msg').html("请输入手机号！");
+        flag = true;
+    }
+    var smsCode = $("#smsCode").val();
+    if(smsCode == ""){
+        $("#smsCode").addClass('input-error error-ico');
+        $("#sms_error").removeClass().addClass('error-msg').html("请输入短信验证码");
+        flag = true;
+    }
+    var forgetcode = $("#forgetcode").val();
+    if(forgetcode == ""){
+        $("#forgetcode").addClass('input-error error-ico');
+        $("#authcode_error").removeClass().addClass('error-msg').html("请输入验证码");
+        flag = true;
+    }
+    return flag;
+}
+
+function checkResetVal(){
+    var passworld1 = $("#passworld1").val();
+    if(passworld1 == ""){
+        $("#passworld1").addClass('input-error error-ico');
+        $("#pwd_error").removeClass().addClass('error-msg').html("请输入密码");
+        flag = true;
+    }
+
+    var passworld2 = $("#passworld2").val();
+    if(passworld2 == ""){
+        $("#passworld2").addClass('input-error error-ico');
+        $("#pwdRepeat_error").removeClass().addClass('error-msg').html("请再次输入密码");
+        flag = true;
+    }
+    return flag;
+}
+function checkUser(){
+    if(!checkVal()){
+        var myphone = $("#myphone").val();
+        var checkCode = $("#forgetcode").val();
+        var params = {
+            phone:myphone,
+            validCode:SS.get(Constant.randomStr),
+            checkCode:checkCode
+        };
+        $.get(Constant.WEB_ROOT+"/api/teacher/forgetpwd/validateone",params, function(data) {
+            if(data.status==0){
+                $('#setp1').hide();
+                $('#setp2').show();
+                $("#progressbar").find('li').eq(1).addClass('active');
+                getValidCode('checkimg2');
+                flag = false;
+            }else{
+                $('.msg-info').html(data.msg).show();
+                flag = false;
+                getValidCode('checkimg');
+            }
+        });
+    }
+}
+
+function resetPwd(){
+    if(!checkResetVal()){
+        var myphone = $("#myphone").val();
+        var smsCode = $("#smsCode").val();
+        var passworld1 = $("#passworld1").val();
+        var params = {
+            mobilePhoneNumber:myphone,
+            code:smsCode,
+            newPwd:passworld1
+        };
+        $.post(Constant.WEB_ROOT + "/api/teacher/resetPassword",params,function(data){
+            var $msg = $('.icon-msg');
+            var $title = $('.msg-title');
+            var $desc = $('.msg-desc');
+            if(data.status==0){
+                $msg.removeClass('icon-error').addClass('icon-success');
+                $title.html("密码重置成功");
+                $desc.html('您的您密码重置成功,请勿将密码告知他人');
+            }else{
+                $msg.removeClass('icon-success').addClass('icon-error');
+                $title.html("密码重置失败");
+                $desc.html(data.msg);
+            }
+            $("#progressbar").find('li').eq(2).addClass('active');
+            $('#setp2').hide();
+            $('#setp3').show();
+        });
+    }
+}
+

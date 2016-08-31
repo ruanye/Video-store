@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>哦嚯，我真抽到了优步的大奖！点击查看</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="css/animate.css">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <section class="page page1 hide">
+            <div class="text-center title"><img src="images/title.png" alt=""></div>
+            <div class="hander"><img src="images/hander.png" alt=""></div>
+            <div class="choujiangbtn"><img src="images/choujiang.png" alt="" class="cbtn"></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <section class="page page2 ">
+            <div class="selcity">
+                <ul>
+                    <li>
+                        <span><img src="images/cdtext.png" alt=""></span>
+                        <span class="towherebtn1"><img src="images/clickme.text" alt=""></span>
+                    </li>
+                    <li>
+                        <span><img src="images/mytext.png" alt=""></span>
+                        <span class="towherebtn2"><img src="images/clickme.text" alt=""></span>
+                    </li>
+                    <li>
+                        <span><img src="images/dsctext.png" alt=""></span>
+                        <span class="towherebtn3"><img src="images/clickme.text" alt=""></span>
+                    </li>
+                    <li>
+                        <span><img src="images/newusertext.png" alt=""></span>
+                        <span class="towherebtn4"><img src="images/clickme.text" alt=""></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 成都 -->
+        <section class="page page3 hide">
+          <div class="turntable-content">
+                <!-- 代码 开始 -->
+                <!-- 如果转盘项需要图标 就启用一下 img 标签 注意ID 信息 -->
+                <img src="images/2.png" id="shan-img" style="display:none;" />
+                <img src="images/2.png" id="sorry-img" style="display:none;" />
+                <div class="turnplate">
+                   
+                    <canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
+                    <img class="pointer" src="images/circle.png" onclick="$('.pointer').click();">
+                </div>
+                <!-- 代码 结束 -->
+            </div>
+         <!--    <div class="zhuanpan">
+                <img src="images/circle.png" alt="" class="circle">
+            </div> -->
+            <div class="text-center icon"><img id="iconimg" src="images/cd.png" alt=""></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 绵阳 -->
+        <section class="page page4 hide">
+       
+           <!--  <div class="zhuanpan one">
+                <img src="images/circle.png" alt="" class="circle">
+            </div> -->
+            <div class="text-center icon"><img  src="images/my.png" alt=""></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 大四川 -->
+        <section class="page page5 hide">
+       
+            <!-- <div class="zhuanpan two">
+                <img src="images/circle.png" alt="" class="circle">
+            </div> -->
+            <div class="text-center icon"><img src="images/sc.png" alt=""></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 成都折扣 -->
+        <section class="page page6 hide">
+            <div class="my text-center">
+                <img src="images/cdt.png" alt="">
+            </div>
+            <div class="sharebtn sharebtn1"><img src="images/fx1.png" alt="" class="cbtn fx"></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 大四川折扣 -->
+        <section class="page page7 hide ">
+            <div class="my text-center">
+                <img src="images/dsc.png" alt="">
+            </div>
+            <div class="sharebtn sharebtn2"><img src="images/fx1.png" alt="" class="cbtn fx"></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!--  绵阳折扣-->
+        <section class="page page8 hide">
+            <div class="my text-center">
+                <img src="images/mnqz.png" alt="">
+            </div>
+            <div class="sharebtn sharebtn3"><img src="images/fx1.png" alt="" class="cbtn fx"></div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 分享页面 -->
+        <section class="page page9 hide">
+            <div class="ntext text-center">
+                <img src="images/ntext.png" alt="">
+            </div>
+            <p class="shtext one">与其让别人抢到</p>
+            <p class="shtext">不如让我的好朋友也领到</p>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+        <!-- 输入要手机号页面 -->
+        <section class="page page10 hide">
+            <div class="text-center phonebox">
+                <span class="phone text-center">
+             </span>
+                <div class="inputbox">
+                    <input type="text" placeholder="输入手机号">
+                </div>
+                <div class="text-center dian"><img src="images/dian.png" alt=""></div>
+                <div class="inputbox btn " id="surebtn"> 确定</div>
+            </div>
+            <div class="bottom text-center"><span><img src="images/logo.png" alt=""></span></div>
+        </section>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+     <!-- <script src="js/index.js"></script> -->
+   
+    <script type="text/javascript" src="js/awardRotate.js"></script>
+    <script src="js/turnplate/turnplate.js"></script>
+</body>
+
+</html>

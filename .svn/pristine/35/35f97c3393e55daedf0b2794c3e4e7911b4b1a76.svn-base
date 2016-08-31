@@ -1,0 +1,127 @@
+/**
+ * Created by zhangji on 16/6/11
+ */
+
+var SET = {
+    init:function() {
+        $.init();
+        var optionJson = JSON.parse(sessionStorage.optionJson || '{}');
+        //--var priceObj = JSON.parse(sessionStorage.priceObj || '{}');
+        var optList = optionJson.options;
+        //--var optList = priceObj.ITEMKIND;
+        var totalPrice = 0;
+        var totalOldPrice = 0;
+        var s = '<div class="item-inner bottomline"><div class="item-title leftline2">商业险</div></div>';
+        for (var i=0;i<optList.length;i++) {
+            //name, amount, price
+            var opt = optList[i];
+            var optName = opt.name.substr(0, 6);
+            //--var optName = opt.KINDNAME.substr(0,6);
+            if (opt.name.length > 6) {
+                optName += "…";
+            }
+            var optAmount = opt.amount;
+            //--var optAmount = opt.AMOUNT;
+            var optPrice = opt.price;
+            //--var optPrice = opt.PREMIUM;
+            var optOldPrice = opt.price;
+            //--var optOldPrice = opt.BENCHMARKPREMIUM;
+
+            if (opt.id == 24) {
+                $("#bz-price").html(optPrice);
+            } else {
+                s += '<div class="item-inner2">';
+                s += '<div class="item-title">'+optName+'</div>';
+                s += '<div class="item-after">'+optAmount+'</div>';
+                s += '<div class="item-after"><span class="icon-uniE600" style="font-size: 1rem;font-weight: 700;"></span>'+parseFloat(optPrice).toFixed(2)+'</div>';
+                s += '</div>';
+            }
+            totalPrice += parseFloat(optPrice);
+            totalOldPrice += parseFloat(optOldPrice);
+        }
+        totalPrice += sessionStorage.tax / 100;
+        totalOldPrice += sessionStorage.tax / 100;
+        var companyObj = JSON.parse(sessionStorage.company || "{}");
+        $("#company-icon").html('<img src="'+companyObj.icon+'" alt="">');
+        $("#company-name").html(companyObj.name);
+        $(".item-content-row").html(s);
+        $(".item-title .font_money").html("￥"+companyObj.price);
+        $(".item-subtitle .font_money").html("￥"+(totalPrice+0.001).toFixed(2));
+        var startDate = optionJson.startDate.substr(0, 10);
+        var endDate = optionJson.endDate.substr(0, 10);
+        //--var startDate = priceObj.STARTDATE.substr(0, 10).replace('-', '.').replace('-', '.')
+        //--var endDate = priceObj.ENDDATE.substr(0, 10).replace('-', '.').replace('-', '.')
+        $("#date-range").html(startDate+" - "+endDate);
+        SET.startDate = startDate;
+        SET.endDate = endDate;
+        SET.totalPrice = totalPrice;
+        sessionStorage.benchmarkTotal = parseInt(totalOldPrice * 100);
+        sessionStorage.priceTotal = parseInt(totalPrice * 100);
+        if (sessionStorage.contactAddr || sessionStorage.contactName || sessionStorage.contactNumber){
+            $("#contact-info").find("input")[2].value = sessionStorage.contactAddr || "";
+            $("#contact-info").find("input")[0].value = sessionStorage.contactName || "";
+            $("#contact-info").find("input")[1].value = sessionStorage.contactNumber || "";
+        } else {
+            $.get("http://synsunny.parsec.com.cn/Dorado/weixin/user/contact?id="+localStorage.userId, null, function(data) {
+                if (!(data.status === 0)) {
+                    return;
+                }
+                $("#contact-info").find("input")[2].value = sessionStorage.contactAddr = (data.addr || "");
+                $("#contact-info").find("input")[0].value = sessionStorage.contactName = (data.name || "");
+                $("#contact-info").find("input")[1].value = sessionStorage.contactNumber = (data.phone || "");
+            });
+        }
+    }
+}
+
+SET.init();
+
+function date2number(s) {
+    var ret = 0;
+    ret += parseInt(s.substr(8, 2));
+    ret += parseInt(s.substr(5, 2))*100;
+    ret += parseInt(s.substr(0, 4))*10000;
+    return ret;
+}
+
+function saveOrder() {
+    if (!sessionStorage.contactAddr) {
+        $.alert("联系人地址不能为空");
+        return;
+    }
+    if (!sessionStorage.contactName) {
+        $.alert("联系人姓名不能为空");
+        return;
+    }
+    if (!sessionStorage.contactNumber) {
+        $.alert("联系人电话号码不能为空");
+        return;
+    }
+    var companyObj = JSON.parse(sessionStorage.company || "{}");
+    $.post("http://synsunny.parsec.com.cn/Dorado/weixin/trade/commitOrder", {
+    //$.post("/weixin/trade/commitOrder", {
+        addr:sessionStorage.contactAddr,
+        contact:sessionStorage.contactName,
+        contactNumber:sessionStorage.contactNumber,
+        insuranceCompanyId:companyObj.id,
+        insurancePeriodEnd:date2number(SET.endDate),
+        insurancePeriodStart:date2number(SET.startDate),
+        orderContent:sessionStorage.optionJson,
+        optionSession:sessionStorage.optionSession,
+        vehicleId:sessionStorage.vehicleId,
+        orderValue:parseInt(companyObj.price*100),
+        userId:localStorage.userId,
+    }, function(data) {
+        if (!data.orderId) {
+            $.alert("提交订单失败，请重试…");
+            return;
+        }
+        sessionStorage.orderId = data.orderId;
+        sessionStorage.orderCode = data.orderCode;
+        window.location.href = 'bargain.html';
+    });
+}
+
+function editConfirm() {
+    window.location.href= 'confirm.html';
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>深圳 - 优步抢券</title>
+  <script src="vendor/lib-flexible/build/flexible.js"></script>
+  <script src="vendor/zepto/zepto.min.js"></script>
+  <link href="css/shenzhen.css" rel="stylesheet" media="screen"></head>
+  <style>
+
+  </style>
+<body>
+
+  <div class="wrap-page">
+  
+  <section class="page" id="page1" style="display: none">
+      <img src="images/gz-logo.png" class="gz-logo">
+      <div class="inner" style="margin: 1.5625rem 0 0 0;padding-top: 1.2rem;position: relative;">
+          <p class="hongbao-info">5月26日</p>
+          <p class="hongbao-info">1折优惠轰炸惠州!</p>
+          <p class="hongbao-info">人民优步低至0.8元起!</p>
+          
+          <div class="hongbao-img"><img src="images/fs-hb-1.png" style="height: auto;"></div>     
+      </div>
+  </section>
+
+
+  <section class="page" id="page1_2" style="display: none">
+      <img src="images/gz-logo.png" class="gz-logo">
+      <div class="inner" style="margin: -1.5625rem 1rem  0 1rem;">
+          <div class="hongbao-img" style="padding: 1.4rem 1rem 0 1rem;"><img src="images/mimi.png" style="height: auto;">
+            <p style="font-size: 16px;color: #ffffff;padding-top: 0.4rem;padding-bottom: 0.4rem;max-width: width: 210px;">优步为你的电话隐私保驾护航</p>
+          </div>
+          <div class="inner" style="margin-top:.20625rem">
+          <div class="jiang-type">&nbsp;</div>
+          <div class="info-box-good1">
+              <div class="info-inner1">
+                <input type="text" class="ipt" placeholder="请输入手机号">
+              </div>
+          </div>
+          <button class="guangzhou-small-btn" style="width: 100%;">
+                 <div style="font-weight: 700;font-size: 20px;">即刻抢!</div>
+          </button>         
+      </div>     
+      </div>
+  </section>
+
+  <section class="page" id="page1_3"  style="display: none">
+    <div class="animate-area">
+      <img src="images/gz-logo.png" class="gz-logo">
+      <div class="inner  " style="margin: -1.5625rem 1rem  0 1rem;">
+          <div class="hongbao-img" ><img src="images/myyouh.png" style="height: auto;padding: 1.4rem 1rem 0 1rem;">
+            <div>
+              <img src="images/zhekou.png" style="height: auto;padding: 0.4rem 1rem 0 1rem;">
+            </div>
+          </div>
+          <div class="inner" style="margin-top:.20625rem">
+          <div class="jiang-type2">3张1折劵</div>
+          <div style="padding:0.4rem 0 0.4rem 0;width: 104%;">
+                <p class="hongbao-info2">已经躺在您的优步账户等你来用</p>
+                <p class="hongbao-info2" >赶紧打开Uber&nbsp; App&nbsp;<span>1</span>折轻松出行</p>
+                <p class="hongbao-info2" >(&nbsp;1折优惠限5月26日使用&nbsp;)</p>
+          </div>
+          <button class="guangzhou-small-btn" style="width: 100%;height: 1.25rem;line-height: 1.25rem;">
+                 <div style="font-weight: 700;font-size: 20px;">点我秒抢1折优惠码!</div>
+          </button>         
+      </div>     
+      </div>
+    </div>
+  </section>
+
+  
+   <section class="page" id="page1_4" style="display: none">
+      <img src="images/gz-logo.png" class="gz-logo2">
+      <div class="inner" style="margin: 2.625rem 1.3rem  0 1.3rem;">
+      
+          <div class="s_share_1" >
+            <div style="position: absolute;top: -90px;right: -78px;z-index: 2">
+              <img src="images/shou.png" style="width: 48%;">
+            </div>
+            <p style="position: absolute;bottom: 6px;left: 72px;font-size: 16px;color: #ce0402;">这么好的事</br>还不分享造福基友?!</p>
+          </div>
+          <div class="s_share_2">&nbsp;</div> 
+          <div class="s_share_3">
+            <div style="padding:0.4rem 0 0.4rem 0;width: 104%;">
+                  <p style="font-size: 20px;color: #ffffff;">微信公众号</p>
+                  <p style="font-size: 22px;font-weight: 700;color: #da0800">坐着木鹅的乌波儿</p>
+                  <p style="font-size: 20px;color: #ffffff;">更多福利等来拿</p>
+                  <!-- <p style="font-size: 16px;font-weight: 700;color: #d31f20" ><span>4</span>折优惠码限时秒杀</p> -->
+            </div>
+
+          </div> 
+          <div class="inner" style="margin-top:.20625rem">
+                   
+           </div>     
+      </div>
+  </section>
+
+    <section class="page" id="page1_5" style="display: none">
+      <img src="images/gz-logo.png" class="gz-logo">
+      <div class="inner" style="margin: -1.5625rem 1rem  0 1rem;">
+          <div class="hongbao-img"><img src="images/zhuce.png" style="height: auto;padding: 1.4rem 1rem 0 1rem;">
+            <p style="font-size: 14px;color: #ffffff;padding-top: 0.4rem;padding-bottom: 0.4rem;">还没注册Uber优步?错过优惠好可惜哦!</p>
+          </div>
+          <div class="inner" style="margin-top:.20625rem">
+          <div class="jiang-type">&nbsp;</div>
+          <button class="guangzhou-small-btn" style="width: 100%;">
+                 <div style="font-weight: 700;font-size: 20px;">立即注册拿优惠</div>
+          </button>         
+      </div>     
+      </div>
+  </section>
+
+  </div>
+
+  <script type="text/javascript">
+    $(".hongbao-img").click(function(){
+      $(this).addClass("shake");
+      setTimeout(function(){
+        $(".hongbao-img").removeClass("shake");
+        $("#page1").hide();
+        $("#page2").show();
+      },1500);
+    }); 
+    window.onload=function(){ 
+      var value = 12;
+      drwa(value);
+      setInterval(function(){
+        value++;
+        drwa(value);
+      },1500);
+    }
+    function drwa( value ){
+      var orangVluae = $("#number").get(0).value || 0;
+      var htmlString = "";
+      $("#number").get(0).value = value;
+      do{
+        if( value <= 0){
+          break;
+        }
+        var v = value%10;
+        value = Math.floor( value/10);
+        var ov = orangVluae%10;
+        orangVluae = Math.floor( orangVluae/10);
+        htmlString ='<div class="bit">'+
+            '<span class="a'+((ov!=v)?' active':'')+'">'+ov+'</span>'+
+            '<span class="v">'+v+'</span>'+
+          '</div>'+htmlString;
+      }while(true);
+      $("#number").html(htmlString);
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/**
+ * Created by zhangji on 16/6/15
+ */
+
+var codeList = ["A","B","C","D11","D12","F1","F2","G","L","MAT","X","X1","Z","MAH","MA","MB","MD11","MD12","MG","ML","MX","MX1","MZ","BZ"];
+var codeDict = {"D11":"B", "D12":"B", "MX1":"X1", "BZ":"", "X1":"A", "MD11":"D11", "MD12":"D12", "A":"", "C":"A", "B":"", "G":"A", "F2":"A", "L":"A", "X":"A", "Z":"A", "F1":"A", "MG":"G", "MA":"A", "MAT":"A", "MB":"B", "ML":"L", "MAH":"A", "MX":"X", "MZ":"Z"};
+
+var SET = {
+    init:function() {
+        $.init();
+        var optionJson = JSON.parse(sessionStorage.optionJson);
+        console.log(optionJson);
+        var itemkindList = optionJson.options;
+        itemkindList.sort(function(a,b) {if (a.path==b.path) {return 0;} else {return a.path<b.path?-1:1;}});
+        var usedKind = {};
+        var ulList = ['', '', ''];
+        for (var i=0;i<itemkindList.length;i++) {
+            var tmp = itemkindList[i];
+            var s = '';
+            s += '<li class="item-content">';
+            s += '<div class="item-inner">';
+            s += '<div class="item-title" style="margin-left:'+(tmp.path.match(/\//g).length-1)*12+'px">'+tmp.name+'</div>';
+            s += '<div class="item-after"></div>';
+            s += '<div class="item-after">'+parseFloat(tmp.price).toFixed(2)+'</div></div></li> '
+            if (tmp.path.substr(0, 5)=="P0/P1") {
+                ulList[0] += s;
+            } else {
+                ulList[1] += s;
+            }
+        }
+        $("#ul-list1").html(ulList[0]);
+        $("#ul-list2").html(ulList[1]);
+        //$("#ul-list3").html(ulList[2]);
+        $("#bz-price").html('￥'+sessionStorage.compulsoryInsurance / 100);
+        $("#tax").html('￥'+sessionStorage.tax / 100);
+        $('.bar-nav .pull-right').text(sessionStorage.lpn)
+        $('.bar-nav .pull-left').text(sessionStorage.suitName);
+    }
+};
+
+SET.init();
+

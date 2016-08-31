@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>订单详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <script src="vendor/lib-flexible/build/flexible.js"></script> -->
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style type="text/css">
+        .bar{
+            padding: .5rem;
+            padding-left:0.9rem;
+            padding-right:0.9rem;
+            font-size:0.7rem;
+        }
+        .list-block{
+            font-size:0.64rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-group" >
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page" id="page-pricedetail">
+        <!-- 标题栏 -->
+        <header class="bar bar-nav">
+            <span class="pull-left color-gray">经济型</span>
+            <a class="pull-right" href="#"></a>
+        </header>
+
+
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <div class="content-block">
+                <div class="content-block-title text-right">保费</div>
+                <div class="list-block">
+                    <ul id="ul-list1">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">车辆损失</div>
+                                <div class="item-after"></div>
+                                <div class="item-after"></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                           <div class="item-inner">
+                                <div class="item-title">三者险</div>
+                                <div class="item-after"></div>
+                                <div class="item-after"></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                          <div class="item-inner">
+                                <div class="item-title">司机座位险</div>
+                                <div class="item-after"></div>
+                                <div class="item-after"></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">乘客座位险</div>
+                                <div class="item-after"></div>
+                                <div class="item-after"></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">全车盗抢险</div>
+                                <div class="item-after"></div>
+                                <div class="item-after"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="list-block">
+                    <ul id="ul-list2"> </ul>
+                </div>
+
+                <div class="list-block">
+                    <ul id="ul-list3">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">交强险</div>
+                                <div class="item-after"></div>
+                                <div class="item-after" id="bz-price"></div>
+                            </div>
+                        </li>
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">车船险</div>
+                                <div class="item-after"></div>
+                                <div class="item-after" id="tax"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+       </div>
+
+        <div class="footer">
+         <div class="footer-num"></div>
+            <a href="#" class="footer-btn">选择保险公司</a>
+        </div>
+    </div >
+
+</div>
+
+
+<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src='js/static/libs/parsec_weixin.js'></script>
+<script src="js/static/libs/base.js"></script>
+<script src="js/static/libs/ls.js"></script>
+<!-- <script src="js/public/index.js"></script> -->
+<script src="js/public/price-detail.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+
+body, html {
+    height: 100%;
+}
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+$bgcolor: #2c51be;
+$width: 10rem;
+::-webkit-input-placeholder {
+    color: #fff
+}
+:-moz-placeholder {
+    color: #fff
+}
+::-moz-placeholder {
+    color: #fff
+}
+:-ms-input-placeholder {
+    color: #fff
+}
+.wrap-page {
+    height: 100%;
+    width: 10.0rem;
+    margin: 0 auto;
+}
+.page {
+    width: 10rem;
+    height: 100%;
+   position: relative;
+}
+%rel {
+    position: relative;
+}
+%posa {
+    position: absolute;
+}
+%colorf {
+    color: #fff;
+}
+.text-center {
+    text-align: center;
+}
+img, span, input {
+    @include inline-block;
+}
+button {
+    background-color: transparent;
+    outline: none;
+}
+.top {
+  img {
+      margin-left: 0.875rem;
+    margin-top: 1.03125rem;
+        width: 2.390625rem;
+        height: 2.390625rem;
+    }
+}
+.page3{
+      background: url(../images/bg3.png) no-repeat #2c51be;
+    background-size: 100% 12.453125rem; 
+}
+.page1,.page2{
+      background: url(../images/bg1.png) no-repeat #2c51be;
+    background-size: 100% 12.453125rem; 
+}
+.page5{
+      background: url(../images/bgt.png) no-repeat #2c51be;
+    background-size: 100% 12.453125rem; 
+}
+.page1 {
+ 
+    .mytext{
+        padding-top: 1.5625rem;
+        img{
+            width:7.359375rem;
+           height:1.03125rem;
+        }
+        
+    }
+    .btnbox{
+         margin-top: 1.84375rem;
+        position: relative;
+         animation-delay: 3s;
+        height:1.109375rem;
+        img{
+           width:7.140625rem;
+            height:1.109375rem;
+        }
+
+      
+    }
+    .gunzi{
+        height:1.84375rem;
+         animation-delay: 2s;
+        img{
+          width:1.296875rem;
+          height:1.84375rem;
+        }
+    }
+    .car{ 
+        position:relative;
+        animation-delay: 0.5s;
+        
+        img{
+            width:5.015625rem;
+            height:1.234375rem;
+        }
+    }
+
+}
+.page2 {
+   
+}
+.page3 {
+   
+}
+.page4 {
+   background-color: $bgcolor;
+}
+.cloud{
+    position: absolute;
+    bottom: 2.296875rem;
+    text-align: center;
+
+    img{
+        width:9.875rem;
+        height:1.34375rem;
+    }
+}
+.bottom{
+    position: absolute;
+    bottom: 0;
+    height:2.140625rem;
+    img{
+        width:10.0rem;
+        height:2.140625rem
+    }
+}
+.logo2{
+     width:$width;
+     height:1.796875rem;
+     position: absolute;
+     bottom: 2.296875rem;  
+    img{
+     width:1.796875rem;
+     height:1.796875rem;  
+    }
+ 
+}
+.inputbox{
+    width:$width;
+    position: absolute;
+   top: 4.90625rem;
+
+    input{
+        color: #fff;
+        width:7.046875rem;
+        height:1.1875rem;
+        background-color: #cc161c;
+        border: 1px solid #fff;
+        box-shadow: 0 0 0 0.15625rem #cc161c;
+        border-radius: 0.3125rem;
+        text-align: center;
+        font-size: 0.65625rem;
+    }
+}
+.btnsure{
+    margin: 0 auto;
+    width: 2.75rem;
+    height: 0.84375rem;
+    line-height: 0.84375rem;
+    background-color: #cc161c;
+    border: 1px solid #fff;
+    border-radius: 0.3125rem;
+    color: #fff;
+    text-align: center;
+    font-size: 0.65625rem;
+    box-shadow: 0 0 0 0.15625rem #cc161c;
+    position: relative;
+    top:8.9375rem;
+}
+.sharetext{
+   position: relative;
+    top: 3.921875rem;
+    width:$width;
+    height:3.8125rem;
+    background-color: #000;
+    opacity: 0.5;
+    p{
+        position: relative;
+        top:0.3125rem;
+        color: #fff;
+        font-size: 0.625rem;
+    }
+}
+.zhuce{
+
+    img{
+        margin-top:3.125rem;
+        width:8.140625rem;
+        height:5.609375rem;
+    }
+}
+.zhucebtn{
+    margin-top: 2.34375rem;
+    width:4.15625rem;
+    height:1.09375rem;
+    line-height: 1.09375rem;
+    border-radius:0.3125rem;
+    color:$bgcolor;
+    font-size: 0.4375rem;
+    background-color: #fff;
+    box-shadow:0 5px 10px  3px #0e1932;
+}
+.successtext{
+    color: #2c51be;
+    font-size: 0.46875rem;
+    padding-top: 2.5rem;
+    .myone{
+        font-size: 0.75rem;
+    }
+}
+.hongbao{
+    position: relative;
+    top:0.484375rem;
+   img{
+    width:4.078125rem;
+    height:6.9375rem;
+   } 
+}
+.mybtnbox{
+    width:$width;
+    position: absolute;
+    top: 13.82813rem;
+
+    span{
+        width:2.28125rem;
+        height:0.875rem;
+        background-color: #cde1f4;
+        color: #000;
+        font-size: 0.5625rem;
+         border-radius:0.3125rem;
+         margin:0 1.25rem;
+    }
+}
+.sharespan{
+     width:$width;
+     position: absolute;
+     top:8.8rem;
+     span{
+        width:2.28125rem;
+        height:0.875rem;
+        background-color: $bgcolor;
+        color: #fff;
+        font-size: 0.5625rem;
+         border-radius:0.3125rem;
+         margin:0 1.25rem;
+    }
+}

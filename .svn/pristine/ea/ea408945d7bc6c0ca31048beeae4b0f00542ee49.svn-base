@@ -1,0 +1,417 @@
+$gridPercentSwitch:true;
+@import "tobe/function";
+@charset "UTF-8";
+* {
+    outline: none;
+    -webkit-appearance: none;
+}
+
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+
+html,
+legend {
+    color: #000000;
+    background: #f3f3f3;
+}
+
+blockquote,
+body,
+button,
+code,
+dd,
+div,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+td,
+textarea,
+th,
+ul,li {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+fieldset,
+img,
+button {
+    border: none
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+    font-style: normal;
+    font-weight: 400
+}
+
+ol,ul,li {
+    list-style: none
+}
+
+caption,
+th {
+    text-align: left
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%
+}
+
+h1 {
+    font-size: 18px
+}
+
+h2 {
+    font-size: 16px
+}
+
+h3 {
+    font-size: 14px
+}
+
+q:after,
+q:before {
+    content: ''
+}
+
+abbr,
+acronym {
+    border: none;
+    font-variant: normal
+}
+
+sup {
+    vertical-align: text-top
+}
+
+sub {
+    vertical-align: text-bottom
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+    font: 100% "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif
+}
+
+a {
+    color: #de0313;
+    text-decoration: none
+}
+
+a:hover {
+    color: #de0313;
+    text-decoration: underline
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.clearfix {
+    zoom: 1
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+input::-ms-clear {
+    display: none
+}
+
+input::-ms-reveal {
+    display: none
+}
+
+input:focus {
+    outline: none;
+}
+
+.child6 {
+    float: left;
+    width: getPercent(2);
+}
+
+.alert-mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.alert-mask .alert-modal {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.alert-mask .alert-modal .alert-title {
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.alert-mask .alert-modal .alert-body {
+    font-size: 14px;
+    height: 45px;
+    text-align: center;
+    border-bottom: 1px solid #cccccc;
+}
+
+.alert-mask .alert-modal .alert-footer {
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+}
+
+.alert-mask .alert-modal .alert-footer .alert-btn {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px;
+    font-size: 14px;
+    color: #ffffff;
+    float: left;
+}
+
+.alert-mask .alert-modal .alert-footer:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.alert-mask .alert-modal .alert-footer .alert-btn:last-child {
+    border-left: 1px solid #cccccc;
+}
+
+.alert-mask .alert-modal .alert-footer .alert-btn.btn-cancle {
+    color: #de0313;
+    font-weight: 500;
+    font-size:16px; 
+    cursor: pointer;
+}
+//confim
+.confirm-mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.confirm-mask .confirm-modal {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.confirm-mask .confirm-modal .confirm-title {
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.confirm-mask .confirm-modal .confirm-body {
+    font-size: 14px;
+    height: 45px;
+    text-align: center;
+    border-bottom: 1px solid #cccccc;
+}
+
+.confirm-mask .confirm-modal .confirm-footer {
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+}
+
+.confirm-mask .confirm-modal .confirm-footer .confirm-btn {
+    width: 49%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0px;
+    font-size: 14px;
+    color: #ffffff;
+    float: left;
+}
+
+.confirm-mask .confirm-modal .confirm-footer:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both
+}
+
+.confirm-mask .confirm-modal .confirm-footer .confirm-btn:last-child {
+    border-left: 1px solid #cccccc;
+}
+
+.confirm-mask .confirm-modal .confirm-footer .confirm-btn.btn-cancle {
+    color: #000000;
+    font-weight: 500;
+    font-size:16px; 
+    cursor: pointer;
+}
+
+.confirm-mask .confirm-modal .confirm-footer .confirm-btn.btn-submit {
+    color: #000000;
+    font-weight: 500;
+    font-size:16px; 
+    cursor: pointer;
+}
+
+.confirm-mask .confirm-modal .confirm-footer .confirm-btn.btn-submit:hover {
+    color: #de1313;
+}
+
+
+::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+    box-sizing: border-box
+}
+
+::-webkit-scrollbar-button {
+    width: 9px;
+    height: 12px;
+    background: url(../images/scrollbar_icon.png) no-repeat
+}
+
+::-webkit-scrollbar-button:vertical:start {
+    background-position: 0 0
+}
+
+::-webkit-scrollbar-button:vertical:start:hover {
+    background-position: -10px 0
+}
+
+::-webkit-scrollbar-button:vertical:start:active {
+    background-position: -20px 0
+}
+
+::-webkit-scrollbar-button:vertical:end {
+    background-position: -30px 0
+}
+
+::-webkit-scrollbar-button:vertical:end:hover {
+    background-position: -40px 0
+}
+
+::-webkit-scrollbar-button:vertical:end:active {
+    background-position: -50px 0
+}
+
+::-webkit-scrollbar-button:horizontal:start {
+    background-position: 0 -11px
+}
+
+::-webkit-scrollbar-button:horizontal:start:hover {
+    background-position: -10px -11px
+}
+
+::-webkit-scrollbar-button:horizontal:start:active {
+    background-position: -19px -11px
+}
+
+::-webkit-scrollbar-button:horizontal:end {
+    background-position: -30px -11px
+}
+
+::-webkit-scrollbar-button:horizontal:end:hover {
+    background-position: -40px -11px
+}
+
+::-webkit-scrollbar-button:horizontal:end:active {
+    background-position: -50px -11px
+}
+
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 5px;
+    background-color: rgba(0, 0, 0, .15)
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0, 0, 0, .21);
+    -webkit-border-radius: 5px
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .4);
+    border: 1px solid rgba(0, 0, 0, .21)
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, .5)
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #f1f1f1;
+    -webkit-border-radius: 1px
+}
+
+::-webkit-scrollbar-track:hover {
+    background-clip: padding-box;
+    background-color: rgba(0, 0, 0, .3)
+}

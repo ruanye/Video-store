@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link rel="stylesheet" href="vendor/swiper/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="css/shopdetail.css">
+</head>
+
+<body>
+    <div class="allcontainer">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!--  <div class="swiper-slide">
+                    <img src="images/shoplist/slider.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/shoplist/slider.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/shoplist/slider.jpg" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="images/shoplist/slider.jpg" alt="">
+
+                </div> -->
+                    
+                </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <!-- 文字 -->
+        <div class="weui_panel">
+            <div class="weui_panel_bd">
+                <div class="weui_media_box weui_media_text">
+                </div>
+            </div>
+        </div>
+        <div class="price">
+        </div>
+        <div class="xiangqing">
+            <h3>商品详情</h3>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <span  class="add" id="addcar"><i class="iconfont shopcaricon" >&#xe621;</i>加入购物车</span ><a href="javascript:0" class="buy" id="buy">立即购买</a >
+    </div>
+    <script src="js/weui/jquery-2.1.4.js"></script>
+    <script src="js/weui/jquery-weui.js"></script>
+    <script src="vendor/swiper/dist/js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script type="text/javascript" src="js/static/base.js"></script>
+     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/static/parsec_weixin.js"></script> 
+    <script type="text/javascript" src="js/topBar.js"></script>
+    <script type="text/javascript" src="js/shopDetail.js"></script> 
+
+</body>
+
+</html>

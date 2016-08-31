@@ -1,0 +1,69 @@
+$(function() {
+    $('#page1 .click').on('click',function(e){
+        $('#page1').hide()
+        $('#page2').show()
+    })
+    $('#page2 .tel-btn').on('click',function(e){
+        Coupon.save();
+    })
+    $('#page2').height($(document).height())//输入框弹出的兼容
+    $('#page3 .share-btn').on('click',function(e){
+        $('#page4').show()
+    })
+    $('#page4').on('click',function(e){
+        $(this).hide()
+    })
+    var Coupon = {
+        actId: null,
+        data:'',
+        //保存
+        save: function(toflag, money) {
+            var _this=this;
+            var phoneNumber = $("#phoneNumber").val();
+            if (phoneNumber.length == 0) {
+                $("#errorInfo").html("<font color='#000'>请填写手机号码</font>");
+                return;
+            }
+            if (phoneNumber.length != 11) {
+                $("#errorInfo").html("<font color='#000'>请填写有效的手机号码</font>");
+                return;
+            }
+            var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+            if (!reg.test(phoneNumber)) {
+                $("#errorInfo").html("<font color='#000'>请填写有效的手机号码</font>");
+                return;
+            }
+            $('#save_btn').attr('disabled', 'disabled').html('获得中...');
+            $.post('/randommore/save/' + Coupon.actId + "-" + phoneNumber, {},function(data) {
+                console.log(data);
+                if(data.status==-1){
+                    //跳转到错误页面或者活动结束或者再试一次、
+                    return;
+                }
+                if (data.status==1) {
+                    if(data.robstatus===1){
+                        //新用户抢券
+                        location.href='https://get.uber.com.cn';
+                    }else{
+                        $("#page2").hide();
+                        $('#page3').show()
+                        return 
+                    }
+                }
+
+            });
+        }
+    }
+
+    $(document).ready(function() {
+        var request = GetRequest();
+        Coupon.actId = request['id'];
+        if (Coupon.actId) {
+            Event.sendEvent("counpon_" + Coupon.actId);
+        } else {
+            //结束界面
+            // $("#page1").hide();
+            // $("#page11").show();
+        }
+    });
+})

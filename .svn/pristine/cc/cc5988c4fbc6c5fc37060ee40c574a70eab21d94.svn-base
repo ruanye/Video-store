@@ -1,0 +1,13 @@
+function loadVote() {
+    $.ajax({
+        url: "/vote/list",
+        type: 'get',
+        success: function(result) {
+            console.log(result);
+          
+
+        }
+    });
+}
+
+loadVote();

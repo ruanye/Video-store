@@ -1,0 +1,8 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+body {
+    background-color: #f3f3f3;
+}

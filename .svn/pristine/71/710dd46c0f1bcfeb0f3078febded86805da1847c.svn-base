@@ -1,0 +1,163 @@
+function toggle(page) {
+    $(".page").hide();
+   $(page).show();
+}
+
+var Coupon = {
+    actId: null,
+    hreflink:null,
+    title:null,
+    //保存
+    save: function () {
+        var phoneNumber = $("#mobienum").val();
+        if (phoneNumber.length == 0) {
+            $("#errorInfo").html("<font color='red'>请填写手机号码</font>");
+            return;
+        }
+        if (phoneNumber.length != 11) {
+            $("#errorInfo").html("<font color='red'>请填写有效的手机号码</font>");
+            return;
+        }
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+        if (!reg.test(phoneNumber)) {
+            $("#errorInfo").html("<font color='red'>请填写有效的手机号码</font>");
+            return;
+        }
+        $("#rob_coupon").attr("disabled", "disabled").html("加载中...");
+        $.post('/morecoupon/save/' + Coupon.actId + "-" + phoneNumber, {israndom: 1}, function (data) {
+            //再试一次
+            if (data.status == 2) {
+                $("#rob_coupon").removeAttr("disabled").html("再试一次");
+                return;
+            }
+            $("#mobile-page").hide();
+            //根据data.money返回结果类型页
+            if(data.money==1){
+                $(".result-bar").html("6折红包");
+                $("#info1").html("您已获得北京地区6折优惠一次");
+                $("#info2").html("(单程最高减免10元，6月12日前有效)");
+
+            }
+            if(data.money==2){
+                $(".result-bar").html("3元减免红包");
+                $("#info1").html("您已获得北京地区单程3元减免一次");
+                $("#info2").html("(6月12日前有效)");
+            }
+            if(data.money==3){
+                $(".result-bar").html("69折乘车券");
+                $("#info1").html("您已获得北京地区69折优惠十五次");
+                $("#info2").html("(单程最高减免10元，6月12日前有效)");
+            }
+            if (data.status == -1) {
+                //end-page
+                toggle("#result-page");
+                $(".result-box").hide();
+                $("#end-info").html("很遗憾!活动已结束");
+            } else {
+                toggle("#result-page");
+                //正确抢券
+
+                //第一次抢券
+                $("#convert_btn").html("<div>已领取</div>").removeAttr("onclick");
+                if (data.robstatus == -1) {
+                    toggle("#result-page");
+                    //同步失败
+                } else if (data.robstatus == 0) {
+                    toggle("#result-page");
+                    //老用户抢券
+                } else if (data.robstatus == 1) {
+
+                    window.location.href=Coupon.hreflink;
+                    //新用户抢券
+                } else if (data.robstatus == 2) {
+                    toggle("#result-page");
+                    $(".result-box").hide();
+                    $("#end-info").html("很遗憾!活动已结束");
+                    //券已抢完
+                } else {
+                    //暂时忽略
+                }
+
+            }
+        });
+    }
+}
+var hreflink;
+$(document).ready(function () {
+    var request = GetRequest();
+    Coupon.actId = request['id'];//代表活动ID
+    if (Coupon.actId) {
+        Event.sendEvent("counpon_" + Coupon.actId);
+      var title;
+        if(Coupon.actId=='575642a35bbb50006452d3b0'){
+            Coupon.hreflink='https://get.uber.com.cn/envelope/老佛爷百货';
+            title='老佛爷百货';
+        }else if(Coupon.actId=='57566231a341310063dd16c6'){
+            Coupon.hreflink='https://get.uber.com.cn/envelope/悠唐购物中心';
+           title='悠唐购物中心';
+        }else if(Coupon.actId=='5756625d79bc440063c189ca'){
+            Coupon.hreflink='https://get.uber.com.cn/envelope/三里屯太古里';
+           title='三里屯太古里';
+        }else if(Coupon.actId=='575662882e958a0068cbbc24'){
+            Coupon.hreflink='https://get.uber.com.cn/envelope/王府井银泰in88';
+            title='银泰in88';
+        }else if(Coupon.actId=='575662b67db2a200699a485b'){
+            Coupon.hreflink='https://get.uber.com.cn/envelope/朝阳大悦城';
+            title='朝阳大悦城';
+        }else if(Coupon.actId=='57577135207703006fd68d23'){
+            Coupon.hreflink='https://get.uber.com.cn/envelope/西单大悦城';
+            title='西单大悦城';
+            $("#sj1").hide();
+            $("#sj").hide();
+        }
+        $('title').text("优步北京携手"+title+"快来一起抢端午出行红包");
+        $('#sj').html(title);
+    } else {
+        toggle("#end-page");
+        //end-page
+    }
+});
+
+
+
+$("#share-btn").click(function () {
+    $("#mask-page").show();
+})
+$("#end-btn").click(function () {
+    toggle("#mobile-page");
+})
+$(".hongbao-box").click(function () {
+    toggle("#mobile-page");
+})
+$("#close").click(function () {
+    $("#mask-page").hide();
+})
+$("#hui").click(function(){
+    var _this = this;
+    if(_this.lock){
+        return ;
+    }
+    $("#man").addClass("huigan");
+    var k=Math.random();
+    console.log(k);
+    _this.lock = true;
+    if(k<0.5){
+        $("#ball").addClass("noenter");
+        $("#hui").html("再来一次");
+
+        setTimeout(function(){
+
+            $("#ball").attr("class","");
+            $("#man").attr("class","");
+            _this.lock = false;
+        },2400)
+    }
+    else{
+        $("#ball").addClass("enter");
+        setTimeout(function(){
+            toggle("#mobile-page");
+            _this.lock = false;
+        },2400)
+    }
+
+})

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>车帮车险</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <script src="vendor/lib-flexible/build/flexible.js"></script> -->
+
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <div class="page">
+        <nav class="bar bar-tab">
+        </nav>
+
+
+        <nav class="menu">
+            <div id="menu_tab" class="menu-tab">
+                <ul class="box">
+                    <li>
+                        <a href="index.html" class="external active"><span>投保</span></a>
+                    </li>
+                    <li>
+                        <a href="policyList.html" class="external"><span>订单</span></a>
+                    </li>
+                    <li class="external">
+                        <a href="javascript:;" id="myDiv" onclick="showDiv();"><span style="min-width:80px; ">我的</span></a>
+
+                        <dl  class="" style="position: absolute;z-index: 2;">
+                            <!--<dd><a href="#"><span>个人信息</span></a></dd>-->
+                            <dd><a class="external" href="./wallet.html"><span>钱包</span></a></dd>
+                            <dd><a class="external" href="./couponList.html"><span>优惠券</span></a></dd>
+                            <div class="menu-arrow"></div>
+                        </dl>
+
+                    </li>
+                </ul>
+            </div>
+            <div id="menu_masklayer" class="masklayer_div on"> </div>
+        </nav>
+
+        <div class="content native-scroll">
+            <!-- 这里是页面内容区 -->
+            <div class="page-index">
+                <div class="logo"></div>
+                <div class="list-block">
+                    <ul id="list-ul">
+                        <li class="item" onclick="selectSuit(this, 1)">
+                            <div class="item-top">
+                                <div class="item-title">经济型</div>
+                            </div>
+                            <div class="item-body">
+
+                            </div>
+                        </li>
+                        <li class="item" onclick="selectSuit(this, 2)">
+                            <div class="item-top">
+                                <div class="item-title">热门型</div>
+                            </div>
+                            <div class="item-body">
+
+                            </div>
+                        </li>
+                        <li class="item" onclick="selectSuit(this, 3)">
+                            <div class="item-top">
+                                <div class="item-title">全面型</div>
+                            </div>
+                            <div class="item-body">
+
+                            </div>
+                        </li>
+                        <li class="item" onclick="selectSuit(this, 4)">
+                            <div class="item-top">
+                                <div class="item-title">自定型</div>
+                            </div>
+                            <div class="item-body">
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="advertise">
+                    <!-- Slider -->
+                    <div class="swiper-container" data-space-between='10' data-paginationType='progress' data-autoPlay='5000'>
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="images/swiper-slide.png" alt=""></div>
+                            <div class="swiper-slide"><img src="images/swiper-slide.png" alt=""></div>
+                            <div class="swiper-slide"><img src="images/swiper-slide.png" alt=""></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 这里是页面内容区 -->
+        </div>
+    </div>
+</div>
+
+
+<script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src='js/static/libs/base.js'></script>
+<script type="text/javascript" src="js/static/libs/ls.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src='js/static/libs/parsec_weixin.js'></script>
+<script type="text/javascript" src='js/public/index.js'></script>
+<script src="js/public/policyList.js"></script>
+<script type="text/javascript" src='js/public/wallet.js'></script>
+<script type="text/javascript">
+    function showDiv() {
+       // alert($('#myDiv').is('.on'));
+        if($('#myDiv').is('.on')){
+            $('#myDiv').removeClass('on');
+            $("#myDiv").addClass("off");
+            $('#menu_masklayer').removeClass('on');
+        }else{
+            $('#myDiv').removeClass('off');
+            $("#myDiv").addClass("on");
+            $("#menu_masklayer").addClass("on");
+        }
+    }
+</script>
+
+</body>
+</html>

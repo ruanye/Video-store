@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>我正在参与[优步拼运气押冠军大赛</title>
+        <script src="vendor/lib-flexible/build/flexible.js"></script>
+        <link href="css/main.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="css/animate.css">
+    </head>
+    <body >
+    <div id="wx" style="display:none"><img src="images/icon.jpeg" alt=""></div>
+   
+        <div class="wrap-page">
+            <section class="page page1 hide">
+              <div class="logo text-center"><img src="images/logo.png" alt=""></div>
+                <div class="theme text-center"><img src="images/theme.png" alt=""></div>
+                <div class="text-center"><span id="start">押注赢车费</span></div>
+            </section> 
+             <section class="page page2 hide">
+             <div class="logo text-center"><img src="images/logo.png" alt=""></div>
+                <div class="content content1">
+                    <div class="right">
+                        <p>已有<span class="red">100</span>人支持</p>
+                        <span class="people"></span>
+                        <p>累计奖池<span class="red">8888</span>元</p>
+                        <span class="people"></span>
+                        <span class="icanbtn">支持</span>
+                    </div>
+                </div>  
+                <div class="content content2">
+                    <div class="right">
+                        <p>已有<span class="red">100</span>人支持</p>
+                        <span class="people"></span>
+                        <p>累计奖池<span class="red">8888</span>元</p>
+                        <span class="people"></span>
+                        <span class="icanbtn">支持</span>
+                    </div>
+                </div>
+                <div class="text-center cartext"><img src="images/cartext.png" alt=""></div>
+                <div class="btnbox text-center"><span>如何领取奖金</span><span>分享给小伙伴</span></div>
+                <div class="maskphone">
+               
+                 <div class="phonecon">
+                     <div class="jb text-center"><img src="images/jb.png" alt=""></div>  
+                       <p class=" text-center ctext">参与投票分享奖金</p>
+                       <div class="inputbox  text-center"><input type="text" placeholder="请输入手机号"></div>
+                       <div class="text-center"><button class="selbtn">立刻押注</button></div>  
+                 </div>
+                  </div>
+            </section> 
+             <section class="page page3">
+              <div class="logo text-center"><img src="images/logo.png" alt=""></div>
+              <div class="top text-center"><img src="images/top.png" alt=""></div>
+              
+                 <div class="phonecon">
+                     <div class="text-center erw"><img src="images/erw.png" alt=""></div>  
+                     <p class="text-center erwtext">长按识别二维码<br>获得优步3次10元<br>新用户优惠码</p>
+                       <p class="text-center mtext">限杭州地区7月31日前有效</p>
+                 </div>
+                 <div class="text-center bcar"><img src="images/twocar.png" alt="" class="twocar"></div>
+            </section> 
+            
+      
+          
+
+     
+        
+        
+            
+            
+        </div>
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+        var page = document.querySelectorAll('.page');
+        var doch = window.screen.height;
+        for (var i = 0; i < page.length; i++) {
+        page[i].style.height = doch + 'px';
+        }
+        $('#start').on('click', function(event) {
+              
+             $('.page').hide();
+             $('.page2').show();
+            event.preventDefault();
+            /* Act on the event */
+        });
+      
+        </script>
+    </body>
+</html>

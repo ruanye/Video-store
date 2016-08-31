@@ -1,0 +1,202 @@
+/**
+ * Created by zhangji on 16/6/11
+ */
+
+var SET = {
+    init:function() {
+        $.init();
+        var optionJson = JSON.parse(sessionStorage.optionJson || '{}');
+        var optList = optionJson.options;
+        optList.sort(function(a,b) {if (a.path==b.path) {return 0;} else {return a.path<b.path?-1:1;}});
+        var totalPrice = 0;
+        var s = '<div class="item-inner bottomline"><div class="item-title leftline2">商业险</div></div>';
+        for (var i=0;i<optList.length;i++) {
+            //name, amount, price
+            var opt = optList[i];
+            //var optName = opt.name.substr(0, 6);
+            //if (opt.name.length > 6) {
+            //    optName += "…";
+            //}
+            var optName = opt.name;
+            var optAmount = opt.amount;
+            var optPrice = opt.price;
+            var optOldPrice = opt.price;
+
+            s += '<div class="item-inner2">';
+            s += '<div class="item-title" style="margin-left:'+(opt.path.match(/\//g).length-1)*12+'px">'+optName+'</div>';
+            //s += '<div class="item-after">'+parseFloat(optPrice).toFixed(2)+'</div>';
+            if (optAmount && optAmount!='0') {
+                s += '<div class="item-after">'+number2zh(optAmount)+'</div>';
+            }
+            s += '</div>';
+            totalPrice += parseFloat(optPrice);
+        }
+        $("#bz-price").html("");
+        $("#tax-price").html("");
+        //$("#bz-price").html(optionJson.compulsory);
+        //$("#tax-price").html(optionJson.tax);
+        totalPrice += parseFloat(optionJson.compulsory);
+        totalPrice += sessionStorage.tax / 100;
+        var companyObj = JSON.parse(sessionStorage.company || "{}");
+        $("#company-icon").html('<img src="'+companyObj.icon+'" alt="">');
+        $("#company-name").html(companyObj.name);
+        $(".item-content-row").html(s);
+        $(".item-title .font_money").html("￥"+companyObj.price);
+        $(".item-subtitle .font_money").html("￥"+(totalPrice+0.001).toFixed(2));
+        var startDate;
+        var endDate;
+        FORMATE()
+        function FORMATE(){
+            var month;
+            var day;
+            console.log(optionJson.firstDate);
+            if(optionJson.firstDate.indexOf('/')!==-1){
+                month=optionJson.firstDate.split('/')[1];
+                day=optionJson.firstDate.split('/')[2]
+            }
+            if(optionJson.firstDate.indexOf('-')!==-1){
+                month=optionJson.firstDate.split('-')[1];
+                day=optionJson.firstDate.split('-')[2];
+            }
+            var nowDate=new Date().getTime()
+            var nowregistDate=new Date()
+            nowregistDate.setMonth(month-1)
+            nowregistDate.setDate(day)
+            var registDate=nowregistDate.getTime()
+            if(nowDate>registDate){
+                var newStartDate=new Date(registDate+366*24*60*60*1000);
+                var newEndDate=new Date(registDate+731*24*60*60*1000);
+                startDate =newStartDate.getFullYear()+'-'+newStartDate.getMonth()+1+'-'+newStartDate.getDate()
+                endDate =newEndDate.getFullYear()+'-'+newEndDate.getMonth()+1+'-'+newEndDate.getDate()
+                SET.startDate = startDate;
+                SET.endDate = endDate;
+                $("#beginDateInput").val(startDate);
+                $("#endDateInput").val(endDate);
+                $("#date-range").html(startDate+' - '+endDate);
+            }else{
+                var newStartDate=new Date(registDate);
+                var newEndDate=new Date(registDate+366*24*60*60*1000);
+                startDate =newStartDate.getFullYear()+'-'+newStartDate.getMonth()+1+'-'+newStartDate.getDate()
+                endDate =newEndDate.getFullYear()+'-'+newEndDate.getMonth()+1+'-'+newEndDate.getDate()
+                SET.startDate = startDate;
+                SET.endDate = endDate;
+                $("#beginDateInput").val(startDate);
+                $("#endDateInput").val(endDate);
+                $("#date-range").html(startDate+' - '+endDate);                
+            }
+        }
+        SET.totalPrice = totalPrice;
+        sessionStorage.benchmarkTotal = parseInt(totalPrice * 100);
+        sessionStorage.priceTotal = parseInt(totalPrice * 100);
+        if (sessionStorage.contactAddr || sessionStorage.contactName || sessionStorage.contactNumber){
+            $("#contact-info").find("input")[2].value = sessionStorage.contactAddr || "";
+            $("#contact-info").find("input")[0].value = sessionStorage.contactName || "";
+            $("#contact-info").find("input")[1].value = sessionStorage.contactNumber || "";
+        } else {
+            $.get("http://synsunny.parsec.com.cn/Dorado/weixin/user/contact?id="+localStorage.userId, null, function(data) {
+                if (!(data.status === 0)) {
+                    return;
+                }
+                $("#contact-info").find("input")[2].value = sessionStorage.contactAddr = (data.addr || "");
+                $("#contact-info").find("input")[0].value = sessionStorage.contactName = (data.name || "");
+                $("#contact-info").find("input")[1].value = sessionStorage.contactNumber = (data.phone || "");
+            });
+        }
+        $("#beginDateInput").calendar({
+            value: [SET.startDate],
+            minDate: '2016-07-13',
+            onClose: function() {
+                var d1 = $("#beginDateInput").val();
+                if (d1.substr(4,6) == "-02-29") {
+                    var d2 = ''+(parseInt(d1.substr(0,4))+1)+"-02-28";
+                } else {
+                    var d2 = ''+(parseInt(d1.substr(0,4))+1)+d1.substr(4,6);
+                }
+                $("#endDateInput").val(d2);
+                SET.startDate = sessionStorage.orderStartDate = d1;
+                SET.endDate = sessionStorage.orderEndDate = d2;
+                return true;
+            },
+        });
+        $("#endDateInput").calendar({
+            value: [SET.endDate],
+            minDate: '2017-07-13',
+            onClose: function() {
+                var d1 = $("#endDateInput").val();
+                if (d1.substr(4,6) == "-02-29") {
+                    var d2 = ''+(parseInt(d1.substr(0,4))-1)+"-03-01";
+                } else {
+                    var d2 = ''+(parseInt(d1.substr(0,4))-1)+d1.substr(4,6);
+                }
+                $("#beginDateInput").val(d2);
+                SET.startDate = sessionStorage.orderStartDate = d2;
+                SET.endDate = sessionStorage.orderEndDate = d1;
+                return true;
+            }
+        });
+    }
+}
+
+SET.init();
+
+function number2zh(s) {
+    var L = s.length;
+    if (s.substr(L-4, 4) == "0000") {
+        return s.substr(0, L-4)+"万";
+    } else if (s.substr(L-3, 3) == "000") {
+        return s.substr(0, L-3)+"千";
+    } else {
+        return s;
+    }
+}
+
+function date2number(s) {
+    var ret = 0;
+    ret += parseInt(s.substr(8, 2));
+    ret += parseInt(s.substr(5, 2))*100;
+    ret += parseInt(s.substr(0, 4))*10000;
+    return ret;
+}
+
+function saveOrder() {
+    if (!sessionStorage.contactAddr) {
+        $.alert("联系人地址不能为空");
+        return;
+    }
+    if (!sessionStorage.contactName) {
+        $.alert("联系人姓名不能为空");
+        return;
+    }
+    if (!sessionStorage.contactNumber) {
+        $.alert("联系人电话号码不能为空");
+        return;
+    }
+    var companyObj = JSON.parse(sessionStorage.company || "{}");
+    $.post("http://synsunny.parsec.com.cn/Dorado/weixin/trade/commitOrder", {
+    //$.post("/weixin/trade/commitOrder", {
+        addr:sessionStorage.contactAddr,
+        contact:sessionStorage.contactName,
+        contactNumber:sessionStorage.contactNumber,
+        insuranceCompanyId:companyObj.id,
+        insurancePeriodEnd:date2number(SET.endDate),
+        insurancePeriodStart:date2number(SET.startDate),
+        orderContent:sessionStorage.optionJson,
+        optionSession:sessionStorage.optionSession,
+        vehicleId:sessionStorage.vehicleId,
+        orderValue:parseInt(sessionStorage.priceTotal),
+        userId:localStorage.userId,
+    }, function(data) {
+        if (!data.orderId) {
+            $.alert("提交订单失败，请重试…");
+            return;
+        }
+        sessionStorage.orderId = data.orderId;
+        sessionStorage.orderCode = data.orderCode;
+        sessionStorage.orderState = 0;
+        window.location.href = 'bargain.html';
+    });
+}
+
+function editConfirm() {
+    window.location.href= 'confirm.html';
+}

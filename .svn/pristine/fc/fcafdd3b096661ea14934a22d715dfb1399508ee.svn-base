@@ -1,0 +1,81 @@
+/**
+ * Created by zhangji on 16/6/11
+ */
+
+var SET = {
+    resData: {},
+    init: function() {
+        // $.init();
+        var _this = this;
+        if (localStorage.userId == undefined)
+            return;
+        $.get(Constants.hostIp+'weixin/trade/loadOrderByUser?userId=' + localStorage.userId, null, function(data) {
+            var lst = data.list;
+            console.log(data);
+            var s = "";
+            for (var i = 0; i < lst.length; i++) {
+                var tmp = lst[i];
+                _this.resData = data;
+                s += '<li class="item-content-row">';
+                s += '<div class="item-inner bottomline"><div class="item-title">' + tmp.lpn + '</div><div class="item-after">' + tmp.insuranceCompanyName + '</div></div>';
+                s += '<div class="item-inner2"><div class="item-title">投保人: ' + tmp.contact + '</div><div class="item-after">';
+                if (tmp.status == 2 && tmp.autoProcessStatus == 2 && tmp.auditStatus == 2){
+
+                    s += '订单关闭';
+
+                }else {
+                    s +=  SET.statusName[tmp.status]
+                }
+
+                s+= '</div></div>';
+                s += '<div class="orderCode">订单号：'+tmp.orderCode+'</div>';
+                s += '<div class="item-inner padding20"> <div class="item-title">' + dateInt2String(tmp.insurancePeriodStart) + '~' + dateInt2String(tmp.insurancePeriodEnd) + '</div>';
+                s += '<div class="item-after"><span class="icon-uniE600" style="font-size: 1rem;font-weight: 700;"></span>' + (tmp.tradedPrice / 100) + '</div></div></li>';
+            }
+            $("#item-ul").html(s);
+        });
+        $('#item-ul').on('click', '.item-content-row', function(e) {
+            var $index = $(this).index();
+            sessionStorage.optionJson = _this.resData.list[$index].orderContent;
+            sessionStorage.lpn = _this.resData.list[$index].lpn;//车牌号 status
+            sessionStorage.contactName = _this.resData.list[$index].contact
+            sessionStorage.orderState = _this.resData.list[$index].status
+            sessionStorage.orderCode = _this.resData.list[$index].orderCode
+            sessionStorage.company = JSON.stringify({
+                price: _this.resData.list[$index].surePrice / 100,//最终砍价后的交易价格 一口价
+                name:_this.resData.list[$index].insuranceCompanyName,//保险公司名称
+                icon:_this.resData.list[$index].insuranceCompanyIcon//保险公司图片
+            });
+            sessionStorage.orderId = _this.resData.list[$index].id//订单id
+            //保险原价
+            sessionStorage.priceTotal=_this.resData.list[$index].orderValue;
+            //商业险
+            sessionStorage.commercialInsurance=JSON.parse(_this.resData.list[$index].orderContent).commercial*100;
+            //交强险
+            sessionStorage.compulsoryInsurance=JSON.parse(_this.resData.list[$index].orderContent).compulsory*100;
+            //车船税
+            sessionStorage.tax=JSON.parse(_this.resData.list[$index].orderContent).tax*100
+            //判断是否支付，进入不同页面
+            if (_this.resData.list[$index].status == 0 || _this.resData.list[$index].status == 1) {
+                location.href = "bargain.html";
+            } else {
+                location.href = "policyDetail.html?ispay=2";
+            }
+        })
+    },
+    statusName: {
+        0: "等待支付",
+        1: "订单关闭",
+        2: "支付成功，等待出单",
+        3: "订单关闭",
+        4: "订单关闭",
+        5: "出单成功",
+        6: "订单关闭"
+    }
+};
+
+SET.init();
+
+function dateInt2String(d) {
+    return parseInt(d / 10000) + '.' + parseInt(d % 10000 / 100) + '.' + parseInt(d % 100);
+}

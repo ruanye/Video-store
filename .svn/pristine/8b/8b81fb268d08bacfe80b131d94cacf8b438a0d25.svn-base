@@ -1,0 +1,213 @@
+.mask-details {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 8888; }
+  .mask-details > .details {
+    height: 495px;
+    width: 895px;
+    background-color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 9999; }
+    .mask-details > .details > .close {
+      position: absolute;
+      right: 25px;
+      top: 25px;
+      height: 30px;
+      width: 30px;
+      cursor: pointer; }
+    .mask-details > .details > .content {
+      height: 400px;
+      width: 400px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+      border-radius: 50%; }
+      .mask-details > .details > .content > .avatar {
+        height: 190px;
+        width: 190px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0%;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        border: 30px solid #FFF;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: #CCC; }
+      .mask-details > .details > .content > .menu {
+        position: absolute;
+        bottom: 0px;
+        top: 50%;
+        left: 50%;
+        width: 520px;
+        height: 285px;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); }
+        .mask-details > .details > .content > .menu > .items > .item {
+          position: absolute;
+          width: 260px;
+          height: 260px;
+          left: 0px;
+          bottom: 125px;
+          -webkit-transform-origin: 100% 100%;
+          -ms-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+          overflow: hidden;
+          cursor: pointer;
+          background-color: #b9b9b9; }
+          .mask-details > .details > .content > .menu > .items > .item.active {
+            background-color: #46cdd7; }
+          .mask-details > .details > .content > .menu > .items > .item:nth-child(1) {
+            -webkit-transform: rotate(0deg) skew(40deg);
+            -ms-transform: rotate(0deg) skew(40deg);
+            transform: rotate(0deg) skew(40deg); }
+          .mask-details > .details > .content > .menu > .items > .item:nth-child(2) {
+            -webkit-transform: rotate(60deg) skew(30deg);
+            -ms-transform: rotate(60deg) skew(30deg);
+            transform: rotate(60deg) skew(30deg); }
+          .mask-details > .details > .content > .menu > .items > .item:nth-child(3) {
+            -webkit-transform: rotate(130deg) skew(40deg);
+            -ms-transform: rotate(130deg) skew(40deg);
+            transform: rotate(130deg) skew(40deg); }
+          .mask-details > .details > .content > .menu > .items > .item > span {
+            text-align: center;
+            background-color: blue;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            -webkit-transform: rotate(0deg) skew(0deg);
+            -ms-transform: rotate(0deg) skew(0deg);
+            transform: rotate(0deg) skew(0deg);
+            font-size: 18px; }
+        .mask-details > .details > .content > .menu > .tips > span {
+          position: absolute;
+          font-size: 18px;
+          color: #FFF;
+          cursor: pointer; }
+          .mask-details > .details > .content > .menu > .tips > span:nth-child(1) {
+            top: 75px;
+            left: 87px; }
+          .mask-details > .details > .content > .menu > .tips > span:nth-child(2) {
+            top: -30px;
+            left: 240px; }
+          .mask-details > .details > .content > .menu > .tips > span:nth-child(3) {
+            top: 75px;
+            right: 87px; }
+    .mask-details > .details > .extmenu > .menu {
+      position: absolute;
+      top: 24%;
+      display: none; }
+      .mask-details > .details > .extmenu > .menu.left {
+        left: 145px;
+        top: 130px;
+        height: 116px;
+        width: 141px;
+        background-image: url(../images/kaoqin3.png);
+        background-repeat: no-repeat;
+        background-size: cover; }
+        .mask-details > .details > .extmenu > .menu.left > p {
+          font-size: 16px;
+          position: relative;
+          top: -33px;
+          cursor: pointer;
+          margin-left: 25px; }
+          .mask-details > .details > .extmenu > .menu.left > p:hover {
+            color: #48ccd8; }
+          .mask-details > .details > .extmenu > .menu.left > p:nth-child(1) {
+            margin-top: 17px; }
+          .mask-details > .details > .extmenu > .menu.left > p:nth-child(2) {
+            margin-top: 25px; }
+          .mask-details > .details > .extmenu > .menu.left > p:nth-child(3) {
+            margin-top: 23px; }
+      .mask-details > .details > .extmenu > .menu.right {
+        top: 86px;
+        right: 285px;
+        height: 150px;
+        width: 40px; }
+        .mask-details > .details > .extmenu > .menu.right > .stars {
+          height: 20px;
+          width: 20px;
+          position: absolute;
+          bottom: 0px;
+          right: 0px;
+          top: -63px;
+          left: -135px;
+          -webkit-transform-origin: 14px 215px;
+          -ms-transform-origin: 14px 215px;
+          transform-origin: 14px 215px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          cursor: pointer;
+          background-image: url(../images/starts.png); }
+          .mask-details > .details > .extmenu > .menu.right > .stars.active {
+            background-image: url(../images/starts_active.png); }
+          .mask-details > .details > .extmenu > .menu.right > .stars:nth-child(1) {
+            -webkit-transform: rotate(-20deg);
+            -ms-transform: rotate(-20deg);
+            transform: rotate(-20deg); }
+          .mask-details > .details > .extmenu > .menu.right > .stars:nth-child(2) {
+            -webkit-transform: rotate(-10deg);
+            -ms-transform: rotate(-10deg);
+            transform: rotate(-10deg); }
+          .mask-details > .details > .extmenu > .menu.right > .stars:nth-child(3) {
+            -webkit-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg); }
+          .mask-details > .details > .extmenu > .menu.right > .stars:nth-child(4) {
+            -webkit-transform: rotate(10deg);
+            -ms-transform: rotate(10deg);
+            transform: rotate(10deg); }
+          .mask-details > .details > .extmenu > .menu.right > .stars:nth-child(5) {
+            -webkit-transform: rotate(20deg);
+            -ms-transform: rotate(20deg);
+            transform: rotate(20deg); }
+    .mask-details > .details > .extmenu-footer {
+      height: 25px;
+      line-height: 25px;
+      margin: 10px auto;
+      text-align: center;
+      font-size: 18px;
+      position: absolute;
+      right: 0px;
+      left: 0px;
+      bottom: 45px;
+      font-weight: 700px; }
+      .mask-details > .details > .extmenu-footer > .stu_name {
+        width: 48%;
+        float: left;
+        text-align: right;
+        padding-right: 15px; }
+      .mask-details > .details > .extmenu-footer > .stu_no {
+        width: 48%;
+        float: right;
+        text-align: left;
+        padding-left: 15px; }
+      .mask-details > .details > .extmenu-footer:after {
+        content: '';
+        display: block;
+        height: 0;
+        clear: both; }
+
+/*# sourceMappingURL=maps/mask-details.css.map */

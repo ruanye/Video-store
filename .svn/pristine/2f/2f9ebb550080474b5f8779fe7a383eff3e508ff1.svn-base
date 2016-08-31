@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>快抢U大礼</title>
+  <script src="vendor/lib-flexible/build/flexible.js"></script>
+  <script src="vendor/zepto/zepto.min.js"></script>
+  <link href="css/chengdu-hongbao.css" rel="stylesheet" media="screen"></head>
+<body>
+
+  <div class="wrap-page">
+    <section class="page" id="index-page" style="display:none">
+      <div class="inner">
+        <p class="welcome">
+          <span class="font-1">优步<br>112元 <br></span>
+          <span class="font-2">红包任性送！</span>
+        </p>
+        <button class="dotted-btn"></button>
+        <p class="dotted-info">点击领取</p>
+      </div>
+   
+    </section>
+    <section class="page" id="result-page" style="display:none">
+     
+      <div class="inner" >
+        <p class="welcome1" style="line-height:1.5;">
+          恭喜您获得3折优惠<br>
+单次上限8元（最多14次行程，最低2元起）<br>
+打开UberAPP在【优惠】即可查看</p>
+        <img src="images/chengdu-hongbao.png" alt="" class="chengdu-hongbao">
+        <div class="row">
+          <div class="child2">
+            <button class="com-btn">
+              <div>领取</div>
+            </button>
+          </div>
+          <div class="child2">
+            <button class="com-btn">
+              <div>分享</div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    
+    </section>
+    <section class="page" id="notice-page" >
+    
+      <div class="inner" >
+        <div style="margin-bottom:1.25rem">
+         
+            <img src="images/pig.png" alt="" style="width:6.59375rem;margin:auto;"></div>
+        </div>
+       <button class="com-btn" style="padding-left:0.3125rem;padding-right:0.3125rem">
+             关注更有免费秘籍
+            </button>
+
+      </div>
+      <div class="fixed-bottom-bar">比来比去才知道，还是优步最便宜！</div>
+    </section>
+  <!-- 遮罩层 -->
+  <section class="page" id="mobile-page" style="display:none">
+
+      <div class="inner" >
+        <div class="jiang-type">请输入手机号码</div>
+        <div style="margin-top:0.3125rem;margin-bottom:0.46875rem">
+    
+          <input type="text" class="ipt" style="width:7.03125rem">
+        
+        </div>
+        
+       <button class="com-btn">
+             确定
+            </button>
+      </div>
+  </section>
+  <!-- 遮罩层 -->
+  <section class="page" id="page5"  style="display:none">
+ 
+      <div class="inner" >
+        <div class="jiang-type">请分享您的心情</div>
+
+         <div class="info-box-good1">
+          <div class="info-inner1">
+           <textarea class="ipt" rows="8"></textarea>
+          </div>
+        </div>
+       
+       <button class="chengdu-small-btn">
+              <div>确定</div>
+            </button>
+      </div>
+
+  </section>
+
+  <!-- 遮罩层 -->
+  <section class="page" id="newuser-page" style="display:none">
+ 
+      <div class="inner" >
+         <p class="welcome1" s>
+          还没有注册Uber? 错过优惠好可惜哦!</p>
+          <div style="margin-top:0.625rem;margin-bottom:1.09375rem"> 
+          <button class="com-btn" style="padding-left:0.234375rem;padding-right:0.234375rem">
+              现在立即注册吧！
+          </button>
+          </div>
+         
+         <p class="resault-ts-box">即可获得新用户2张15元优惠券</p>
+         
+      </div>
+
+  </section>
+  </div>
+  
+  
+  
+  <script type="text/javascript">
+          $(".dotted-btn").click(function(){
+  $(this).addClass('bounceOut');
+ setTimeout( $('#page1').hide(),1000);
+});
+        </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title> 搭上优封面这趟车，立刻减免车费！</title>
+
+    <link href="css/index.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <section class="page flex-m" id="indexPage">
+          <div class="inner content">
+            <div class="index fadeInUp">
+              <button class="okBtn" onclick="$('#indexPage').hide();$('#phonePage').show();">点击占欺头</button>
+            </div>
+          </div>
+        </section>       
+
+
+
+        <section class="page flex-m" id="phonePage" style="display:none;">
+          <div class="inner content">
+            <div class="phone fadeInUp">
+              <input type="text" name="phoneNum" class="phoneNum" id="phoneNum" maxlength="11" placeholder="输入手机号">
+              <button class="saveBtn">确定</button>
+            </div>
+          </div>
+        </section>     
+
+
+
+
+        <section class="page flex-m" id="prizePage" style="display:none;">
+          <div class="inner content">
+            <div class="prize">
+              <p class="cong">恭喜</p>
+              <p class="cong2">获得五折专享卡</p>
+              <p class="cong3">最高便宜5元 7月27日前成都有效</p>
+              <button class="shareBtn" onclick="$('#share-page').show();">一个人怎么行 叫上朋友一起来</button>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="page flex-m" id="overPage" style="display:none;">
+          <div class="inner content">
+            <div class="over">
+              <p class="cong">啊咧</p>
+              <p class="cong2">抱歉</br>抢光啦</p>
+              <p class="bottom">没关系</br>关注微信“不折耳的折耳根”</br>一大波惊喜即将来临</p>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 遮罩页 -->
+        <section class="page flex-m mask" id="share-page" style="display:none">
+          sdfsdf
+        </section>
+
+    </div>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <script src="vendor/zepto/zepto.min.js"></script>
+</body>
+
+</html>

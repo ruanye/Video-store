@@ -1,0 +1,352 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+
+body, html {
+    height: 100%;
+}
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+$bgcolor: #2c51be;
+$width: 10rem;
+$placeholdercolor:#aaa9a9;
+::-webkit-input-placeholder {
+    color: $placeholdercolor
+}
+:-moz-placeholder {
+    color:$placeholdercolor
+}
+::-moz-placeholder {
+    color: $placeholdercolor
+}
+:-ms-input-placeholder {
+    color: $placeholdercolor
+}
+.wrap-page {
+    height: 100%;
+    width: 10.0rem;
+    margin: 0 auto;
+}
+.page {
+    width: 10rem;
+    height: 100%;
+    overflow-x: hidden;
+   position: relative;
+}
+%rel {
+    position: relative;
+}
+%posa {
+    position: absolute;
+}
+%colorf {
+    color: #fff;
+}
+.text-center {
+    text-align: center;
+}
+img, span, input {
+    @include inline-block;
+}
+button {
+    background-color: transparent;
+    outline: none;
+}
+
+.page1{
+       background: url(../images/bg1.jpg) no-repeat;
+    background-size: 100% 100%; 
+}
+.page5{
+    background: url(../images/bg5.png) no-repeat;
+     background-size: 100% 100%;
+}
+.logo{
+    width:1.333333rem;
+    height:1.333333rem;
+    margin-top: 0.586667rem;
+    margin-left: 0.586667rem;
+}
+.title{
+    img{
+        width:8.933333rem;
+        height:2.506667rem;
+        margin-top: 1.333333rem;
+    }
+}
+.gj{
+    width:2.426667rem;
+    height:2.826667rem;
+   
+}
+.vs{
+    width:1.4rem;
+    height:0.88rem;
+}
+.box{
+   display:table;
+   width:10.0rem;
+   margin-top: 2.586667rem;
+    height:2.906667rem;
+    span{
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+.sharetext{
+    margin-top: 1.84375rem;
+    img{
+        width:5.0625rem;
+        height:2.65625rem
+    }
+}
+.sharebtn{
+    margin-top: 1.203125rem;
+    span{
+        width:7.171875rem;
+        height:1.5625rem;
+        line-height: 1.5625rem;
+        background-color: #d90000;
+        color: #fff;
+        font-size: 0.90625rem;
+    }
+}
+.mask{
+    width:100%;
+    height:100%;
+    background-color: rgba(0, 0, 0,0.6);
+    position: absolute;
+    top: 0
+}
+.hander{
+    position: absolute;
+    width:2.5625rem;
+    height:2.9375rem;
+    top:0;
+    right: 0;
+    z-index: 20
+}
+.page3{
+    background: url(../images/page3bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+.contry{
+    width:6.666667rem;
+    height: 7.8125rem;
+    margin: 0 auto;
+   
+    clear: both;
+    position: relative;
+    top:11.053333rem;
+    .car{
+        display:block;
+        margin: 0 auto;
+        width:0.986667rem;
+        height:1.92rem
+    }
+    .realy{
+        float: left;
+        width:3.333333rem;
+        text-align: center;
+
+    }
+}
+.numbertext{
+    color: #f6ef34;
+    font-size: 0.5rem;
+    line-height: 2;
+}
+.contyrtext{
+    margin-top: 0.066667rem;
+    width:2.56rem;
+    height:1.266667rem;
+    line-height:1.266667rem ;
+    text-align: center;
+    background-color: #2e7ac2;
+    color: #f6ef34;
+    font-size: 0.78125rem;
+    border-radius: 0.234375rem;
+    box-shadow: 0px 3px 4px 1px #000,0px 0px 0px 1px #fff;
+}
+.page2{
+    background: url('../images/bg2.jpg') #144172  no-repeat;
+    background-size: 10.0rem 16.066667rem;
+}
+.topimg{
+    img{
+        margin-top: 1.4rem;
+        width:7.893333rem;
+        height:2.426667rem;
+    }
+}
+.centercar{
+    img{
+        width:7.173333rem;
+        height:5.733333rem;
+        margin-top: 1.373333rem;
+    }
+}
+.bottom{
+    position: absolute;
+    bottom: 0;
+    width:10rem;
+    height:0.853333rem;
+    background-color: #f6ef34;
+}
+.twocon{
+   
+    position: absolute;
+    bottom:0.853333rem;
+    &.a{
+        left:1.253333rem
+    }
+    &.b{
+        left:3.24rem
+    }
+    &.c{
+        right: 1.066667rem;
+        font-size: 0.48rem;
+         color:#f6ef34;
+        margin-bottom: 0.333333rem;
+        p{
+            text-align: center;
+            width:2.2rem;
+            border-bottom: 0.013333rem solid #f6ef34;
+        }
+    }
+     
+}
+.zhuzi{
+     
+    width:1.466667rem;
+    height:2.666667rem;
+   
+    
+    p{   
+        width:1.466667rem;
+        position: absolute;
+        bottom: 0;
+        text-align: center;
+        color: #fff;
+    }
+    &.one{
+        background-color: #000000;
+    }
+     &.two{
+        background-color: #c60c1e;
+    }
+}
+.red{
+    color: #c60c1e;
+}
+.black{
+    color: #000;
+}
+.qicar{
+    width:1.24rem;
+    height: 0.72rem;
+}
+.page4{
+    
+    background: url(../images/bg4.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+.page4top{
+    width:7.906667rem;
+    height:4.226667rem;
+}
+
+.jj{
+    padding-top: 0.533333rem;
+    position: relative;
+    width:7.6rem;
+    height:2.466667rem;
+    margin: 0 auto;
+    background: url('../images/jj.png')  no-repeat;
+    background-size: 100% 100%;
+    p{
+        position: absolute;
+        top:0.6rem;
+        left:2.453333rem;
+        font-size: 1.28rem;
+    }
+}
+.white{
+    color: #fff;
+    font-size: 0.32rem;
+    line-height: 1.8;
+    margin-top: 0.533333rem;
+}
+.inputbox{
+    margin-top: 0.666667rem;
+    input{
+        width:5.84rem;
+        height:1.04rem;
+        line-height: 1.04rem;
+        border: none;
+        text-align: center;
+        font-size: 0.64rem;
+    }
+   
+}
+.btnbox{
+    margin-top: 0.32rem;
+    span{
+        width:5.84rem;
+        height:1.04rem;
+        line-height: 1.04rem;
+        background-color: #d90000;
+        color: #fff;
+        text-align: center;
+        font-size: 0.64rem;
+    }
+
+}
+.tiptext{
+    margin-top: 0.28rem;
+    font-size: 0.426667rem;
+    color: #d90000;
+    a{
+        margin-left: 0.133333rem;
+         color: #d90000;
+        background-color:rgba(250,250,250, 0.1);
+    }
+}
+.poscar{
+    position: absolute;
+}
+.car1{
+    width:0.84rem;
+    height: 0.786667rem;
+    top:4.133333rem;
+    left:1.466667rem
+}
+.car2{
+    width:0.946667rem;
+    height:0.506667rem;
+    top:4.053333rem;
+    left:4.346667rem;
+    
+   
+}
+.car3{
+    width:0.946667rem;
+    height:0.506667rem;
+    top:5.706667rem;
+    right: 0.133333rem;
+}
+.car4{
+    width:0.506667rem;
+    height:0.96rem;
+    top:7.893333rem;
+    left:1.733333rem;
+}
+.car5{
+    width:0.48rem;
+    height: 0.946667rem;
+    top:11.253333rem;
+    left:6.48rem;
+}

@@ -1,0 +1,230 @@
+@import "tobe/function";
+@import "base";
+
+.content {
+  .set-top {
+    width: 100%;
+    height: 3.4375rem;
+    background: #fff;
+    padding: 1.09375rem 0.9375rem;
+    .set-meal {
+      text-align: left;
+      .cst-title {
+        border: none;
+        width: 3.4375rem;
+      }
+      .iconfont {
+        font-size: 22px;
+      }
+    }
+    .car-num {
+      text-align: right;
+      color: $base-primary-color;
+    }
+  }
+  .set-content {
+    .list-block {
+      margin: 0;
+      .item {
+        font-size: 0.625rem;
+        padding: 0.46875rem;
+        border-bottom: 1px solid #f2f1f7;
+        &:last-child {
+          border-bottom: none;
+        }
+        .item-state {
+          height: 1.35rem;
+          line-height: 1.35rem;
+          .label-switch {
+            display: inline-block;
+            vertical-align: middle;
+            width: 2.3rem;
+            border-radius: .8rem;
+            box-sizing: border-box;
+            height: 1.1rem;
+            position: relative;
+            cursor: pointer;
+            -webkit-align-self: center;
+            align-self: center;
+            input[type="checkbox"]:checked + .checkbox {
+              &:after {
+                transform: translateX(1.1rem);
+              }
+              &:before {
+                transform: scale(0);
+              }
+            }
+            .checkbox {
+              width: 2.1rem;
+              border-radius: .8rem;
+              box-sizing: border-box;
+              height: 1rem;
+              background: #e5e5e5;
+              z-index: 0;
+              margin: 0;
+              padding: 0;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              -ms-appearance: none;
+              appearance: none;
+              border: none;
+              cursor: pointer;
+              position: relative;
+              -webkit-transition-duration: .3s;
+              transition-duration: .3s;
+              &:before {
+                content: ' ';
+                position: absolute;
+                left: .1rem;
+                top: .1rem;
+                width: 0.8rem;
+                border-radius: .8rem;
+                box-sizing: border-box;
+                height: 0.8rem;
+                background: #fff;
+                z-index: 1;
+                -webkit-transition-duration: .3s;
+                transition-duration: .3s;
+                -webkit-transform: scale(1);
+                transform: scale(1)
+              }
+              &:after {
+                content: ' ';
+                height: 0.8rem;
+                width: 0.8rem;
+                border-radius: 1rem;
+                background: #fff;
+                position: absolute;
+                z-index: 2;
+                top: .1rem;
+                left: .1rem;
+                box-shadow: 0 .1rem .25rem rgba(0, 0, 0, .4);
+                -webkit-transform: translateX(0);
+                transform: translateX(0);
+                -webkit-transition-duration: .3s;
+                transition-duration: .3s
+              }
+            }
+          }
+        }
+        .item-title {
+          height: 1.35rem;
+          line-height: 1.35rem;
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 0.46875rem;
+          font-size: 0.69125rem;
+        }
+        .item-price-2k2w,.item-price-5w100w,.item-price-1w20w,.item-glass {
+          width: 100%;
+          height: 1.35rem;
+          line-height: 1.35rem;
+          font-size: 0.5rem;
+          text-align: center;
+          border: 1px solid #e5e5e5;
+          background: #eeeeee;
+        }
+        .item-msg {
+          height: 1.35rem;
+          line-height: 1.35rem;
+          text-align: right;
+          font-size: 0.625rem;
+          color: #d2d2d2;
+          cursor: pointer;
+          .iconfont {
+            display: none;
+          }
+        }
+        .active {
+          color: $base-primary-color;
+          .iconfont {
+            width: 0.625rem;
+            height: 0.625rem;
+            margin-rigth: 0.234375rem;
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .more-btn {
+      height: 0.546875rem;
+      line-height: 0.546875rem;
+      margin: .5rem;
+      text-align: right;
+      a {
+        font-size: 0.65625rem;
+        color: #89888a;
+        .iconfont {
+          font-size: 0.5rem;
+        }
+      }
+    }
+    .more-content {
+    }
+    .show {
+      display: block;
+    }
+    .hide {
+      display: none;
+    }
+  }
+}
+
+.panel {
+  background: $white;
+}
+
+.panel-overlay {
+  background: #000000;
+  opacity: 0.5;
+}
+.panel-content{
+  .car-list-top{
+    padding: 0.859375rem 1.25rem;
+    width:100%;
+    height: 60px;
+    color: $base-primary-color;
+    border-bottom: 1px solid #cccccc;
+    >.panel-car-num{
+      float: left;
+    }
+    >.plus{
+      float: right;
+    }
+    &:after{
+      visibility:hidden;
+      display:block;
+      font-size:0;
+      content:" ";
+      clear:both;
+      height:0;
+      zoom: 1;
+    }
+  }
+  .car-list{
+    color: #000000;
+    >.list-block{
+      margin: 0 !important;
+      .item-content{
+        padding-left:1.25rem;
+      }
+      .edit-content{
+        position:absolute;
+        right:0;
+        top:50%;
+        transform: translate(0,-50%);
+        width:2.5625rem;
+        height: 100%;
+        z-index: 111;
+        img{
+          position:absolute;
+          right:0.5125rem;
+          top:50%;
+          transform: translate(0,-50%);
+          width:0.9875rem;
+          height: 0.9875rem;
+        }
+      }
+    }
+  }
+}

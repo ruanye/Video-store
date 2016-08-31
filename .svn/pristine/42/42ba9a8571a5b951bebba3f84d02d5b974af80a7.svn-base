@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <section class="page page1 ">
+            <div class="text-center top"><img src="images/logo1.png" alt=""></div>
+            <div class="one1 text-center animated fadeOut"><img src="images/one1.png" alt=""></div>
+            <div class="bottom1 "><img src="images/pag1btm.png" alt=""></div>
+            <div class="topimg hide"><img src="images/page1-2.png" alt=""></div>
+            <div class="showimg hide">
+                <img src="images/page1-3.png" alt="" class="bounceInUp animated">
+            </div>
+            <div class="btimg hide"><img class="q1" src="images/an.png" alt="" id="target"><img class='q2' src="images/kq.png" alt=""></div>
+        </section>
+        <section class="page page2 hide">
+            <div class="text-center top"><img src="images/logo.png" alt=""></div>
+            <p class="text-center p2text">有优步 从此开启懒人模式
+                <br>输入手机号码 享优步4折优惠</p>
+            <div class="inputbox">
+                <input type="text" placeholder="输入你的手机号码"><span><img class="sanjiao" src="images/sasnjiao.png" alt=""></span></div>
+            <div class="city"><img src="images/city.png" alt=""></div>
+            <img src="images/car.png" class="car fadeInLeft  animate " alt="">
+            <img src="images/hulu.png" alt="" class="hulu animated fadeIn  pulse infinite hide">
+        </section>
+        <section class="page page4 hide">
+            <div class="text-center top"><img src="images/logo.png" alt=""></div>
+            <div class="share  animated fadeIn infinite"><img src="images/share.png" alt=""></div>
+            <div class="text-center"><span class="textn">第2239位优步乘客</span></div>
+            <div class="text-center four">
+                <img class="zhe1" src="images/zheimg1.png" alt="" >
+                <span>上班不准迟到</span>
+                <img class="zhe2 animated haha" src="images/zheimg2.png" alt="" >
+            </div>
+            <div class="bottom"><img src="images/bottom.png" alt=""></div>
+            <div class="btext">
+                <p>活动时间:6月13日-17日(周一至周五的上班和下班时段)
+                    <br>上班时段：上午7-10时|下班时段 下午5-8时。
+                    <br>优惠最高减免7元，仅限广州地区人民优步产品</p>
+            </div>
+        </section>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+    window.onload=function () {
+     setTimeout(function () {
+            $('.topimg,.showimg,.btimg').show();
+        },1000);
+         
+     }
+    touch.on('#target', 'touchstart', function(ev) {
+        ev.preventDefault();
+    });
+
+    var target = document.getElementById("target");
+    target.style.webkitTransition = 'all ease 0.2s';
+  var  rt = 6;
+    touch.on(target, 'swiperight', function(ev) {
+        this.style.webkitTransform = "translate3d(" + rt + "rem,0,0)";
+        setTimeout(function (argument) {
+            $('.page1').hide();
+            $('.page2').show();
+        },1000)
+        setTimeout(function () {
+         $('.hulu').show();
+      },3500);
+
+});
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>最U拼客济南</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <link href="css/Uping.css" rel="stylesheet" media="screen">
+</head>
+<body>
+
+<div class="wrap-page">
+    <section class="page flex-m" id="page1" style="">
+        <img src="images/Uping/logo.png" alt="" class="fixed-logo">
+
+        <div class="inner">
+            <img src="images/Uping/topic.png" alt="" class="topic">
+            <div style="position: relative;margin-top:1.65625rem;margin-bottom:1.5625rem">
+                <button class="btn3" onclick="$('#page1').hide();$('#page2').show();">我要优惠</button>
+                <img src="images/Uping/dot.png" alt="" class="dot">
+            </div>
+            <p class="info-s" id="orginName">form : 土豪</p>
+        </div>
+    </section>
+
+
+    <section class="page flex-m" id="page2" style="display:none">
+        <div class="inner">
+            <p class="m-info" style="margin-top: 2.171875rem;margin-bottom: 0.9375rem;
+     ">优步为你的电话隐私保驾护航</p>
+            <input type="text" class="ipt" value="" placeholder="请输入手机号码">
+            <div style="margin-top: 0.9375rem">
+                <button class="btn3" onclick="$('#page2').hide();$('#page4a').show();">立即获得优惠</button>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="page flex-m" id="page3" style="display:none">
+        <img src="images/Uping/logo.png" alt="" class="fixed-logo">
+        <div class="inner">
+            <p class="m-info">输入炫酷名字生成专属链接</p>
+            <div value="" class="ipt" style="background:#ffffff;margin:auto;" onclick="$('.select-box').show()"
+                 id="selectvalue"/>
+            请选择专属名称
+        </div>
+        <div class="select-box flex-box flex-m" style="display:none">
+            <ul class="inner">
+                <li>最摆</li>
+                <li>最牛逼</li>
+                <li>最小清新</li>
+                <li>最可爱</li>
+                <li>最义气</li>
+                <li>最帅气</li>
+                <li>最美丽</li>
+                <li>最酷炫</li>
+                <li>最神秘</li>
+                <li>最武功盖世</li>
+            </ul>
+        </div>
+        <p class="s-info" style="color:#414040;margin:0.46875rem auto">分享给三位好友领取后<br>
+            即可另获得一张优惠券<br>
+            以此类推 速速分享<br>
+            输入名字生成您的酷炫链接</p>
+
+        <div style="position: relative;">
+            <button class="btn3" onclick="$('#share').show();">生成专属链接</button>
+            <img src="images/Uping/dot.png" alt="" class="dot">
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="page mask flex-m" id="page4a" style="display:none">
+    <div class="inner">
+        <div class="sping-box">
+            <img src="images/Uping/star1.png" alt="" class="star1 flash1">
+            <img src="images/Uping/star2.png" alt="" class="star2 flash2">
+            <img src="images/Uping/star3.png" alt="" class="star3 flash3">
+            <img src="images/Uping/left-hand.png" alt="" class="left-hand left-in">
+            <img src="images/Uping/right-hand.png" alt="" class="right-hand right-in">
+        </div>
+        <p class="l-info">恭喜您获得优惠券</p>
+        <p class="m-info" style="margin-top: 2.65625rem;margin-bottom: 0.3125rem">生成专属链接并分享，<br>
+            可另获得一张优惠券哦 ~</p>
+        <div>
+            <button class="btn2" onclick="$('#page4a').hide();$('#page3').show();">立即去生成</button>
+        </div>
+    </div>
+</section>
+
+<section class="page mask flex-m" id="page4b" style="display:none">
+    <div class="inner">
+        <div class="sping-box">
+            <img src="images/Uping/star1.png" alt="" class="star1 flash1">
+            <img src="images/Uping/star2.png" alt="" class="star2 flash2">
+            <img src="images/Uping/star3.png" alt="" class="star3 flash3">
+            <img src="images/Uping/left-hand.png" alt="" class="left-hand left-in">
+            <img src="images/Uping/right-hand.png" alt="" class="right-hand right-in">
+        </div>
+        <p class="l-info">您还没有注册哦!</p>
+        <p class="m-info" style="margin-top: 2.65625rem;margin-bottom: 0.3125rem">立即注册可领取优惠哦 ~</p>
+        <div>
+            <button class="btn2">立即注册</button>
+        </div>
+    </div>
+</section>
+<!--分享遮罩-->
+<section class="page mask flex-m" id="share" style="display:none">
+    <div class="inner">
+        <div class="share-box">
+            <img src="images/Uping/sz-fx.png" alt="" class="share flash1">
+        </div>
+    </div>
+</section>
+</body>
+<script>
+    $(function () {
+        $(".select-box li").bind('click', function () {
+            var val = $(this).html();
+            $('#selectvalue').html(val);
+            $('.select-box').hide();
+        });
+    });
+</script>
+</html>

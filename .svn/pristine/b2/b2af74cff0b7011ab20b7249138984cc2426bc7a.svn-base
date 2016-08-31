@@ -1,0 +1,187 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "header.scss";
+@charset "UTF-8";
+
+.container {
+  width: 1170px;
+  padding: 15px 0px;
+  margin: 25px auto;
+  border: 1px solid #ffffff;
+  -webkit-box-shadow: 0 0 10px #e2e2e2;
+  -moz-box-shadow: 0 0 10px #e2e2e2;
+  box-shadow: 0 0 10px #e2e2e2;
+  background: #ffffff;
+  > .panel {
+    > .head {
+      padding: 0px 425.5px;
+      margin: 0px 0px 30px 0px;
+      > .item {
+        float: left;
+        background-color: #FFF;
+        border: 1px solid rgb(222, 3, 19);
+        cursor: pointer;
+        &:nth-child(1) {
+          border-radius: 0px;
+          border-radius: 3px 0px 0px 3px;
+        }
+        &:nth-child(2) {
+          border-radius: 0px;
+          border-left: 0px;
+          border-right: 0px;
+          border-radius: 0px 0px 0px 0px;
+        }
+        &:nth-child(3) {
+          border-radius: 0px;
+          border-radius: 0px 3px 3px 0px;
+        }
+        color: rgb(222, 3, 19);
+        height: 30px;
+        width: 105px;
+        line-height: 30px;
+        font-size: 16px;
+        text-align: center;
+        &.active {
+          color: #FFF;
+          background-color: rgb(222, 3, 19);
+        }
+      }
+    }
+    > .body {
+      > .item {
+        display: none;
+        min-height: 550px;
+        &.active {
+          display: block;;
+        }
+        &.qr {
+          position: relative;
+          width: 435px;
+          height: 435px;
+          margin: 0 auto;
+          text-align: center;
+          > .qr-mask {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 50px;
+            margin-left: -200px;
+            margin-top: -85px;
+            line-height: 50px;
+            border: none;
+            border-radius: 5px;
+            background: #de0313;
+            opacity: 0.8;
+            text-align: center;
+            z-index: 9;
+            >.icon{
+              float: left;
+              width: 40px;
+              height: 40px;
+              margin-left: 90px;
+              margin-top: 5px;
+              background: url("../images/scan-icon.png") center no-repeat;
+              background-size: cover;
+              display:block;
+            }
+            >.title{
+              float: left;
+              color: #ffffff;
+              font-size: 18px;
+              font-weight: 800;
+              margin-left: 20px;
+            }
+          }
+          > .img {
+            position: absolute;
+            height: 435px;
+            width: 435px;
+            top: 0;
+            left: 0;
+            display: inline-block;
+          }
+          > span {
+            font-size: 42px;
+          }
+        }
+        &.member {
+          padding: 0px 100px;
+          > .item {
+            width: 92px;
+            text-align: center;
+            float: left;
+            margin: 0px 34px 30px 34px;
+            cursor: pointer;
+            > img {
+              height: 90px;
+              width: 90px;
+              border-radius: 50%;
+              overflow: hidden;
+            }
+            > span {
+              font-size: 16px;
+            }
+          }
+        }
+        &.team {
+          > .item {
+            height: 170px;
+            width: 100%;
+            margin-top: 15px;
+            > .left {
+              float: left;
+              width: 190px;
+              height: 179px;
+              line-height: 170px;
+              text-align: center;
+              font-size: 20px;
+              background-color: rgb(220, 220, 220);
+            }
+            .right {
+              float: right;
+              width: 980px;
+              height: 179px;
+              overflow-x: scroll;
+              background-color: rgb(238, 238, 238);
+              > .warp {
+                height: 100%;
+                white-space: nowrap;
+                > .item {
+                  width: 77px;
+                  text-align: center;
+                  display: inline-block;
+                  margin: 25px 30px 30px 30px;
+                  cursor: pointer;
+                  position: relative;
+                  &.leader {
+                    &::before {
+                      content: '组长';
+                      background: #f50;
+                      color: #fff;
+                      border-radius: 10px;
+                      padding: 0 6px;
+                      position: absolute;
+                      top: 0px;
+                      left: 0px;
+                    }
+                  }
+                  > img {
+                    height: 75px;
+                    width: 75px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                  }
+                  > span {
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

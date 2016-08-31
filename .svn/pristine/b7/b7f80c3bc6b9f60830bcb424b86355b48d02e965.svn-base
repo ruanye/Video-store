@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>车险预报价</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- <script src="vendor/lib-flexible/build/flexible.js"></script> -->
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="http://g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="css/pre-price.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="page-group">
+        <!-- 单个page ,第一个.page默认被展示-->
+        <div class="page page-current page-preprice">
+            <!-- 标题栏 -->
+            <header class="bar bar-nav">
+                <span class="pull-left color-gray" id="carNo"></span>
+            </header>
+            <!-- 这里是页面内容区 -->
+            <div class="content native-scroll">
+                <div class="content-block-title flex-box">
+                    <div class="flex-1 text-center">
+                        <div class="round" id="orgi_price"></div>
+                        <p>订单原价</p>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="round" id="4s_price"></div>
+                        <p>4S价</p>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="round" id="elec_price"></div>
+                        <p>电销价</p>
+                    </div>
+                </div>
+                <div class="list-block" style="margin-bottom:1.25rem">
+                    <ul class="company-lst" id="defineList">
+                    </ul>
+                </div>
+                <div class="content-block-title text-right" style="padding-top:0;display: none;margin-top: 20px;margin-bottom: 20px;line-height: 48px;" id="more-btn">更多公司></div>
+                <div class="list-block" id="more-company" style="display:none">
+                    <ul class="company-lst" id="moreList">
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-num" id="total_fee"></div>
+                <input type="hidden" value="0" id="selectedCompany">
+                <a href="#" class="footer-btn" id="select-btn">选择保险公司</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type='text/javascript' src='http://g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type="text/javascript">
+        $.config = {router: false}
+    </script>
+    <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+  <!--   <script type='text/javascript' src='http://g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script> -->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src='js/static/libs/parsec_weixin.js'></script>
+    <script src="js/static/libs/base.js"></script>
+    <script src="js/static/libs/ss.js"></script>
+    <script src="js/static/libs/ls.js"></script>
+    <script src="js/public/preprice.js"></script>
+</body>
+
+</html>

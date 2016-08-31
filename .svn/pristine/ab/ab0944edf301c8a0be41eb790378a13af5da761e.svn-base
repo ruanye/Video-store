@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>麦可思 - 重置密码</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/forgetpwd.css">
+    <!--[if lt IE9]>
+    <script src="js/html5.js"></script>
+    <script src="js/IE7.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="w">
+    <div class="forget-top">
+        <div id="login">
+            <a href="#">
+                <img src="images/mycos_logo.png" width="210" height="45">
+            </a>
+        </div>
+        <div class="top-right">
+            <a href="login.html" class="header-item">登 录</a> | <a href="register.html" class="header-item">注 册</a>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="forget-wrap">
+        <div class="w">
+            <!-- 内容区-->
+            <div class="forget-form">
+                <div class="forget-content">
+                    <div class="forget-setps">
+                        <div class="container">
+                            <ul class="progressbar" id="progressbar">
+                                <li class="active"><span>验证身份</span></li>
+                                <li class=""><span>重置密码</span></li>
+                                <li class=""><span>完成</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="setp1">
+                        <!-- 左侧-->
+                        <div class="forget-left">
+                            <!--<div class="forget-title">-->
+                                <!--<p>请输入您需要找回登录密码的手机号码</p>-->
+                            <!--</div>-->
+                            <div class="forget-ul">
+                                <div class="item">
+                                    <span class="forget-span1"><span class="span1-ti">*</span>手机号：</span>
+                                    <div class="forget-span2"><input type="text" autocomplete="off" id="myphone" class="input-phnoe"></div>
+                                    <label id="phone_succeed" class=""></label>
+                                    <label id="phone_error" class=""></label>
+                                </div>
+                                <div class="item">
+                                    <span class="forget-span1"><span class="span1-ti">*</span>短信验证码：</span>
+                                    <div class="forget-span2"><input class="yz" type="text" autocomplete="off" id="smsCode">
+                                        <button class="hqyz" id="getSmsCode" type="button">获取短信验证</button>
+                                    </div>
+                                    <label id="sms_succeed" class=""></label>
+                                    <label id="sms_error" class=""></label>
+                                </div>
+
+                                <div class="item">
+                                    <span class="forget-span1"><span class="span1-ti">*</span>验证码：   </span>
+                                    <div class="forget-span2"><input class="valid-code" type="text" autocomplete="off" id="forgetcode">
+                                        <div class="yzimg"><img id="checkimg" height="36" onclick="getValidCode('checkimg')" title="看不清？换一个"/></div>
+                                    </div>
+                                    <label id="authcode_succeed" class="tip">支持字符和数字</label>
+                                    <label id="authcode_error" class="tip"></label>
+                                </div>
+
+                                <div class="msg-info"></div>
+                            </div>
+
+                            <div class="forget-now">
+                                <button class="my-button" type="button" onclick="checkUser()">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="setp2" style="display: none">
+                        <div class="forget-left">
+                            <div class="forget-ul">
+                                <div class="item">
+                                    <span class="forget-span1"><span class="span1-ti">*</span>新密码：</span>
+                                    <div class="forget-span2"><input type="password" class="input-passw" autocomplete="off" id="passworld1"></div>
+                                    <label id="pwd_succeed" class=""></label>
+                                    <label id="pwd_error" class=""></label>
+                                </div>
+
+                                <div class="item">
+                                    <span class="forget-span1"><span class="span1-ti">*</span>请确认密码：</span>
+                                    <div class="forget-span2"><input type="password" class="input-passw"autocomplete="off" id="passworld2"></div>
+                                    <label id="pwdRepeat_succeed" class="">请再次输入密码</label>
+                                    <label id="pwdRepeat_error" class=""></label>
+                                </div>
+
+                            </div>
+                            <div class="forget-now">
+                                <button class="my-button" type="button" onclick="resetPwd()">修改密码</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="setp3" style="display: none">
+                        <div class="msg">
+                            <div class="icon-area">
+                                <i class="icon-error icon-msg"></i>
+                            </div>
+                            <div class="text-area">
+                                <h2 class="msg-title">密码重置成功</h2>
+                                <p class="msg-desc">您的您密码重置成功,请勿将密码告知他人 </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w">
+    <div class="footer">
+        <div class="links">&nbsp;</div>
+        <div class="copyright">© Copyright 2016 麦可思 版权所有 | 未经许可不得复制 蓉ICP备152009300号-1</div>
+    </div>
+</div>
+<script type="text/javascript" src="js/libs/jQuery/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="js/ss.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/static/src/forgetPwd.js" source="widget"></script>
+</body>
+</html>

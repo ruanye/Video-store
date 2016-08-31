@@ -1,0 +1,60 @@
+// 推荐商品
+.tjtitle{
+
+  margin-top: 4px;
+  clear: both;
+  height: 0.65625rem;
+  line-height: 0.65625rem;
+  border-top:1px solid #d3d3de;
+   h6,span{
+       float:left;
+
+   }
+   h6{
+      color:#f76c00;
+      font-size: 0.40625rem;
+      text-indent: 0.40625rem;
+   }
+   span{
+      margin-left: 0.25rem;
+       &:nth-of-type(1){
+         margin-left: 0.71875rem;
+       }
+   }
+}
+.merchandise{
+   clear: both;
+   overflow: hidden;
+  .imgboxleft{
+    margin-top: 0.3125rem;
+     margin-left: 0.21875rem;
+     float: left;
+     width:1.9375rem;
+     height: 1.9375rem;
+     border:1px solid #d3d3d3;
+     img{
+        max-width: 100%;
+        height:auto;
+     }
+  }
+  .introductionright{
+    width: 6.5625rem;
+    margin-left: 0.625rem;
+    float: left;
+    .in-title{
+      font-size: 0.40625rem;
+    }
+
+  }
+}
+.price{
+  span{
+    &.right{
+      float: right
+    }
+    b{
+      color: #f76c00;
+      font-size: 0.40625rem;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+/**
+ * 查看课件
+ * @baseCourseId {number}
+ */
+$(function(){
+	+function(){
+		var $list=$('#list')
+		var ttSerialId=SS.get(Constant.timeTableSerialId);//课堂流水ID 
+		var courseData={ttSerialId:ttSerialId};
+		//请求加当前课程
+		$.ajax({
+			type:"get",
+			url:Constant.WEB_ROOT+"/manager/teacher/courseware/timetable/coursewareList",
+			data:courseData,
+			success:function(data,xhr){
+				console.log(data)
+				if(xhr==='success'&&data.status==0){
+					var str='';
+					data.list.forEach(function(item,index,arr){
+						var domstr=domStr(item);
+						str+=domstr;
+					})
+					$list.append(str);			
+				}else{
+					$.alert({
+                        title:"系统提示",
+                        contentText:"网络异常，数据加载失败！",
+                        cancleText:"确定",
+                        callback:function( event ){}
+                    });
+				}
+			},
+			error:function(xhr,status){
+				$.alert({
+                    title:"系统提示",
+                    contentText:"网络异常，数据加载失败！",
+                    cancleText:"确定",
+                    callback:function( event ){}
+                });
+				console.log('error')
+			}
+		});
+
+		//页面dom字符串拼接函数模板
+		function domStr(itemObj){
+			var str=
+	         '<li class="courseItem">'+
+	            '<div class="courseType">'+
+	              '<span class="img"></span>' +
+	              '<span class="text">'+itemObj.wareName+'</span>'+
+	            '</div>' +
+	            '<span class="courseTime">'+itemObj.showCreateTime+'</span>'+
+	            '<a  class="trigon"  href="https://view.officeapps.live.com/op/view.aspx?src='+itemObj.wareUrl+'" target="_blank"></a>'+
+	            // '<a  class="trigon"  href="http://officeweb365.com/o/?i=9670&furl=http://7rylfx.com1.z0.glb.clouddn.com/%E4%BB%A3%E6%95%B0%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC.ppt" target="_blank"></a>'+
+	          '</li>'
+			return str;
+		}
+
+		//课件下载功能
+		$list.on('click','.trigon',function(e){
+			// e.preventDefault()
+			console.log(1);
+			
+		})	
+		function addClickTimes(){
+			// $.ajax({
+			// 	type:"get",
+			// 	url:Constant.WEB_ROOT+"/manager/teacher/courseware/timetable/coursewareList",
+			// 	data:{},
+			// 	success:function(){
+					
+			// 	}
+			// })
+		}
+	}()
+
+})

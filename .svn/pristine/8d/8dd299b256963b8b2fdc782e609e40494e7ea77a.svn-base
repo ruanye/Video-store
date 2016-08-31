@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>麦可思 - 欢迎登陆</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+
+    <!--[if lt IE9]>
+    <script src="js/html5.js"></script>
+    <script src="js/IE7.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="w">
+        <div id="login">
+            <a href="#">
+                <img src="images/mycos_logo.png" width="210" height="45">
+            </a>
+        </div>
+    </div>
+    <div id="content">
+        <div class="login-wrap">
+            <div class="w">
+                <div class="login-form">
+                    <div class="login-box">
+                        <div class="mt">
+                            <h1>教师登录</h1>
+                            <div class="extra-r">
+                                <div class="regist-link">
+                                    <a href="register.html"><b></b>立即注册</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="msg-wrap">
+                            <div class="msg-warn hide">
+                                <b></b> 验证码错误
+                            </div>
+                            <div class="msg-error hide">
+                                <b></b> 用户名或密码错误
+                            </div>
+                        </div>
+                        <div class="mc">
+                            <div class="form">
+                                <form id="formlogin" name="frm" class="form-signin" method="post" onsubmit="return false;">
+                                    <p class="login-item">
+                                        <lable class="item1"></lable>
+                                        <input type="text" name="j_username" autocomplete="off" placeholder="账号" />
+                                    </p>
+                                    <p class="login-item">
+                                        <lable class="item2"></lable>
+                                        <input type="password" name="j_password" autocomplete="off" placeholder="密码" />
+                                    </p>
+                                    <p class="login-item">
+						              <lable class="item3"></lable>
+						              <input type="text" name="veryCode" style="width:160px" autocomplete="off" placeholder="验证码" />
+						              <span><img id="checkimg" title="看不清？换一个"  onclick="getValidCode()" align="absmiddle" style=" margin-top:0; padding: 0 ; cursor: pointer;" /></span> </p>
+
+						            <p class="login-foot">
+						            	<a href="forgetpwd.html" id="forget-pwd">忘记密码？</a>
+						            </p>
+                                    <button class="btn btn-primary" type="button" id="loginBtn">登 &nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                                </form>
+                            </div>
+                            <div class="coagent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="login-banner">
+                <div class="w">
+                    <div id="banner-bg" class="i-inner" style=""></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w">
+		<div class="footer">
+			<div class="links">&nbsp;</div>
+			<div class="copyright">© Copyright 2016 麦可思 版权所有 | 未经许可不得复制 蓉ICP备152009300号-1</div>
+		</div>
+	</div>
+
+    <script type="text/javascript" src="js/libs/jQuery/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/ss.js"></script>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/static/src/login.index.js" source="widget"></script>
+
+</body>
+
+</html>

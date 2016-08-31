@@ -1,0 +1,17 @@
+@import "tobe/function";
+@import "base";
+
+.entry-content {
+  .list-block {
+    margin: 0 !important;
+    background: #ffffff;
+    .item-content {
+      padding: 0 .75rem;
+      .item-media + .item-inner {
+        margin: 0;
+      }
+
+    }
+  }
+}
+

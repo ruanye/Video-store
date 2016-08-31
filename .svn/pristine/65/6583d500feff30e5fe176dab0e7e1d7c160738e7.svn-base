@@ -1,0 +1,9 @@
+  $('.animated').each(function(index, el) {
+        var delay = $(this).attr('data-delay')
+        $(this).css({
+            animationDelay: delay,
+            webkitAnimationDelay: delay
+        });
+    });
+
+

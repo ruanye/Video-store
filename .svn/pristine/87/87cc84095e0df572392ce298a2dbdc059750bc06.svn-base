@@ -1,0 +1,13 @@
+/**
+ * Created by yanghc on 16/6/8.
+ */
+var coupon={
+    bagImgs:['images/p1.png','images/p8.png','images/p9.png','images/p10.png'],
+    bagTitle:['万州宝宝抢红包通道','合川宝宝抢红包通道','永川宝宝抢红包通道','涪陵川宝宝抢红包通道'],
+    goPage:function(redbagid){
+        $('#info_title').html(coupon.bagTitle[redbagid]);
+        $('#red_bag').attr('src',coupon.bagImgs[redbagid]);
+        $('#page1').hide();
+        $('#page2').show();
+    }
+}

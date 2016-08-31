@@ -1,0 +1,337 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+
+body, html {
+    height: 100%;
+}
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+$bgcolor: #2c51be;
+$width: 10rem;
+::-webkit-input-placeholder {
+    color: #666
+}
+:-moz-placeholder {
+    color: #666
+}
+::-moz-placeholder {
+    color: #666
+}
+:-ms-input-placeholder {
+    color: #666;
+
+}
+.wrap-page {
+    height: 100%;
+    width: 10.0rem;
+    margin: 0 auto;
+}
+.page {
+    width: 10rem;
+    height: 100%;
+   position: relative;
+   background: url('../images/bg.png') no-repeat;
+   background-size: 100% 100%;
+}
+%rel {
+    position: relative;
+}
+%posa {
+    position: absolute;
+}
+%colorf {
+    color: #fff;
+}
+.text-center {
+    text-align: center;
+}
+img, span, input {
+    @include inline-block;
+}
+button {
+    background-color: transparent;
+    outline: none;
+}
+.muscis{
+    position: relative;
+    width: 0.609375rem;
+    height:0.609375rem;
+    top: 0.75rem;
+    left: 0.59375rem;
+}
+.logo{
+     position: absolute;
+    width: 1.171875rem;
+    height: 1.171875rem;
+    top:0.890625rem;
+    right: 0.890625rem;
+}
+.navtext{
+    height: 6.9375+1.546875rem;
+    img{
+        width: 9.53125rem;
+        height: 6.9375rem;
+        margin-top: 1.546875rem;
+    }
+}
+.btnto{
+   position: absolute;
+   width: $width;
+   bottom: 3.0rem;
+   z-index:5;
+    img{
+    width: 5.078125rem;
+    height:2.328125rem;}
+}
+.bottom{
+    z-index: 2;
+    width: 10.0rem;
+    height:6.53125rem;
+    background: url('../images/bg1.png') no-repeat;
+    background-size: 100% 100%;
+  position: absolute;
+  bottom: 0;
+}
+.bottom2{
+    width: 10.0rem;
+    height:2.984375rem;
+    background: url('../images/page1bottom.png')  no-repeat;
+    background-size: 100% 100%;
+  position: absolute;
+  bottom: 0;
+}
+.texto{
+    margin-top: 1.2rem;
+    img{
+        width: 7.796875rem;
+        height:0.796875rem;
+    }
+}
+.old{
+    margin-top: 0.96875rem;
+      height:3.9375rem;
+    img{
+        width: 8.984375rem;
+        height:3.9375rem;
+    }
+}
+.new{
+     margin-top: 0.578125rem;
+     height:4.0625rem;
+   img{
+        width: 8.3125rem;
+        height:4.0625rem;
+    }  
+}
+.inputbox{
+    margin-top: 1.2rem;
+    width: $width;
+    height:1.0rem;
+    input,img{
+        float: left;
+    }
+    input{
+        margin-left: 1.0rem;
+        width: 6.53125rem;
+        height:1.0rem;
+        line-height: 1.0rem;
+        border: none;
+        background-color: #f1f1f1;
+        text-indent: 0.15625rem;
+    }
+    img{
+        margin-left: 0.15625rem;
+        width:1.25rem;
+        height:1.0rem
+    }
+}
+.cancelcircle{
+    img{
+        margin-top: 0.3125rem;
+        width:9.59375rem;
+        height:8.875rem;
+    }
+}
+.bottom3{
+    width: 10.0rem;
+    height:2.84375rem;
+    background: url('../images/bg2.png') no-repeat;
+    background-size: 100% 100%;
+  position: absolute;
+  bottom: 0;
+}
+.hua{
+    padding-top: 0.46875rem;
+    padding-bottom: 0.46875rem;
+    img{
+        width:7.5625rem;
+        height: 4.296875rem;
+        &.gongzi{
+            width:7.578125rem;
+            height:4.859375rem;
+        }
+    }
+}
+.textu{
+    img{
+        width:5.65625rem;
+        height:0.65625rem;
+        margin-top: 1.2rem;
+    }
+}
+.textuu{
+   img{
+    width:7.640625rem;
+    height:5.09375rem;
+   }
+}
+.tiaotiao{
+    img{
+        width:4.203125rem;
+        height:0.171875rem;
+    }
+}
+
+.textmy1{
+    font-size: 0.5rem;
+    color: #fff;
+    line-height: 1.8;
+    margin: 0.625rem 0;
+}
+.textmy2{
+    margin-top: 0.34375rem;
+    font-size: 0.1875rem;
+    color: #fff; 
+}
+.share{
+    position: absolute;
+    top:0.3125rem;
+    right: 0.3125rem;
+    width:0.8125rem;
+    height:2.34375rem;
+}
+.page7{
+    .four{
+        position: relative;
+        margin-top: 0.3125rem;
+        img{
+            width: 8.359375rem;
+            height: 6.78125rem;
+            &.zhe2{
+                position: absolute;
+                top: 1.48rem;
+                left:1.73rem;
+                width:6.25rem;
+                height:3.90625rem;
+                
+            }
+        }
+         span{
+            position: relative;
+            width:6.734375rem;
+            height: 1.0rem;
+            line-height: 1.0rem;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 0.5rem;
+            border-radius: 0.15625rem;
+            bottom: 1.3rem;
+         }
+    }
+    .share{
+         position: absolute;
+         top: 0.1875rem;
+         right: 0.3125rem;
+        img{
+            width: 0.8125rem;
+            height: 2.25rem;
+        }
+    }
+    .textn{
+        margin-top: 1.5625rem;
+        width: 5.0rem;
+        height: 0.8125rem;
+        line-height:  0.8125rem;
+        border-radius: 0.40625rem;
+        color: #fff;
+        background-color: #152d64;
+        font-size: 0.4375rem;
+    }
+    .bottom{
+        height: 3.0rem;
+        img{
+            width: 10.0rem;
+            height: 3.0rem;
+        }
+    }
+    .title{
+        text-align: center;
+         img{
+            position: relative;
+            width: 2.25rem;
+            height: 0.859375rem;
+            top: 1.25rem;
+         }
+    }
+    .btext{
+      
+       
+        color: #fff;
+        p{
+            margin-left: 0.3125rem;
+            font-size: 0.25rem;
+            
+        }
+    }
+}
+
+.bottom4{
+    width: 10.0rem;
+    height:2.734375rem;
+    background: url('../images/bg3.png') no-repeat;
+    background-size: 100% 100%;
+  position: absolute;
+  bottom: 0;
+}
+.choujiang {
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    top: 2rem;
+    .circle {
+        width: 8.1875rem;
+        height: 8.203125rem;
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        transition: all 3s cubic-bezier(.33, .45, 0, .84);
+        &.an{
+            -webkit-transform: rotate(1440deg);
+             transform: rotate(1440deg);
+           
+         }
+        &.angel{
+            -webkit-transform: rotate(1570deg);
+             transform: rotate(1570deg);
+        } 
+        &.fourzhe{
+            -webkit-transform: rotate(1690deg);
+             transform: rotate(1690deg);
+        }
+       
+    }
+    .zhizhen {
+        position: absolute;
+        width: 2.46875rem;
+        height: 2.71875rem;
+        top: 50%;
+        left: 50%;
+        margin-top: -1.35938rem;
+        margin-left: -1.23438rem;
+
+    }
+}
+

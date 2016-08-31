@@ -1,0 +1,402 @@
+$gridPercentSwitch: true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+
+body, html {
+    height: 100%;
+}
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+$bgcolor: #8acbb7;
+$width: 10rem;
+
+.wrap-page {
+    height: 100%;
+    width: 10.0rem;
+    margin: 0 auto;
+}
+.page {
+    width: 10rem;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+}
+%rel {
+    position: relative;
+}
+%posa {
+    position: absolute;
+}
+%colorf {
+    color: #fff;
+}
+.text-center {
+    text-align: center;
+}
+img, span, input {
+    @include inline-block;
+}
+button {
+    background-color: transparent;
+    outline: none;
+}
+.page1 {
+    background: url('../images/Page1.png') #8e8f93 left top no-repeat;
+    background-size: 10rem 5.666667rem;
+
+    .t1 {
+        padding-top: 4.6rem;
+        font-size: 1.0rem;
+        font-weight: 700;
+    }
+    .t2 {
+        font-size: 0.533333rem;
+    }
+    .t3 {
+        padding-top: 0.853333rem;
+        font-size: 0.426667rem;
+        line-height: 1.8;
+    }
+    .t4 {
+        font-size: 0.906667rem;
+        color: #4fcfb0;
+        font-weight: 700;
+    }
+    .btnbox {
+        margin-top: 1.066667rem;
+
+        img {
+            margin: 0 0.44rem;
+
+            &:nth-child(1) {
+                width: 3.466667rem;
+                height: 3.32rem
+            }
+            &:nth-child(2) {
+                width: 3.466667rem;
+                height: 3.2rem
+            }
+        }
+    }
+}
+.white {
+    color: #fff;
+}
+.yellow {
+    color: #ffb26b
+}
+.page2 {
+    background: url('../images/Page2.png') #8e8f93 left top no-repeat;
+    background-size: 10rem 12.44rem;
+
+    .text {
+        padding-top: 5.12rem;
+
+        p {
+            padding-left: 1.36rem;
+            font-size: 0.4rem;
+
+            &.bold, span {
+                font-size: 0.373333rem;
+                font-weight: 700;
+            }
+            &.jiezhi {
+                padding-top: 0.25rem;
+            }
+            &.last {
+                padding-top: 0.3rem;
+            }
+            &.t8 {
+                font-size: 0.426667rem;
+                line-height: 1.8;
+            }
+        }
+    }
+}
+.bimg {
+    position: absolute;
+
+    &.a {
+        width: 0.56rem;
+        height: 1.173333rem;
+        top: 7.733333rem;
+        left: 0.586667rem;
+    }
+    &.b {
+        width: 0.76rem;
+        height: 1.08rem;
+        top: 13.32rem;
+        left: 0.4rem
+    }
+    &.c {
+        width: 0.586667rem;
+        height: 0.826667rem;
+        right: 0.16rem;
+        bottom: 0.133333rem;
+    }
+}
+.mtext {
+    padding-top: 1.866667rem;
+    font-size: 0.853333rem;
+}
+.tpbtn {
+    margin-top: 0.64rem;
+
+    span {
+        width: 8.133333rem;
+        height: 1.12rem;
+        line-height: 1.12rem;
+        border-radius: 0.56rem;
+        background-color: #5dcfad;
+        color: #fff;
+        font-size: 0.533333rem;
+    }
+}
+.page3 {
+    background: url('../images/pg3.png') #8e8f93 left top no-repeat;
+    background-size: 10rem 6.0rem;
+
+    .tt1 {
+        padding-top: 3.013333rem;
+        font-size: 0.933333rem;
+        font-weight: 700;
+
+        span {
+            font-size: 0.506667rem;
+        }
+    }
+}
+.ditu {
+    top: 1.2rem;
+    height: 10.24rem;
+    background-image: url(../images/r.png);
+    background-size: 100% 100%;
+    position: relative;
+
+    img {
+        position: absolute;
+    }
+    .s8 {
+        width: 2.626667rem;
+        height: 3.173333rem;
+        right: 0.48rem;
+        bottom: 2.64rem;
+    }
+    .s7 {
+        width: 2.626667rem;
+        height: 3.146667rem;
+        right: 3.3rem;
+        bottom: 1.253333rem;
+    }
+    .s6 {
+        width: 2.626667rem;
+        height: 2.96rem;
+        left: 0.986667rem;
+        bottom: 2.586667rem;
+    }
+    .s5 {
+        width: 2.626667rem;
+        height: 3.666667rem;
+        left: 3.573333rem;
+        bottom: 4.293333rem;
+    }
+    .s4 {
+        width: 2.626667rem;
+        height: 2.96rem;
+        right: 0.453333rem;
+        top: 2.24rem;
+    }
+    .s3 {
+        width: 2.626667rem;
+        height: 2.853333rem;
+        right: 1.44rem;
+    }
+    .s2 {
+        width: 2.626667rem;
+        height: 3.306667rem;
+        left: 3.12rem;
+        top: 0;
+    }
+    .s1 {
+        width: 2.626667rem;
+        height: 3.4rem;
+        left: 0.533333rem;
+        top: 1.573333rem;
+    }
+}
+.page4 {
+    background: url('../images/pg4.png')  left top no-repeat, url('../images/p4.png')  left bottom no-repeat;
+    background-size: 10rem 4.826667rem;
+
+    .t1 {
+        padding-top: 1.813333rem;
+        font-size: 0.8rem;
+        color: #8d9299;
+        font-weight: 700;
+    }
+}
+.uberlist {
+    margin-top: 0.8rem;
+
+    li {
+        margin-bottom: 0.333333rem;
+        width: 100%;
+        height: 0.8rem;
+
+        img {
+            margin-left: 0.533333rem;
+            float: left;
+            width: 5.746667rem;
+            height: 0.8rem;
+            position: relative;
+            z-index: 200
+        }
+        span {
+            width: 1.466667rem;
+            text-align: right;
+            float: left;
+            margin-left: 1.173333rem;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            font-size: 0.48rem;
+        }
+        b {
+            position: relative;
+            display: block;
+            width: 4.96rem;
+            height: 0.373333rem;
+            background-color: #ef404d;
+            margin-left: 3.84rem;
+            top: 0.22rem;
+
+            &:before {
+                position: absolute;
+                content: '';
+                display: block;
+                width: 0.64rem;
+                height: 0.64rem;
+                background-color: #ef404d;
+                border-radius: 50%;
+                left: -0.58rem;
+                top: -0.1rem;
+            }
+        }
+        b {
+            &.b1 {
+                background-color: #e16dbb;
+
+                &:before {
+                    background-color: #e16dbb;
+                }
+            } 
+            &.b2 {
+                background-color: #4fcfb0;
+
+                &:before {
+                    background-color: #4fcfb0;
+                }
+            } 
+             &.b3 {
+                background-color: #49c8f8;
+
+                &:before {
+                    background-color: #49c8f8;
+                }
+            }
+
+        }
+    }
+}
+.sharebtn{
+    margin-top: 1.2rem;
+    width:8.133333rem;
+    height:1.2rem
+}
+.page5 {
+    background: url('../images/p5.png') #8e8f93  left top no-repeat;
+    background-size: 10rem 4.826667rem;
+    .tq{
+        font-size: 0.8rem;
+        padding-top: 2.666667rem;
+        font-weight: 700;
+    }
+}
+.inputbox{
+    position: relative;
+    margin: 0 auto;
+   margin-top: 1.2rem;
+    width:9.013333rem;
+    height:8.92rem;
+    background-image: url(../images/phone.png);
+    background-size: 100% 100%;
+    input{
+        position: absolute;
+        left: 0.933333rem;
+        top:2.0rem;
+        background-color: transparent;
+        width:7.76rem;
+        height:1.0rem;
+        line-height: 1.0rem;
+        border: none;
+        font-size: 0.586667rem;
+        font-weight: 700;
+        text-align: center;
+
+
+    }
+
+}
+.save-btn{
+    width:2.933333rem;
+    height:2.706667rem;
+}
+.page6{
+     background: url('../images/p6.png') #8e8f93  left top no-repeat;
+    background-size: 10rem 3.746667rem;
+    .t1{
+        padding-top: 2.973333rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+    }
+    .imgb{
+        position: absolute;
+        &.p1{
+            width:0.68rem;
+            height:0.933333rem;
+           left: 0;
+           top: 3.493333rem;
+            
+        }
+        &.p2{
+            width:0.853333rem;
+            height: 1.786667rem;
+            right: 1.253333rem;
+            top: 10.4rem;
+        }
+         &.p3{
+            width:0.586667rem;
+            height:0.826667rem;
+            top:10.893333rem;
+            right: 2.32rem;
+         }
+    }
+    .my{
+        padding-top: 2.0rem;
+        img{
+            width:3.466667rem;
+            height:3.32rem
+        }
+    }
+    .t2{
+        padding-top: 0.56rem;
+        font-size: 0.56rem;
+    }
+}
+.rbtn{
+    padding-top: 1.066667rem;
+    width:2.613333rem;
+    height:2.4rem
+}

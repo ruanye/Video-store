@@ -1,0 +1,73 @@
+/*
+* @Author: zhouyu
+* @Date:   2016-07-18 15:43:15
+* @Last Modified by:   zhouyu
+* @Last Modified time: 2016-07-18 17:41:32
+*/
+
+'use strict';
+
+//页面切换方法
+function toggle(page) {
+    $(".page").hide();
+    $(page).show();
+    Event.sendEvent(page+"_"+Coupon.actId);
+}
+
+var Coupon={
+    actId:null,
+
+    //保存
+    save:function(){
+        var phoneNumber = $("#phoneNumber").val();
+        if(phoneNumber.length == 0) {
+            $("#errorInfo").html("<font color='red'>请填写手机号码</font>");
+            return;
+        }
+        if(phoneNumber.length != 11) {
+            $("#errorInfo").html("<font color='red'>请填写有效的手机号码</font>");
+            return;
+        }
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+        if(!reg.test(phoneNumber)) {
+            $("#errorInfo").html("<font color='red'>请填写有效的手机号码</font>");
+            return;
+        }
+        $('#btn2').attr('disabled','disabled').html("获取中...");
+        $.post('/onecoupon/save/'+Coupon.actId+"-"+phoneNumber,{},function(data){
+            console.log(data);
+            $('#btn2').removeAttr('disabled').html("确定");
+            if (data.status == -1 || data.robstatus==2) {
+                //end-page
+                alert("很遗憾,活动已结束");
+            } else {
+
+                //正确抢券
+                //第一次抢券
+
+                if(data.isrob == 1){
+                    alert("您已抢过！");
+                }else{
+
+                    if (data.robstatus == -1 || data.robstatus==0) {
+                        //老用户
+                        $('.page').hide();
+                        $('#page3').show();
+                    }  else if (data.robstatus == 1) {
+                         window.location.href="https://get.uber.com.cn/invite/中央商场年中大减价";
+                        //新用户抢券
+                        $('.page').hide();
+                        $('#page3').show();
+                    }
+                }
+
+            }
+        });
+    }
+}
+
+$(document).ready(function(){
+    var request=GetRequest();
+    Coupon.actId=request['id'];
+    Event.sendEvent("counponNJ_0718"+Coupon.actId);
+});

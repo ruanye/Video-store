@@ -1,0 +1,451 @@
+//所有信息都存在sessionStorage 中
+var Constant = {
+    WEB_ROOT : 'http://121.41.73.32/Equuleus',
+    WEB_HTTPPREFIX : "http://121.41.73.32/Equuleus",
+    IMG_HTTPPREFIX : "http://121.41.73.32/Equuleus",
+    WX_HTTPPREFIX : "http://synsunny.parsec.com.cn/eqwx/",
+
+    // WEB_ROOT:"http://mita.mycos.com/Equuleus",
+    // WEB_HTTPPREFIX:"http://mita.mycos.com/Equuleus",
+    // IMG_HTTPPREFIX:"http://mita.mycos.com/Equuleus",
+    // WX_HTTPPREFIX:"http://mita.mycos.com/eqwx/",
+
+    SESSION_ID:"session_id",
+    expireTime:1000*60*10*6*6,
+    current:"current",
+    token:"token",
+    loginPageMsg:"loginPageMsg",
+    sourceURL: "sourceURL",//URL
+    randomStr:"randomStr",//生成验证码的随机数
+    sign:"sign",//签到信息
+    isCheck:"isCheck",//课堂签到状态
+    isMenu:"isMenu",//是否显示菜单
+    allStudent:"allStudent",
+    teacherId:"teacherId",//教师ID
+    loginName:"loginName",//登录名称
+    timeTableSerialId:"timeTableSerialId",//课堂流水ID
+    baseCourseId:"baseCourseId",//基础课程ID 在开启课堂时获取
+    courseId:'courseId',//课程id
+    bookName:"bookName",//课程名称
+    timetableId:"timetableId",//课表ID
+    classId:"classId",//班级ID
+    courseId:"courseId"//课程ID
+};
+
+
+/**
+ * 异常处理页面
+ */
+$.ajaxSetup({
+    beforeSend: function(xhr) {
+        xhr.setRequestHeader(Constant.token, SS.get(Constant.token) == null ? '': SS.get(Constant.token));
+        xhr.setRequestHeader("tokenId", SS.get(Constant.teacherId) == null ? '': SS.get(Constant.teacherId));
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+        switch (jqXHR.status){
+            case(500):
+                break;
+            case(403):
+                break;
+            case(401):
+                SS.clear();
+                break;
+            case(404):
+                location.href = "404.html";
+                break;
+            default:
+            //alert("暂时无法连接到服务器");
+        }
+    }
+});
+
+
+$(function(){
+    /**
+     * 除了ignores页面外，其它页面如果没有token则直接跳转到登录页面
+     */
+    var url = location.href;
+    var ignores = ['register.html','forgetpwd.html','login.html','homework.html']
+    for(var i=0 ;i<ignores.length;i++){
+      if(url.indexOf(ignores[i]) > -1){
+        return;
+      }
+    }
+
+    var expireTime = SS.get("expireTime");
+    var nowTime = new Date();
+    if(expireTime != null ){
+        if(nowTime.getTime() > expireTime ){
+            SS.clear();
+        }else{
+            SS.set("expireTime", nowTime.getTime() + Constant.expireTime);
+        }
+    }else{
+        SS.set("expireTime", nowTime.getTime() + Constant.expireTime);
+    }
+    if (SS.get("token") == null) {
+        SS.set("loginPageMsg",  "登录信息已过期，请重新登录");
+        location.href = "login.html";
+    } else {
+        SS.get("userName");
+    }
+    /**
+    * 清除不需要的  缓存信息
+    */
+    if(url.indexOf('index.html') > -1){
+        SS.remove(Constant.current);
+        SS.remove(Constant.bookName);
+        SS.remove(Constant.isMenu);
+        SS.remove(Constant.isCheck);
+    }
+});
+
+function getCode(){
+    var code = parseInt(Math.random()*(99999999- 10000000+1)+10000000);
+    return code;
+}
+
+/**
+ * 将时间Sun Sep 18 00:00:00 CST 2011 转换为 yyyy-MM-dd HH:mm:ss(24制)<br>
+ * 方 法 名：Todate <br>
+ * @param num  需要转换的时间
+ * @returns {String} String 格式化后的时间
+ */
+function todate(num) {
+    if(num==undefined||num==""){
+         return " ";
+    }
+    num = num + ""; //给字符串后就一个空格
+    var date = "";
+    var month = [];
+    month["Jan"] = '01'; month["Feb"] = '02'; month["Mar"] = '03'; month["Apr"] = '04';
+    month["May"] = '05'; month["Jun"] = '06'; month["Jul"] = '07'; month["Aug"] = '08';
+    month["Sep"] = '09'; month["Oct"] = '10'; month["Nov"] = '11'; month["Dec"] = '12';
+    var week = [];
+    week["Mon"] = "一"; week["Tue"] = "二"; week["Wed"] = "三"; week["Thu"] = "四";
+    week["Fri"] = "五"; week["Sat"] = "六"; week["Sun"] = "日";
+    str = num.split(" "); //根据空格组成数组
+    date = str[5] + "-"; //就是在2008的后面加一个“-”
+    //通过修改这里可以得到你想要的格式
+    date = date + month[str[1]] + "-" + str[2] + " " + str[3];
+    //date=date+" 周"+week[str[0]];
+    return date;
+}
+
+
+/**
+ * tppl.js 极致性能的 JS 模板引擎
+ * Github：https://github.com/jojoin/tppl
+ * 作者：杨捷
+ * 邮箱：yangjie@jojoin.com
+ *
+ * @param tpl {String}    模板字符串
+ * @param data {Object}   模板数据（不传或为null时返回渲染方法）
+ *
+ * @return  {String}    渲染结果
+ * @return  {Function}  渲染方法
+ *
+ */
+(function () {
+    var cache = {};
+
+    this.tmpl = function tmpl(tpl, data) {
+        var fn =  function(d) {
+            var i, k = [], v = [];
+            for (i in d) {
+                k.push(i);
+                v.push(d[i]);
+            };
+            return (new Function(k, fn.$)).apply(d, v);
+        };
+        if(!fn.$){
+            var tpls = tpl.split('<%');
+            fn.$ = "var $=''";
+            for(var t = 0;t < tpls.length;t++){
+            //for(var t in tpls){
+                // console.log(t,tpls[t]);
+                var p = tpls[t].split('%>');
+                if(t!=0){
+                    fn.$ += '='==p[0].charAt(0)
+                      ? "+("+p[0].substr(1)+")"
+                      : ";"+p[0].replace(/\r\n/g, '')+"$=$"
+                }
+                // 支持 <pre> 和 [::] 包裹的 js 代码
+                fn.$ += "+'"+p[p.length-1].replace(/\'/g,"\\'").replace(/\r\n/g, '\\n').replace(/\n/g, '\\n').replace(/\r/g, '\\n')+"'";
+            }
+            fn.$ += ";return $;";
+            // log(fn.$);
+        }
+        return data ? fn(data) : fn;
+    };
+})();
+
+function noFindImg() {
+    var img=event.srcElement;
+    img.src="images/default-user.png";
+    img.onerror=null; //控制不要一直跳动
+}
+
+
+//监听浏览器的后退事件
+// jQuery(document).ready(function($) {
+//     if (window.history && window.history.pushState) {
+//         $(window).on('popstate', function() {
+//             var hashLocation = location.hash;
+//             var hashSplit = hashLocation.split("#!/");
+//             var hashName = hashSplit[1];
+//             if (hashName !== '') {
+//                 var hash = window.location.hash;
+//                 if (hash === '') {
+//                     SS.remove(Constant.current);
+//                     SS.remove(Constant.isMenu);
+//                 }
+//             }
+//         });
+//         window.history.pushState('forward', null, './#forward');
+//     }
+// });
+
+
+
+//模态框插件
+$.alert = function( option ){
+    option = $.extend({
+        title:"提示",
+        contentText:"这是一个提示框,点击去小关闭",
+        cancleText:"确定",
+        cancleClass:"btn-cancle",
+        callback:function(){},
+    },option);
+    var htmlString = '<div class="alert-mask">'+
+        '<div class="alert-modal">'+
+            '<div class="alert-title">'+option.title+'</div>'+
+            '<div class="alert-body">'+
+                '<div class="contet">'+option.contentText+'</div>'+
+            '</div>'+
+            '<div class="alert-footer">'+
+                '<div class="alert-btn '+option.cancleClass+'">'+option.cancleText+'</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>';
+    var $modal = $(htmlString);
+    $modal.find(".alert-btn").on("click",function(){
+        var event = {
+            index:$(this).index(),
+        }
+        $modal.remove();
+        option.callback.call(this,event);
+    })
+    $("body").append( $modal );
+};
+$.confirm = function( option ){
+    option = $.extend({
+        title:"提示",
+        contentText:"这是一个提示框,点击去小关闭",
+        submitText:"提交",
+        submitClass:"btn-submit",
+        cancleText:"取消",
+        cancleClass:"btn-cancle",
+        callback:function(){},
+    },option);
+    var htmlString = '<div class="confirm-mask">'+
+        '<div class="confirm-modal">'+
+            '<div class="confirm-title">'+option.title+'</div>'+
+            '<div class="confirm-body">'+
+                '<div class="confirm-contet">'+option.contentText+'</div>'+
+            '</div>'+
+            '<div class="confirm-footer">'+
+                '<div class="confirm-btn '+option.cancleClass+'">'+option.cancleText+'</div>'+
+                '<div class="confirm-btn '+option.submitClass+'">'+option.submitText+'</div>'+
+            '</div>'+
+        '</div>'+
+    '</div>';
+    var $modal = $(htmlString);
+    $modal.find(".confirm-btn").on("click",function(){
+        var event = {
+            index:$(this).index(),
+        }
+        $modal.remove();
+        option.callback.call(this,event);
+    })
+    $("body").append( $modal );
+};
+
+//获取地址栏参数
+function GetRequest(){
+    var url = location.search;
+   var theRequest = new Object();
+   if (url.indexOf("?") != -1) {
+      var str = url.substr(1);
+      strs = str.split("&");
+      for(var i = 0; i < strs.length; i ++) {
+         theRequest[strs[i].split("=")[0]]=(strs[i].split("=")[1]);
+      }
+   }
+   return theRequest;
+}
+
+Array.prototype.indexOf = function(val) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == val) return i;
+  }
+      return -1;
+};
+Array.prototype.remove = function(val) {
+  var index = this.indexOf(val);
+    if (index > -1) {
+      this.splice(index, 1);
+    }
+};
+
+Array.prototype.del=function(index){
+  if(isNaN(index)||index>=this.length){
+      return false;
+  }
+  for(var i=0,n=0;i<this.length;i++){
+      if(this[i]!=this[index]){
+          this[n++]=this[i];
+      }
+  }
+  this.length-=1;
+};
+
+
+var validateRegExp = {
+    decmal: "^([+-]?)\\d*\\.\\d+$",
+    // 浮点数
+    decmal1: "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*$",
+    // 正浮点数
+    decmal2: "^-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*)$",
+    // 负浮点数
+    decmal3: "^-?([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0)$",
+    // 浮点数
+    decmal4: "^[1-9]\\d*.\\d*|0.\\d*[1-9]\\d*|0?.0+|0$",
+    // 非负浮点数（正浮点数 + 0）
+    decmal5: "^(-([1-9]\\d*.\\d*|0.\\d*[1-9]\\d*))|0?.0+|0$",
+    // 非正浮点数（负浮点数 +
+    // 0）
+    intege: "^-?[1-9]\\d*$",
+    // 整数
+    intege1: "^[1-9]\\d*$",
+    // 正整数
+    intege2: "^-[1-9]\\d*$",
+    // 负整数
+    num: "^([+-]?)\\d*\\.?\\d+$",
+    // 数字
+    num1: "^[1-9]\\d*|0$",
+    // 正数（正整数 + 0）
+    num2: "^-[1-9]\\d*|0$",
+    // 负数（负整数 + 0）
+    ascii: "^[\\x00-\\xFF]+$",
+    // 仅ACSII字符
+    chinese: "^[\\u4e00-\\u9fa5]+$",
+    // 仅中文
+    color: "^[a-fA-F0-9]{6}$",
+    // 颜色
+    date: "^\\d{4}(\\-|\\/|\.)\\d{1,2}\\1\\d{1,2}$",
+    // 日期
+    email: "^\\w+((-\\w+)|(\\.\\w+))*\\@[A-Za-z0-9]+((\\.|-)[A-Za-z0-9]+)*\\.[A-Za-z0-9]+$",
+    // 邮件
+    idcard: "^[1-9]([0-9]{14}|[0-9]{17})$",
+    // 身份证
+    ip4: "^(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)\\.(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)$",
+    // ip地址
+    letter: "^[A-Za-z]+$",
+    // 字母
+    letter_l: "^[a-z]+$",
+    // 小写字母
+    letter_u: "^[A-Z]+$",
+    // 大写字母
+    mobile: "^0?(13|15|18|14|17)[0-9]{9}$",
+    // 手机
+    notempty: "^\\S+$",
+    // 非空
+    password: "^.*[A-Za-z0-9\\w_-]+.*$",
+    // 密码
+    fullNumber: "^[0-9]+$",
+    // 数字
+    picture: "(.*)\\.(jpg|bmp|gif|ico|pcx|jpeg|tif|png|raw|tga)$",
+    // 图片
+    qq: "^[1-9]*[1-9][0-9]*$",
+    // QQ号码
+    rar: "(.*)\\.(rar|zip|7zip|tgz)$",
+    // 压缩文件
+    tel: "^[0-9\-()（）]{7,18}$",
+    // 电话号码的函数(包括验证国内区号,国际区号,分机号)
+    url: "^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&=]*)?$",
+    // url
+    username: "^[A-Za-z0-9_\\-\\u4e00-\\u9fa5]+$",
+    // 户名
+    deptname: "^[A-Za-z0-9_()（）\\-\\u4e00-\\u9fa5]+$",
+    // 单位名
+    zipcode: "^\\d{6}$",
+    // 邮编
+    realname: "^[A-Za-z\\u4e00-\\u9fa5]+$",
+    // 真实姓名
+    companyname: "^[A-Za-z0-9_()（）\\-\\u4e00-\\u9fa5]+$",
+    companyaddr: "^[A-Za-z0-9_()（）\\#\\-\\u4e00-\\u9fa5]+$",
+    companysite: "^http[s]?:\\/\\/([\\w-]+\\.)+[\\w-]+([\\w-./?%&#=]*)?$"
+};
+
+
+// 验证规则
+var validateRules = {
+    isNull: function(str) {
+        return (str == "" || typeof str != "string");
+    },
+    betweenLength: function(str, _min, _max) {
+        return (str.length >= _min && str.length <= _max);
+    },
+    isUid: function(str) {
+        return new RegExp(validateRegExp.username).test(str);
+    },
+    fullNumberName: function(str) {
+        return new RegExp(validateRegExp.fullNumber).test(str);
+    },
+    isPwd: function(str) {
+        return /^.*([\W_a-zA-z0-9-])+.*$/i.test(str);
+    },
+    isPwdRepeat: function(str1, str2) {
+        return (str1 == str2);
+    },
+    isEmail: function(str) {
+        return new RegExp(validateRegExp.email).test(str);
+    },
+    isTel: function(str) {
+        return new RegExp(validateRegExp.tel).test(str);
+    },
+    isMobile: function(str) {
+        return new RegExp(validateRegExp.mobile).test(str);
+    },
+    checkType: function(element) {
+        return (element.attr("type") == "checkbox" || element.attr("type") == "radio" || element.attr("rel") == "select");
+    },
+    isRealName: function(str) {
+        return new RegExp(validateRegExp.realname).test(str);
+    },
+    isCompanyname: function(str) {
+        return new RegExp(validateRegExp.companyname).test(str);
+    },
+    isCompanyaddr: function(str) {
+        return new RegExp(validateRegExp.companyaddr).test(str);
+    },
+    isCompanysite: function(str) {
+        return new RegExp(validateRegExp.companysite).test(str);
+    },
+    simplePwd: function(str) {
+        return pwdLevel(str) == 1;
+    },
+    weakPwd: function(str) {
+        for (var i = 0; i < weakPwdArray.length; i++) {
+            if (weakPwdArray[i] == str) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
+
+document.write("<script type=\"text/javascript\" src=\"js/layout/header.js\"></script>");
+document.write("<script type=\"text/javascript\" src=\"js/libs/jQuery/scrollmenucontrol.js\"></script>");

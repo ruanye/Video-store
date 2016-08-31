@@ -1,0 +1,305 @@
+$gridPercentSwitch:true;
+@import "tobe/function";
+@import "base.scss";
+@import "pre.scss";
+@charset "UTF-8";
+body,
+html {
+    height: 100%;
+}
+
+body {
+    font: 12px/1.5 "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '宋体', sans-serif;
+}
+
+.wrap-page {
+    height: 100%;
+    width: 10.0rem;
+    margin: 0 auto;
+    position: relative;
+    background-color: #13a4ab;
+
+}
+
+.page {
+    height: 100%;
+    background-color: #13a4ab;
+    position: relative;
+
+}
+
+%rel {
+    position: relative;
+}
+
+%posa {
+    position: absolute;
+}
+
+%colorf {
+    color: #fff;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.red {
+    color: #e50012;
+}
+
+$width: 100%;
+img,
+span,input {
+    @include inline-block;
+}
+
+.top {
+    height: 1.28125rem;
+    img {
+        width: 10.0rem;
+        height: 1.28125rem;
+    }
+}
+
+.logo {
+    height: 1.359375rem;
+    text-align: right;
+    img {
+        position: relative;
+        width: 1.359375rem;
+        height: 1.359375rem;
+        margin-right: 0.96875rem;
+        bottom: 0.65625rem;
+    }
+}
+ .text1{
+    color: #fff;
+     font-size: 0.375rem;
+ }
+ .page1{
+    .text1{
+        margin-left: 0.78125rem;
+        font-size: 0.75rem;
+    }
+    .hongbao{
+        img{
+            width: 7.5rem;
+            height: 10.015625rem;
+        }
+    }
+    .haner{
+        img{
+            position: relative;
+            width: 1.265625rem;
+            height: 3.671875rem;
+            bottom: 2.8125rem;
+        }
+    }
+ }
+ .page2{
+    .cenimg{
+        margin-top: 1.5625rem;
+        img{
+            width: 4.640625rem;
+            height: 3.328125rem;
+        }
+    }
+    .text1{
+        margin-bottom: 1.5625rem;
+    }
+    .inputbox{
+        span,input{
+            width: 5.0rem;
+            height: 1.03125rem;
+            line-height: 1.03125rem;
+        }
+        input{
+            border: none;
+            font-size: 0.5rem;
+            text-align: center;
+        }
+        span{
+            background-color: #d90000;
+            color: #fff;
+            font-size: 0.5rem;
+            margin-top: 0.3125rem;
+        }
+    }
+ }
+ .page3{
+     overflow: hidden;
+    .hb{
+        img{
+            width: 5.28125rem;
+            height: 4.875rem;
+        }
+    }
+    .timg{
+        img{
+            width: 6.4375rem;
+            height: 1.078125rem;
+        }
+    }
+    .text1{
+        font-size: 0.3125rem;
+    }
+    .sharetext{
+        margin-top: 0.5625rem;
+        span{
+            width: 4.96875rem;
+            height: 1.125rem;
+            line-height: 1.125rem;
+            background-color: #d90000;
+            color: #fff;
+            font-size: 0.4375rem;
+        }
+    }
+    .momey{
+        width: 1.15625rem;
+        height: 2.3125rem;
+        position: absolute;
+        top: 0;
+        &.one{
+             left: 0.71875rem;
+             top: 0.59375rem;
+            opacity: 0.8;
+        }
+         &.two{
+             right: 0.3125rem;
+             top: 5.625rem;
+            }
+        &.three{
+             left: 0.71875rem;
+               top: 80%;
+               }
+        &.four{
+             right: 0.3125rem;
+             top: 90%;
+             opacity: 0.8;
+        }
+
+    }
+    .ytext{
+        margin-top: 0.5625rem;
+        position: relative;
+          i{
+                position: absolute;
+                @include inline-block;
+                width: 0.40625rem;
+                height: 0.40625rem;
+                border-radius: 50%;
+                line-height: 0.40625rem;
+                background-color: #fff;
+                  color: #30aeb6;
+                font-size: 12px;
+                left: 50%;
+                margin-left: -0.203125rem;
+                margin-top: 0.265625rem;
+                 }
+        span{
+            width: 2.59375rem;
+            height: 0.9375rem;
+            line-height: 0.46875rem;
+            color: #30aeb6;
+            font-size: 0.28125rem;
+            a{
+                font-size: 0.1875rem;
+                 color: #30aeb6;
+            }
+
+            &.one{
+                background-color: #cde1f4;
+            }
+            &.two{
+            background-color: #f2f2f2;
+             }
+        }
+    }
+    .haner3{
+        img{
+            position: relative;
+            width: 1.265625rem;
+            height: 3.671875rem;
+            bottom: 0.3125rem;
+            left: 0.3125rem
+
+        }
+    }
+ }
+
+.page4 {
+    .box {
+        img {
+            width: 4.5625rem;
+            height: 5.53125rem;
+        }
+    }
+    .text1{
+        margin-top: 0.625rem;
+    }
+     .btext {
+        margin-top: 0.59375rem;
+        span {
+            color: #fff;
+            width: 5.4375rem;
+            height: 1.0rem;
+            line-height: 1.0rem;
+            background-color: #d90000;
+            font-size: 0.46875rem;
+        }
+    }
+}
+
+.box {
+    text-align: center;
+}
+.page5{
+    .hander{
+       position: relative;
+       width: 100%;
+       height: 3.59375rem;
+        img{
+            position: absolute;
+            right: 1rem;
+            width: 2.203125rem;
+            height: 3.59375rem;
+            z-index: 2;
+        }
+    }
+    .shre{
+        position: relative;
+        text-align: center;
+        bottom: 0.7rem;
+        img{
+            width: 5.671875rem;
+            height: 10.375rem;
+        }
+    }
+}
+
+.page6 {
+    .text1 {
+        margin-top: 0.625rem;
+       &.big {
+            margin-top: 0;
+            font-size: 1.84375rem;
+        }
+    }
+    .btext {
+        span {
+            color: #fff;
+            width: 6.4375rem;
+            height: 1.875rem;
+            line-height: 0.9375rem;
+            background-color: #d90000;
+            font-size: 0.46875rem;
+        }
+    }
+    .box {
+        img {
+            width: 5.375rem;
+            height: 5.21875rem;
+        }
+    }
+}

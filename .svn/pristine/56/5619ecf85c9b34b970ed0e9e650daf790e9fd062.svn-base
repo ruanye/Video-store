@@ -1,0 +1,367 @@
+
+var intDiff = 0; //倒计时总秒数量
+var item = 3;
+var endBtn = true;
+var global_timer ="";
+var teacherId = SS.get(Constant.teacherId);//教师ID
+var courseId = SS.get(Constant.courseId);//课程ID
+var classId = SS.get(Constant.classId);//班级ID
+var bookName = SS.get(Constant.bookName);//课程名称
+var timetableId = SS.get(Constant.timetableId);//课表ID
+var timeTableSerialId = SS.get(Constant.timeTableSerialId);//课堂流水ID
+var allStudent = SS.getObj(Constant.allStudent) == null ? [] : SS.getObj(Constant.allStudent);//全部学生信息
+var polling = ""; //轮询签到学生信息定时器
+var sign = SS.getObj(Constant.sign);//签到信息
+var isCheck = SS.get(Constant.isCheck) == null ? 0 : SS.get(Constant.isCheck);//课堂签到状态
+
+
+$(function() {
+    CI.initGetClassRoom();
+    CI.initUI();//初始化页面UI
+    CI.sendSign();//发起一次签到数据
+    CI.initData();//初始化页面数据
+});
+
+var CI ={
+    initUI:function(){//页面初始化
+        sign = SS.getObj(Constant.sign);//签到信息
+        isCheck = SS.get(Constant.isCheck) == null ? 0 : SS.get(Constant.isCheck);//课堂签到状态
+        $("#code").html(sign.displayCode);
+        var qrText = Constant.WX_HTTPPREFIX +"qrcode.html?type=sign&qrcode="+sign.displayCode;
+        var str = CI.toUtf8(qrText);
+        $("#qrcode").empty();
+        $("#qrcode").qrcode({
+            width: 330,
+            height: 330,
+            text: str
+        });
+        
+        intDiff = parseInt(sign.signTimeLimit)*60;
+        if(isCheck == 0){
+            $("#sign-switch-btn").click(function(){
+                if(endBtn){
+                    CI.startSignIn();
+                }else{
+                    $.confirm({
+                        title:"签到提示",
+                        contentText:"确定立即关闭签到吗?",
+                        submitText:"立即关闭",
+                        callback:function( event ){
+                            switch ( event.index ) {
+                                case 0:
+                                    break;
+                                case 1:
+                                    CI.endSignIn();
+                                    break;
+                            }
+                        },
+                    });
+                }
+            });
+        }else{
+            var cc = document.getElementById("timer");
+            cc.innerHTML = "00:00:00";
+            $("#code").css({ "text-decoration": "line-through" });
+            $("#sign-switch-btn").attr("disabled","disabled").css({"cursor":"not-allowed","background":"#666666"}).html("签到已结束");
+        }
+        
+        
+
+    },
+    initData:function(){//初始化数据
+        //加载该堂课的学生信息
+        var params = {
+            classId: classId
+        };
+        $.get(Constant.WEB_ROOT+"/manager/teacher/student/list", params, function(data,status){
+            if(status == "success"){
+                var elem_container = document.querySelector(".student");
+                var stu_tpl = document.querySelector("#student-user");
+                var users = data.array;
+                allStudent = users;
+                SS.setObj(Constant.allStudent,users);
+                $("#totalNum").html(users.length);
+                $("#signedNum").html(0);
+                $("#noSignNum").html(0);
+
+                if(isCheck != 0){
+                    var params = {
+                        displayCode: sign.displayCode
+                    };
+                    $.get(Constant.WEB_ROOT+"/manager/teacher/querySign", params, function(_data,status){
+                        if (status == "success") {
+                            if (_data.status == 0) {
+                                $("#signedNum").html(_data.array.length);
+                                $("#noSignNum").html(users.length - _data.array.length);
+                                if (_data.array.length > 0) {
+                                    for (var i = 0; i < _data.array.length; i++) {
+                                        for (var k = 0; k < users.length; k++) {
+                                            var new_stu_id = _data.array[i].studentId;
+                                            var old_stu_id = users[k].id;
+                                            if (new_stu_id == old_stu_id) {
+                                                users.del(k);
+                                            }
+                                        }
+                                    }
+                                }
+                                elem_container.innerHTML += tmpl(stu_tpl.innerHTML,{data:users});
+                            } else {
+                                $.alert({
+                                    title:"系统提示",
+                                    contentText:"网络异常！获取签到学生信息失败...",
+                                    cancleText:"确定",
+                                    callback:function( event ){}
+                                });
+                            }
+                        } else {
+                            $.alert({
+                                title:"系统提示",
+                                contentText:"网络异常！获取签到学生信息失败...",
+                                cancleText:"确定",
+                                callback:function( event ){}
+                            });
+                        }
+                    },"json");
+                }else{
+                    elem_container.innerHTML += tmpl(stu_tpl.innerHTML,{data:users});
+                }
+            }else{
+                $.alert({
+                    title:"系统提示",
+                    contentText:"网络异常！该班级学生信息加载失败，请稍后重试...",
+                    cancleText:"确定",
+                    callback:function( event ){}
+                });
+            }
+        },"json");
+    },
+    sendSign:function(){
+        var params = {
+            classId: classId,
+            displayCode:sign.displayCode
+        };
+        $.get(Constant.WEB_ROOT+"/manager/teacher/signoption", params, function(data,status){
+            if (status == "success") {
+                if (data.status == 0) {
+                    //console.log("签到页面,将课堂信息发送给后端");
+                }
+            }
+        },"json");
+    },
+    toUtf8:function(str){//中午UTF-8转码
+        var out, i, len, c;
+        out = "";
+        len = str.length;
+        for (i = 0; i < len; i++) {
+            c = str.charCodeAt(i);
+            if ((c >= 0x0001) && (c <= 0x007F)) {
+                out += str.charAt(i);
+            } else if (c > 0x07FF) {
+                out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                out += String.fromCharCode(0x80 | ((c >> 6) & 0x3F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            } else {
+                out += String.fromCharCode(0xC0 | ((c >> 6) & 0x1F));
+                out += String.fromCharCode(0x80 | ((c >> 0) & 0x3F));
+            }
+        }
+        return out;
+    },
+    timer:function(intDiff, elemet){//签到定时器
+        global_timer = window.setInterval(function() {
+            var day = 0,
+                hour = 0,
+                minute = 0,
+                second = 0;
+            if (intDiff > 0) {
+                day = Math.floor(intDiff / (60 * 60 * 24));
+                hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+                minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            if (hour <= 9) hour = '0' + hour;
+            if (minute <= 9) minute = '0' + minute;
+            if (second <= 9) second = '0' + second;
+
+            var cc = document.getElementById(elemet);
+            cc.innerHTML = hour + ":" + minute + ":" + second;
+            if (intDiff == 0) {
+                //结束签到
+                CI.endSignIn();
+                SS.set("isCheck",1);
+                $("#code").css({ "text-decoration": "line-through" });
+                $("#sign-switch-btn").attr("disabled","disabled").css("cursor","not-allowed");
+            }
+            intDiff--;
+            item--;
+        }, 1000);
+    },
+    clearTimer : function(){//清除签到定时器
+        window.clearTimeout(global_timer);
+        var cc = document.getElementById("timer");
+            cc.innerHTML = "00:00:00";
+        SS.set("isCheck",1);
+        $("#code").css({ "text-decoration": "line-through" });
+        //$("#sign-switch-btn").attr("disabled","disabled").css("cursor","not-allowed");
+        $("#sign-switch-btn").attr("disabled","disabled").css({"cursor":"not-allowed","background":"#666666"}).html("签到已结束");
+    },
+    pollingData : function(){//轮询签到数据
+        var params = {
+            displayCode: sign.displayCode
+        };
+        var allStuNum = allStudent.length;
+        polling = window.setInterval(function(){
+            $.get(Constant.WEB_ROOT+"/manager/teacher/querySign", params, function(data,status){
+                console.log(data);
+                if (status == "success") {
+                    if (data.status == 0) {
+                        if (data.array.length > 0) {
+                            for (var i = 0; i < data.array.length; i++) {
+                                for (var k = 0; k < allStudent.length; k++) {
+                                    var new_stu_id = data.array[i].studentId;
+                                    var old_stu_id = allStudent[k].id;
+                                    if (new_stu_id == old_stu_id) {
+                                        $("#stu_user_" + old_stu_id).fadeOut(500);
+                                        allStudent.del(k);
+                                        $("#signedNum").html(allStuNum - allStudent.length);
+                                        $("#noSignNum").html(allStudent.length);
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        $.alert({
+                            title:"系统提示",
+                            contentText:"网络异常！获取签到学生信息失败...",
+                            cancleText:"确定",
+                            callback:function( event ){}
+                        });
+                    }
+                } else {
+                    $.alert({
+                        title:"系统提示",
+                        contentText:"网络异常！获取签到学生信息失败...",
+                        cancleText:"确定",
+                        callback:function( event ){}
+                    });
+                }
+            },"json")
+        }, 1000);
+    },
+    autoCheckInData:function(id){
+        $("#stu_user_" + id).fadeOut(500);
+        $("#signedNum").html(parseInt($("#signedNum").html()) + 1);
+        $("#noSignNum").html(parseInt($("#noSignNum").html()) - 1);
+    },
+    clearPollingData : function(){//清除轮询
+        window.clearTimeout(polling);
+    },
+    startSignIn:function(){//开始签到
+        $("#sign-switch-btn").attr("disabled","disabled");
+        var params = {
+            ttSerialId: timeTableSerialId //课堂ID
+        };
+        $.get(Constant.WEB_ROOT+"/manager/teacher/startSign", params, function(data,status){
+            if(status == "success"){
+                if(data.status == 0){
+                    //开始签到成功
+                    var _thisTime = window.setInterval(function() {
+                        if(parseInt(item) < 0){
+                            window.clearTimeout(_thisTime);
+                            $("#sign-switch-btn").html("关闭签到").css("cursor","pointer");
+                            $("#sign-switch-btn").removeAttr("disabled");
+                            CI.timer(intDiff, "timer");//启动签到倒计时
+                            CI.pollingData();//轮询
+                            endBtn = false;
+                            return;
+                        }
+                        $("#sign-switch-btn").html("开始签到 ("+item+")").css("cursor","not-allowed");
+                        item--;
+                    },1000);
+                }else{
+                    $("#sign-switch-btn").removeAttr("disabled");
+                    
+                    $.alert({
+                        title:"系统提示",
+                        contentText:"网络异常！开启签到失败...",
+                        cancleText:"确定",
+                        callback:function( event ){}
+                    });
+                }
+            }else{
+                $("#sign-switch-btn").removeAttr("disabled");
+                $.alert({
+                    title:"系统提示",
+                    contentText:"网络异常！开启签到失败...",
+                    cancleText:"确定",
+                    callback:function( event ){}
+                });
+            }
+        },"json");
+    },
+    endSignIn:function(){//结束签到
+        var params = {
+            ttSerialId: timeTableSerialId//课堂ID
+        };
+        $.get(Constant.WEB_ROOT+"/manager/teacher/endSign", params, function(data,status){
+            if(status == "success"){
+                if(data.status == 0){
+                    //关闭签到成功
+                    CI.clearTimer();
+                    window.setTimeout(CI.clearPollingData(),3000);//签到结束后延迟3秒获取签到数据
+                }else{
+                    $.alert({
+                        title:"系统提示",
+                        contentText:"系统异常！关闭签到失败...",
+                        cancleText:"确定",
+                        callback:function( event ){}
+                    });
+                }
+            }else{
+                $.alert({
+                    title:"系统提示",
+                    contentText:"系统异常！关闭签到失败...",
+                    cancleText:"确定",
+                    callback:function( event ){}
+                });
+            }
+        },"json");
+    },
+    selectedStu:function(id){
+        details( id );
+    },
+    initGetClassRoom:function(){
+        var params = {
+            id: SS.get(Constant.timeTableSerialId)
+        };
+        //获取课堂流水信息
+        $.get(Constant.WEB_ROOT+"/manager/teacher/ttSerial/detail", params, function(data, status) {
+            if(status == "success"){
+                if(data.status == 0){
+                    SS.setObj(Constant.sign,data.obj);//签到信息
+                    if(data.obj.isSign > 0){ //是否发起过签到：1是，0否
+                        if(data.obj.signStatus == 0){ 
+                            SS.set(Constant.isCheck,0);//开启
+                            if(data.obj.lastSecond > 0){
+                                intDiff = data.obj.lastSecond;//签到剩余时间（秒）
+                                
+                                //继续签到
+                                $("#sign-switch-btn").html("关闭签到").css("cursor","pointer");
+                                $("#sign-switch-btn").removeAttr("disabled");
+                                CI.timer(intDiff, "timer");//启动签到倒计时
+                                CI.pollingData();//轮询
+                                endBtn = false;
+                            }
+                        }else{
+                            SS.set(Constant.isCheck,1);//关闭
+                            var cc = document.getElementById("timer");
+                            cc.innerHTML = "00:00:00";
+                            $("#code").css({ "text-decoration": "line-through" });
+                            $("#sign-switch-btn").attr("disabled","disabled").css({"cursor":"not-allowed","background":"#666666"}).html("签到已结束");
+                        }
+                    }
+                }
+            }
+        },"json");
+    }
+};

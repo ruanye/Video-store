@@ -1,0 +1,1 @@
+function drawBufferInit(){fontCtx.drawImage(backScreen,0,0),setTimeout("drawBufferInit()",10)}var fontScreen=document.getElementById("frontScreen"),fontCtx=fontScreen.getContext("2d"),backScreen=document.createElement("canvas");backScreen.width=fontScreen.width,backScreen.height=fontScreen.height;var backCtx=backScreen.getContext("2d");

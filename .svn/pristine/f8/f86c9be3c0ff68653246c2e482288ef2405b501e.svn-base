@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>承启堂</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link rel="stylesheet" href="vendor/swiper/dist/css/swiper.min.css">
+    <link href="css/index.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <section class="container">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+<!--                     <div class="swiper-slide">
+                        <img src="images/1/slide1.jpg">
+                    </div>                    
+                    <div class="swiper-slide">
+                        <img src="images/1/slide1.jpg">
+                    </div> -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <section class="content">
+            <div class="newActive">
+                <a href="activeList.html" class="active">
+                    <div class="left"></div>
+                    <div class="right">
+                        <p class="p1">岁末清仓，豪礼巨献，</p>
+                        <p class="p2">快来抢购吧!</p>
+                    </div>
+                </a>
+            </div>
+            <!-- <button id="button">清除缓存</button> -->
+            <div class="function">
+                <div class="left">
+                    <a href="doctorlist_book.html" class="pre"></a>
+                </div>
+                <div class="goods">
+                    <a href="chufang.html" class="drug"></a>
+                    <a href="shoplist.html" class="shop"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="nav-bar">
+                    <div class="nav-bar-1 nav-bar-detail active">承启堂简介</div>
+                    <div class="nav-bar-2 nav-bar-detail">蜀汉店</div>
+                    <div class="nav-bar-3 nav-bar-detail">高新店</div>
+                </div>
+            </div>
+            <div class="detail detail-tab active" id="cengqi">
+                <div class="address-box"></div>
+                
+            </div>
+            <div class="store1 detail-tab ">
+                <div class="address" style="margin-top:0.3rem;">
+                    <p>
+                        <span style="font-weight: 700;">地址</span>：<span></span>
+                        <br>
+                        <p><span style="font-weight: 700;">电话</span>：<span id="telPhone1"></span></p>
+                        <div class="daohang" id="direction1">
+                            <div class="text">一键导航</div>
+                        </div>
+                    </p>
+                </div>
+                <div class="address-box"></div>
+            </div>
+            <div class="store2 detail-tab ">
+                <div class="address" style="margin-top:0.3rem;">
+                    <p><span style="font-weight: 700;">地址</span>：<span></span>
+                        <br>
+                        <p>
+                            <span style="font-weight: 700;">电话</span>：<span id="telPhone2"></span>
+                        </p>
+                        <div class="daohang" id="direction2">
+                            <div class="text">一键导航</div>
+                        </div>
+                    </p>
+                </div>
+                <div class="address-box"></div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="vendor/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="js/topBar.js"></script>
+    <script type="text/javascript" src="vendor/swiper/dist/js/swiper.min.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script type="text/javascript" src="js/static/base.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

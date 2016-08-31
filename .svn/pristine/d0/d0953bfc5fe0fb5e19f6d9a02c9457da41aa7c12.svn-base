@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <section class="page page1 hide">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="logo"><img src="images/logo.png" alt=""></div>
+            <p class="text1">45折红包轰炸大深圳
+                <br>分享还有免费行程送</p>
+            <div class="hongbao text-center"><img src="images/pageone.png" alt=""></div>
+            <div class="haner text-center"><img src="images/hander.png" alt=""></div>
+        </section>
+         <section class="page page2 hide">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="logo"><img src="images/logo.png" alt=""></div>
+           <div class="cenimg text-center"><img src="images/twophone.png" alt=""></div>
+           <p class="text1 text-center">优步为你的电话隐私保驾护航</p>
+           <div class="inputbox text-center"><input type="text" placeholder="请输入手机号码"></div>
+           <div class="inputbox text-center"><span>即刻抢</span></div>
+          
+        </section>
+         <section class="page page3 ">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="logo"><img src="images/logo.png" alt=""></div>
+            <div class="hb text-center"><img src="images/hb.png" alt=""></div>
+            <div class="ytext text-center"><i>或</i><span class="one">￥2.5 <a>起</a><br>找人拼车</span><span class="two">￥4.5<a>起</a><br>自己乘车</span></div>
+            <div class="haner3 text-center"><img src="images/hander.png" alt=""></div>
+            <div class="timg text-center"><img src="images/threetext.png" alt=""></div>
+            <p class="text1 text-center">你离海量福利<br>仅一步之遥</p>
+            <div class="sharetext text-center"><span>分享给好友解锁45折</span></div>
+             <img class="momey one" src="images/momey.png" alt="">
+             <img class="momey two" src="images/momey.png" alt="">
+             <img class="momey three" src="images/momey.png" alt="">
+             <img class="momey four" src="images/momey.png" alt="">
+        </section>
+        <section class="page page4 hide">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="logo"><img src="images/logo.png" alt=""></div>
+            <div class="box"><img src="images/page4.png" alt=""></div>
+            <p class="text-center text1">
+                还没注册Uber优步，错过好可惜哦
+            </p>
+            <div class="btext text-center"><span>立即注册拿优惠</span></div>
+        </section>
+        <section class="page page5  hide">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="logo"><img src="images/logo.png" alt=""></div>
+          <div class="hander"><img src="images/hander3.png" alt=""></div>
+          <div class="shre"><img src="images/share.png" alt=""></div>
+        </section>
+        <section class="page page6 hide">
+            <div class="top"><img src="images/top.png" alt=""></div>
+            <div class="logo"><img src="images/logo.png" alt=""></div>
+            <div class="box"><img src="images/page6.png" alt=""></div>
+            <p class="text-center text1">
+                恭喜你
+                <br>你的好友已帮你成功解锁
+            </p>
+            <p class="text-center text1 big">
+                45折
+            </p>
+            <div class="btext text-center"><span>关注公众号乌波儿粉丝联盟<br>获取更多优惠</span></div>
+        </section>
+    </div>
+    <script>
+    var page = document.querySelectorAll('.wrap-page');
+    var doch = window.screen.height;
+    console.log(doch);
+    for (var i = 0; i < page.length; i++) {
+        page[i].style.height = doch + 'px';
+    }
+    </script>
+</body>
+
+</html>

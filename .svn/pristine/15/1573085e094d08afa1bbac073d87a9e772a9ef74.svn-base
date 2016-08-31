@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品订单详情</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link rel="stylesheet" href="css/weui/jquery-weui.css">
+    <link rel="stylesheet" href="css/weui/weui.min.css">
+    <link rel="stylesheet" href="css/shoporderdetail.css">
+    <link rel="stylesheet" href="css/weui/jquery-weui.css">
+    <link rel="stylesheet" href="css/weui/weui.min.css">
+    <link href="css/myshoplist.css" rel="stylesheet">
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/chufang-detail.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+        <div class="order-status one">
+            <div class="order-time stausone">
+                <!--  <p class="p1">订单状态：待付款</p>
+                <p class="p1">订单编号：1234567890</p>
+                <p class="time">下单时间：2016-05-23 22:11:25</p>
+                <a href="#" class="pay">付款</a> -->
+            </div>
+        </div>
+        <div class="order-status two ">
+            <div class="order-time staustwo">
+                <!-- <p class="p1">总金额：￥182</p>
+                <p class="p1">收货地址：1234567890</p>
+                <p class="time">收货人：2016-05-23 22:11:25</p> -->
+            </div>
+        </div>
+        <div class="weui_tab_bd_item weui_tab_bd_item_active myneedshadow" style="display:block">
+            <ul class="boxquery" id="queryone">
+                <li class="list one">
+                    <div class="status_bar one">
+                        <div class="bartext">
+                            <p>共10件商品</p>
+                        </div>
+                    </div>
+                    <div class="goodlist">
+                        <!--   <div class="goods">
+                            <div class="gimg"><img src="images/shoplist/myshopimg.jpg" alt=""></div>
+                            <div class="gtext">
+                                <p class="title">云南白药喷雾</p>
+                                <p>
+                                    <span>10件</span>
+                                    <span>单价</span>
+                                    <span>¥19.90</span>
+                                </p>
+                            </div>
+                        </div> -->
+                        <!--      <div class="goods">
+                            <div class="gimg"><img src="images/shoplist/myshopimg.jpg" alt=""></div>
+                            <div class="gtext">
+                                <p class="title">云南白药喷雾</p>
+                                <p>
+                                    <span>10件</span>
+                                    <span>单价</span>
+                                    <span>¥19.90</span>
+                                </p>
+                            </div>
+                        </div> -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="warn-word" style="padding:0.325rem">
+          
+        </div>
+    </div>
+    <span id="keleyivisitorip" style="display: none"></span>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="js/topBar.js"></script>
+    <script type="text/javascript" src="js/static/ls.js"></script>
+    <script type="text/javascript" src="js/static/ss.js"></script>
+    <script type="text/javascript" src="js/static/base.js"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://tool.keleyi.com/ip/visitoriphost/"></script>
+   <script type="text/javascript" src="js/static/parsec_weixin.js"></script>  
+    <script type="text/javascript" src="js/static/parsec_wxpay.js"></script>
+    <script src="js/orderdetail.js"></script>
+</body>
+
+</html>

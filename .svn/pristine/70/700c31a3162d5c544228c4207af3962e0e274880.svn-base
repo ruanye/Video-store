@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>优步送你三匹优惠“马”，领了没？跑起来！</title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <link href="css/index.css" rel="stylesheet" media="screen">
+</head>
+<style>
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #000;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #000;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #000;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #000;
+}
+</style>
+
+<body>
+    <div class="wrap-page">
+        <div id="wx_pic" style="display: none;margin: 0 auto;">
+            <img src="images/icon.jpg" />
+        </div>
+        <section class="page" id="page1" style="display:none;">
+            <div class="top-title">UBER优步</div>
+            <div class="content" id="shagnma">
+                <div class="p1 p">驾！</div>
+                <div class="p2 p">坐上这匹优惠马</div>
+                <div class="p3 p">兄弟三，走天下</div>
+                <div class="p4 p">
+                    点击上“码”
+                </div>
+                <div class="p5">
+                    <img src="images/fly.png" alt="">
+                </div>
+                <div class="cloud1">
+                    <img src="images/page1-cloud-1.png" alt="">
+                </div>
+                <div class="cloud2">
+                    <img src="images/page1-cloud-2.png" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="page" id="page2" style="display:none;">
+            <div class="top-title">UBER优步</div>
+            <div class="newUer user-bg" style="background-color:#2C51BE">我是新用户</div>
+            <div class="oldUer user-bg" style="background-color:#2C51BE">我是老用户</div>
+            <div class="peope-icon">
+                <div class="cloud1">
+                    <img src="images/page2-cloud-1.png" alt="">
+                </div>
+                <div class="cloud2">
+                    <img src="images/page2-cloud-2.png" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="page" id="page3" style="display:none;">
+            <div class="top-title">UBER优步</div>
+            <div class="newUer user-bg">
+                <input type="text" placeholder="请输入电话号码" id="phoneNumber">
+            </div>
+            <div id="errorInfo" style="text-align:center;"></div>
+            <button class="oldUer user-bg" id="save_btn" style="background-color:#2C51BE">点击立即抢券</button>
+            <div class="cloud2">
+                <img src="images/page2-cloud-2.png" alt="">
+            </div>
+            <div class="peope-icon">
+                <div class="cloud1">
+                    <img src="images/page2-cloud-1.png" alt="">
+                </div>
+            </div>
+        </section>
+        <section class="page" id="page4" style="display:none;">
+            <div class="top-title">UBER优步</div>
+            <div class="people-icon">
+                <div class="p1 p">耶!</div>
+                <div class="p2 p">恭喜你获得超值</div>
+                <div class="p3 p" style="text-align:center;text-indent:0.6rem;"><span style="font-size:0.9rem;">6.9</span> 折</div>
+                <div class="p4">前往uber App，左侧“优惠”栏查看优惠</div>
+                <div class="p5">这你就满意了？</div>
+                <div class="p6">还有霸气<span style="font-size:0.55rem;">39</span>折，要不要！</div>
+                <div class="p7">点击再上一匹“码”</div>
+            </div>
+            <div class="cloud1">
+                <img src="images/page2-cloud-1.png" alt="">
+            </div>
+            <div class="cloud2">
+                <img src="images/page2-cloud-1.png" alt="">
+            </div>
+        </section>
+        <section class="page" id="page5" style="display:none">
+            <div class="top-title">UBER优步</div>
+            <div class="newUer user-bg">成功邀请2位好友领券
+                <br>再送你一张霸气3.9折
+                <br><span style="font-size:0.36rem">现在就生成你的专属分享链接</span></div>
+            <input class="oldUer user-bg" id="get" placeholder="请选择你的专属标签" readonly="readonly" style="color:#000"></input>
+            <div class="biaoqian" id="biaoqian"></div>
+            <div class="peope-icon">
+                <div class="cloud1">
+                    <img src="images/page2-cloud-1.png" alt="">
+                </div>
+            </div>
+            <div class="zhuanshu">生成专属链接</div>
+            <div class="dialog">
+                <ul>
+                    <li>小公举</li>
+                    <li>男朋友</li>
+                    <li>李狗蛋</li>
+                    <li>闷墩儿</li>
+                    <li>小婊贝</li>
+                    <li>老司机</li>
+                    <li>二师兄</li>
+                    <li>大王</li>
+                    <li>兄弟</li>
+                    <li>提款机</li>
+                </ul>
+            </div>
+        </section>
+        <section class="page" id="page6" style="display:none;">
+            <div class="top-title">UBER优步</div>
+            <div class="content">
+                <div class="p1">分享给好友，2个好友来领码!</div>
+                <div class="p2">就得1张3.9折！最多得2张</div>
+                <div class="p5">
+                    <img src="images/fly.png" alt="">
+                </div>
+                <div class="p6">立即分享</div>
+            </div>
+        </section>
+        <section class="page" id="page7" style="display:none;">
+            <div class="top-title">UBER优步</div>
+        </section>
+        <section class="page" id="page8" style="display:none;">
+            <div class="top-title">UBER优步</div>
+            <div class="content">
+                <div class="p1 p">驾!</div>
+                <div class="p2 p" style="font-size:0.4rem"></div>
+                <div class="p3 p">优惠马，走天下！</div>
+                <div class="p5">
+                    <img src="images/fly.png" alt="">
+                </div>
+                <div class="p6" style="position:absolute;width:3rem;height:1rem;text-align:center;color:#fff;
+                background-color:#11357C;bottom:-1.4rem;z-index:111;left:50%;transform:translate(-50%,0);-webkit-transform:translate(-50%,0);line-height:1rem;font-size:0.46rem">点击上“码”</div>
+                <div class="cloud1">
+                    <img src="images/page1-cloud-1.png" alt="">
+                </div>
+                <div class="cloud2">
+                    <img src="images/page1-cloud-2.png" alt="">
+                </div>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript" src="../../javascript/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../../javascript/av-0.5.1.min.js"></script>
+    <script type="text/javascript" src="../../javascript/AV.analytics.js"></script>
+    <script type="text/javascript" src="../../javascript/event.js"></script>
+    <script type="text/javascript" src="../../javascript/common.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+
+</html>

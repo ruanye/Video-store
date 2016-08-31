@@ -1,0 +1,142 @@
+$(function() {
+	$('.header-menu .menu ul').css('z-index', 100) //提问按钮弹出层的兼容
+	$('.header-menu .menu').show()
+	var $random = $('.topBar .random'); //随机提问按钮
+	var $dialog = $('.container .dialog'); //弹层
+	var $stuList = $('#stuList') //学生列表
+	var studentTotal = 0; //学生总数
+	var ttSerialId = SS.get(Constant.timeTableSerialId);
+	var Data = {
+		ttSerialId: ttSerialId
+	};
+	//目前课堂所有人数
+	$.get(Constant.WEB_ROOT+"/manager/teacher/ttSerial/detail", {
+		id: SS.get(Constant.timeTableSerialId)
+	}, function(data, status) {
+		var isSign = data.obj.isSign;
+	$.ajax({
+		type: "get",
+		url: Constant.WEB_ROOT + "/manager/teacher/querySignDesc",
+		data: Data,
+		success: function(data, xhr) {
+			if (xhr === 'success') {
+				if (data.status == 0) {
+					var str = '';
+					studentTotal = data.array.length; //总人数
+					if (isSign == 1) {
+						data.array.forEach(function(item, index, arr) {
+							var domstr = domStr(item, 1);
+							str += domstr;
+						})
+						$stuList.html(str);
+					} else {
+						studentTotal=JSON.parse(SS.get('allStudent')).length;
+						JSON.parse(SS.get('allStudent')).forEach(function(item, index, arr) {
+							var domstr = domStr(item, 2);
+							str += domstr;
+						})
+						$stuList.html(str);
+					}
+				} else {
+					console.log('status!=0')
+				}
+
+			} else {
+				$.alert({
+					title: "系统提示",
+					contentText: "网络异常，数据加载失败！",
+					cancleText: "确定",
+					callback: function(event) {}
+				});
+			}
+		},
+		error: function(xhr, status) {
+			console.log('error')
+		}
+	});
+	},"json");
+	$random.on('click', function(e) {
+		$dialog.show()
+		var setTime = 10;
+
+		function test() {
+			setTimeout(function() {
+				var a = randomNum(studentTotal)
+				var stu_id = $('.student', $stuList).eq(a - 1).data('id');
+				var imgsrc = $('.student', $stuList).eq(a - 1).find('p .icon').attr('src');
+				var name = $('.student', $stuList).eq(a - 1).find('.name').text();
+				$dialog.find('.stuIcon').css('background-image', 'url('+imgsrc+')').next().text(name);
+				(setTime += 15) < 350 ? test() : null;
+				if (setTime > 350) {
+					setHistory(3, stu_id)
+					console.log(stu_id);
+					$dialog.find('.stuIcon').one('click', function(e) {
+						details(stu_id,4);
+					})
+				}
+			}, setTime)
+		}
+		test()
+	})
+
+	function setHistory(questionType, id) {
+		var historyData = {
+			questionType: questionType,
+			studentId: id,
+			ttSerialId: ttSerialId
+		}
+		console.log(historyData);
+		$.ajax({
+			type: "post",
+			url: Constant.WEB_ROOT + "/manager/teacher/question/create",
+			data: historyData,
+			success: function(data, status) {
+				if (data.status == 0) {
+					console.log('创建记录成功')
+				}
+			}.bind(this),
+			error: function(err) {
+
+			}
+		})
+	}
+	$('.container .content').on('click', '.student', function(e) {
+		e.stopPropagation()
+		var ele = e.currentTarget;
+		var stu_id = $(ele).data('id');
+		setHistory(2, stu_id)
+		details(stu_id,4)
+	})
+	$('.close', $dialog).on('click', function(e) {
+		$dialog.hide()
+	})
+
+	function randomNum(stuNum) {
+		var random = ~~(Math.random() * stuNum + 1);
+		return random;
+	}
+	//页面dom字符串拼接函数模板
+	function domStr(itemObj, type) {
+		var str = '';
+		if (type == 1) {
+			str =
+				"<li class=\"student\" data-id='" + itemObj.studentId + "'>" +
+				"<p class=\"icon\" onclick=\"showInfo('" + itemObj.name + "')\">" +
+				"<img class=\"icon\" src='"+itemObj.icon+"?imageView2/1/w/200/h/200'  onerror=\"noFindImg();\"/></p>" +
+				"<p class=\"name\">" + itemObj.name + "</p>" +
+				"</li>"
+		} else if (type == 2) {
+			str =
+				"<li class=\"student\" data-id='" + itemObj.id + "'>" +
+				"<p class=\"icon\" onclick=\"showInfo('" + itemObj.name + "')\">" +
+				"<img class=\"icon\" src='"+itemObj.icon+"?imageView2/1/w/200/h/200'  onerror=\"noFindImg();\"/></p>" +
+				"<p class=\"name\">" + itemObj.name + "</p>" +
+				"</li>"
+		}
+		return str;
+	}
+})
+
+function showInfo(a) {
+	console.log(a)
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/index.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+<div class="wrap-page">
+    <section class="page flex-m page1" id="page1">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="content flex-m" id="content">
+            <p class="center-title">疯狂欧洲杯<br>疯狂优步红包</p>
+        </div>
+        <div class="row">
+            <button class="btn open-btn" id="page1Btn">点击抢钱啦!</button>
+        </div>
+    </section>
+
+    <sectiont class="page flex-m page2" id="page2" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="content">
+            <div class="row">
+                <img src="images/page2-icon.png" alt="" class="icon">
+            </div>
+            <div class="row">
+                <p class="info-text">优步为您的隐私保驾护航</p>
+            </div>
+            <div class="row">
+                <input type="text" class="ipt" placeholder="请输入手机号码">
+            </div>
+            <div class="row flex-m">
+                <button class="btn open-btn flip" onclick="$('#page2').hide();$('#page3').show();">立刻领取红包</button>
+            </div>
+        </div>
+    </sectiont>
+
+    <sectiont class="page page3" id="page3" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="flex-1 flex-m">
+            <div class="inner content">
+                <p class="info-title">恭喜你抢到欧洲杯红包！</p>
+                <img src="images/page3-icon.png" alt="" class="icon swing">
+                <p class="info-msg">优惠券将在 <span>6月13日（星期一）</span></p>
+                <p class="info-desc">自动存入您的账户中，立即可用</p>
+                <p class="info-desc">*每人可享15程，每程最高减免5元，重庆主城有效</p>
+                <div class="row flex-m">
+                    <button class="btn bounceInLeft" onclick="$('#page2').hide();$('#page3').show();">立即注册领取乘车优惠券</button>
+                </div>
+                <div class="row flex-m">
+                    <button class="btn bounceInLeft" onclick="$('#page2').hide();$('#page3').show();">一键获得30元</button>
+                </div>
+                <div class="row flex-m">
+                    <button class="btn open-btn bounceInLeft" onclick="$('#page3').hide();$('#page7').show();">点击右上角分享给好友</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <p class="info-msg">新用户输入优惠码<span>疯狂欧洲杯</span></p>
+                <p class="info-desc">即可获得2程10元乘车优惠</p>
+            </div>
+        </div>
+    </sectiont>
+    
+    <sectiont class="page flex-m page4" id="page4" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <p class="info-title">恭喜你抢到欧洲杯红包！</p>
+            <img src="images/page3-icon.png" alt="" class="icon">
+            <p class="info-msg">优惠券将在 <span>6月13日（星期一）</span></p>
+            <p class="info-desc">自动存入您的账户中，立即可用</p>
+            <p class="info-desc">*每人可享15程，每程最高减免5元，重庆主城有效</p>
+            <div class="row flex-m">
+                <button class="btn" onclick="$('#page2').hide();$('#page3').show();">一键获得30元</button>
+            </div>
+            <div class="row flex-m">
+                <button class="btn open-btn" onclick="$('#page4').hide();$('#page7').show();"">点击右上角分享给好友</button>
+            </div>
+        </div>
+    </sectiont>
+
+    <sectiont class="page page5" id="page5" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="flex-1 flex-m">
+            <div class="inner content">
+                <img src="images/page5-share.png" class="share">
+                <img src="images/page5-icon.png" alt="" class="icon">
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="row">
+                <p class="info-msg">新用户输入优惠码<span>疯狂欧洲杯</span></p>
+                <p class="info-desc">即可获得2程10元乘车优惠</p>
+            </div>
+        </div>
+    </sectiont>
+
+    
+    <sectiont class="page flex-m page6" id="page6" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <p class="info-title">红包已经被抢完啦！</p>
+            <p class="info-title-large">想免费乘车？<span>可以</span></p>
+            <img src="images/page6-icon.png" alt="" class="icon">
+            <p class="info-msg">1、分享您的个人优惠码给好友 </p>
+            <p class="info-msg">2、好友输入即可获得3次10元乘车优惠</p>
+            <p class="info-msg">3、好友成功乘坐1次</p>
+            <p class="info-desc">您就可立即获得3次10元乘车优惠！</p>
+        </div>
+    </sectiont>
+
+
+    <sectiont class="page flex-m page7" id="page7" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <img src="images/share-icon.png" class="share">
+        </div>
+    </sectiont>
+
+    <sectiont class="page flex-m page8" id="page8" style="display: none">
+        <img src="images/logo.png" alt="" class="fixed-logo">
+        <div class="inner content">
+            <div class="counter">
+                <div class="fraction-box">
+                    <ul class="fraction">
+                        <li>0</li>
+                        <li>0</li>
+                        <li>0</li>
+                        <li>0</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row flex-m">
+                <button class="btn open-btn flip">活动时间:xxxx 敬请期待</button>
+            </div>
+        </div>
+    </sectiont>
+
+
+</div>
+<script src="vendor/zepto/zepto.min.js"></script>
+<script type="text/javascript">
+        $("#page1Btn").click(function(){
+          $("#content").addClass("shake");
+          setTimeout(function(){
+            $("#content").removeClass("shake");
+            $("#page1").hide();
+            $("#page2").show();
+          },1500);
+        }); 
+        $(function(){
+            $('.fraction > li').click(function(event) {
+                var $this = $(this);
+                var $v= $this.html();
+                $this.html(parseInt($v) + 1);
+                $this.addClass('x-flip');
+                setTimeout(function(){
+                    $this.removeClass('x-flip');
+                }, 500);
+
+            });
+        });
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+/**
+ * 加载钱包 个人的返利
+ * @zxyuns
+ * 2016-06-23
+ *   state  1表示已提现，0表示未提现 LS.get(Constants.userId)
+ * userId=6
+ */
+var userId=localStorage.userId;
+var str=[];
+
+$(function(){
+    loadCoupon();//过期
+});
+
+/**
+ * 加载用户的基本信息
+ */
+function loadCoupon(){
+    var notData = {
+        pageNo:1,
+        pageSize:9999,
+        userId:userId//用户ID
+    };
+    $.ajax({
+        url:Constants.hostIp+"weixin/userGainMoneyList",
+        type: "post",
+        data:notData,
+        success:function(data, status, xhr){
+            if(data.status==0){
+
+                var list=data.list;
+                $("#walletData").html("");
+                var strHtml="";
+                if(list.length&&list){
+                    var allMoney=list[0].allMoney;
+                    var nowMoney=list[0].nowMoney==null?0:list[0].nowMoney;
+                }else{
+                     allMoney=0;
+                     nowMoney=0;
+                }
+
+
+                $("#allMoney").html(allMoney);
+                $("#nowMoney").html(nowMoney);
+
+                if (list.length) {
+                    strHtml += '<li class="item-content"><div class="item-inner">已提现列表</div></li>'
+                }
+
+                for(var i=0;i<list.length;i++){
+                    var obj=list[i];
+                    str.push(obj.id);
+                    //console.log(uidList);
+                    strHtml+='<li class="item-content">';
+                   // strHtml+='<div class="item-media"><i class="icon icon-f7"></i></div>';
+                    strHtml+='<div class="item-inner">';
+                    strHtml+='<div class="item-media normal">';
+                    strHtml+='<img src="'+obj.icon+'" width="54">';
+                    strHtml+=' </div>';
+                    // if(obj.state==0){//1表示已提现，0表示未提现
+                    //     strHtml+='<div class="item-title toLeft">'+obj.nickName+'</div>';
+                    //     strHtml+='<div class="item-after">'+obj.money+'元</div>';
+                    // }else{
+                        strHtml+='<div class="item-title toLeft">'+obj.nickName+'</div>';
+                        strHtml+='<div class="item-after">'+obj.money+'元</div>';
+                    // }
+
+
+                    strHtml+='</div>';
+                    strHtml+='</li>';
+                    strHtml+='<div style="clear: both;"></div>';
+                }
+                $("#walletData").html(strHtml);
+            }else{
+                alert(data.msg);
+            }
+        }
+    });
+}
+
+/*用户提现*/
+function extract(){
+    var myUserID=str.join(",");
+    var myData = {
+        gainIdStr:myUserID,
+        userId:userId//用户ID
+    };
+    $.ajax({
+        url:Constants.hostIp+"/weixin/record/add",
+        type: "post",
+        data:myData,
+        success:function(data, status, xhr){
+            if(data.status==0){
+                $.alert(data.msg);
+            }else{
+                $.alert(data.msg);
+            }
+        }
+    });
+}
+
+
+

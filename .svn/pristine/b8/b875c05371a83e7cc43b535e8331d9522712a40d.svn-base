@@ -1,0 +1,237 @@
+/*
+ *分组提问
+ */
+$(function() {
+    $('.header-menu .menu').show()
+    var studentData = [];
+    var tempData = [];
+    var $selectList = $('.container .topBar ul');
+    var $total = $('li', $selectList).eq(0).find('.special');
+    var $group = $('li', $selectList).eq(1).find('.groupNum');
+    var $groupNumber = $('li', $selectList).eq(2).find('.studentNum');
+    var $sure = $('li', $selectList).eq(3).find('.sure');
+    var $groupList = $('#groupList');
+    var ttSerialId = SS.get(Constant.timeTableSerialId);
+    var Data = {
+        ttSerialId: ttSerialId
+    };
+    //目前课堂所有人数
+    // console.log($('.groupItem .studentItem',$stuList))
+    $.ajax({
+        type: "get",
+        url: Constant.WEB_ROOT + "/manager/teacher/querySignDesc",
+        data: Data,
+        success: function(data, xhr) {
+            console.log(data)
+            if (xhr === 'success') {
+                if (data.status == 0) {
+                    var str = '';
+                    if (data.array.length > 0) {
+                        $total.text(data.array.length)
+                        data.array.forEach(function(item, index, arr) {
+                            studentData.push(item)
+                        })
+                    } else {
+                        var tt = JSON.parse(SS.get('allStudent'))
+                        $total.parent().html(
+                            "<li class=\"item item1\">课堂总人数：<span class=\"special\">" + tt.length + "</span></li>"
+                        )
+                        tt.forEach(function(item, index, arr) {
+                            studentData.push(item)
+                        })
+                    }
+                } else {
+                    console.log('status!=0')
+                }
+
+            } else {
+                $.alert({
+                    title: "系统提示",
+                    contentText: "网络异常，数据加载失败！",
+                    cancleText: "确定",
+                    callback: function(event) {}
+                });
+            }
+        },
+        error: function(xhr, status) {
+            console.log('error')
+        }
+    });
+    $sure.on('click', function(e) {
+        tempData = studentData.slice(0) //
+        var group = $group.val();
+        var groupNumber = $groupNumber.val();
+        if (group) {
+            devide(tempData.length, Number(group), Number(groupNumber))
+            $sure.text('重新分组');
+        } else {
+            $.alert({
+                title: "系统提示",
+                contentText: "学生组数 不能为空",
+                cancleText: "确定",
+                callback: function(event) {}
+            });
+        }
+    })
+
+    function devide(a, b, c) {
+        var total = a;
+        var group = b;
+        var groupNum = c || ~~(tempData.length/b);
+        var last = tempData.length%b;
+        var maxRandom = total;
+        if (tempData.length < b) {
+            $.alert({
+                title: "系统提示",
+                contentText: '组数不能超过总人数',
+                cancleText: "确定",
+                callback: function(event) {}
+            });
+        } else if(b*c > tempData.length){
+          $.alert({
+              title: "系统提示",
+              contentText: '组数*学生数不能超过总人数',
+              cancleText: "确定",
+              callback: function(event) {}
+          });
+        }else {
+            var htmlstr = '';
+            for (var i = 1; i <= group; i++) {
+                var str = '<div class="groupItem groupItem1"><div class="num">组' + i + '<div class="bebal"></div></div>';
+                //不能剩余，按顺序分配剩余的。
+                var groupNumFix = groupNum;
+                if(i <= last){
+                  groupNumFix = groupNum+1;
+                }
+
+                for (var j = 0; j < groupNumFix; j++) {
+                    var randomArr = randomNum(tempData)
+                    var temp = domStr(randomArr)
+                    str += temp;
+                }
+                str += '</div>';
+                htmlstr += str
+            }
+            $groupList.html(htmlstr)
+        }
+    }
+
+    function randomNum(num) {
+        var obj = num;
+        var length = obj.length;
+        var random = ~~(Math.random() * length);
+        var temp = tempData[random]
+        tempData.splice(random, 1)
+        return temp;
+    }
+    //页面dom字符串拼接函数模板data-id='"+itemObj.studentId+"'>"
+    function domStr(itemObj) {
+        if(!itemObj){
+          return;
+        }
+        // console.log(itemObj);
+        var id = itemObj.id || itemObj.studentId;
+        var str =
+            "<div class=\"studentItem studentItem1\" data-id='" + id + "'>" +
+            "<div class=\"icon\" onclick=\"showInfo('" + itemObj.name + "')\">" +
+            "<img class=\"icon-img\" src='"+itemObj.icon+"?imageView2/1/w/200/h/200'  onerror=\"noFindImg();\"/></div>" +
+            "<div class=\"nameText\">" + itemObj.name + "</div>" +
+            "</div>"
+        return str;
+    }
+    //创建提问记录
+    function setHistory(id) {
+        var historyData = {
+            questionType:4,
+            studentIds: id.join(','),
+            ttSerialId: ttSerialId
+        }
+        console.log(historyData);
+        $.ajax({
+            type: "post",
+            url: Constant.WEB_ROOT + "/manager/teacher/question/create",
+            data: historyData,
+            success: function(data, status) {
+                if (data.status == 0) {
+                    console.log('创建记录成功')
+                }
+            }.bind(this),
+            error: function(err) {
+
+            }
+        })
+    }
+    var stu_str = []; //学生id串
+    $groupList.on('click', '.groupItem', function(e) {
+        e.stopPropagation()
+        var ele = e.currentTarget;
+        var index = $(this).index() + 1;
+        $('#dialog').find('.groupName').text('组' + index)
+        $('#dialog').show();
+        var stu_dom = $(ele).find('.studentItem');
+        stu_dom.each(function(index, item, arr) {
+            stu_str.push($(item).data('id'))
+        })
+        setHistory(stu_str)
+        $('#dialog').find('.dialog-close').one('click', function(e) {
+            $('#dialog').hide()
+            stu_str = []
+        })
+    })
+    var $dialong = $('#dialog');
+    var $starBox = $('#star-box');
+    $starBox.on('mouseover', '.star', function(e) {
+        // $(e.target).addClass('active')
+        var index = $(this).index() + 1;
+        $starBox.find(".star:lt(" + index + ")").addClass("active");
+    })
+    $starBox.on('mouseout', '.star', function(e) {
+        $starBox.find('.star').removeClass('active')
+    })
+
+    $('#star-box').on('click', '.star', function(e) {
+        var $index = $(this).index() + 1;
+        var data = {
+            scoreType: 5,
+            starNum: $index,
+            studentIds: stu_str.join(','),
+            ttSerialId: SS.get(Constant.timeTableSerialId)
+        }
+        $.ajax({
+            type: "post",
+            url: Constant.WEB_ROOT + "/manager/teacher/score/group",
+            data: data,
+            success: function(data, xhr) {
+                if (xhr === 'success') {
+                    if (data.status == 0) {
+                        $.alert({
+                            title: "系统提示",
+                            contentText: '评分成功，本次给出的评分为：' + $index + '星',
+                            cancleText: "确定",
+                            callback: function(event) {}
+                        });
+                        $('#dialog').hide();
+                    } else {
+                        console.log('status!=0')
+                    }
+                } else {
+                    $.alert({
+                        title: "系统提示",
+                        contentText: "网络异常，分组评分失败！",
+                        cancleText: "确定",
+                        callback: function(event) {}
+                    });
+                }
+            },
+            error: function(xhr, status) {
+                console.log('error')
+            }
+        });
+
+    })
+
+})
+
+function showInfo(a) {
+    // console.log(a)
+}

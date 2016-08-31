@@ -1,0 +1,131 @@
+$gridPercentSwitch:true;
+@import "tobe/function";
+@import "base.scss";
+@import "header.scss";
+@charset "UTF-8";
+
+.container {
+    width: 1170px;
+    padding: 15px;
+    margin:25px auto;
+    border:1px solid #ffffff;
+    -webkit-box-shadow:0 0 10px #e2e2e2;
+  	-moz-box-shadow:0 0 10px #e2e2e2;
+  	box-shadow:0 0 10px #e2e2e2;
+    background:#ffffff;
+    >.content{
+        margin:20px;
+        &:after {
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        >.content-title{
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            >ul{
+                list-style: none;
+                margin: 0;
+                font-size: 16px;
+                >li{
+                    display: inline;
+                    float: left;
+                    width: 150px;
+                    color: #333333;
+                    text-align: left;
+                    >.num{
+                        margin:0 5px 0 15px;
+                        color: #de1313;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+        >.content-left{
+            float:left;
+            width:640px;
+            height:650px;
+            overflow-y: scroll;
+            border:1px solid #cccccc;
+            display: visible;
+            padding:15px;
+            >.student{
+                &:after {
+                    content: '';
+                    display: block;
+                    height: 0;
+                    clear: both;
+                }
+                >.child6{
+                    position:relative;
+                    height: 108px;
+                    text-align: center;
+                    margin-bottom: 10px;
+                    cursor: pointer;
+                    >.user-pic{
+                        margin:0 auto;
+                        width: 75px;
+                        height: 75px;
+                        border-radius:50px;
+                        background:#cccccc;
+                        border:1px solid #cccccc;
+                        overflow: hidden;
+                        >img{
+                            width: 100%;
+                            height: auto;
+                            vertical-align:middle;
+                        }
+                    }
+                    >.user-name{
+                        margin:10px 0;
+                        text-align: center;
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+        >.content-right{
+            float:right;
+            width:450px;
+            text-align: center;
+            >.qrcode-img{
+                width: 434px;
+                height: 334px;
+                margin: 0 auto;
+                display: block;
+            }
+            >.qrcode-code{
+                height: 75px;
+                font-size: 72px;
+                font-weight: 700;
+                color: #000000;
+                margin:15px auto 25px;
+            }
+            >.qrcode-countdown{
+                height: 40px;
+                font-size: 42px;
+                color: #d90014;
+            }
+            >.qrcode-btn{
+                text-align: center;
+                >.close-sign-btn{
+                    width: 377px;
+                    height: 66px;
+                    background:#b40008;
+                    color: #ffffff;
+                    font-size: 26px;
+                    margin-top:20px;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    &:hover{
+                        background:#d90014;
+                    }
+                }
+            }
+        }
+    }
+}
+

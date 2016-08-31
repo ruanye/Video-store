@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="vendor/lib-flexible/build/flexible.js"></script>
+    <link href="css/main.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+    <div class="wrap-page">
+     <section class="page page3">
+            <p class="text1 text-center">还没有注册Uber，错过好可惜哦</p>
+            <div class="imghbox"><span>现在立即注册吧</span></div>
+            <p class="text-center text2">即可立即获得<span>幸运红包</span></p>
+            <p class="text3 text-center">本周全城6折优惠，每天一区拼车一口价8.8元
+                <br>详情关注微信公众号“U炸大闸蟹”</p>
+            <div class="bolang"><img src="images/bolang.png" alt=""></div>
+        </section>
+        <section class="page page1 hide">
+            <div class="container">
+                <p class="text1">请输入手机号码</p>
+                <div>
+                    <input id="tel" type="text">
+                </div>
+                <div><a class="sure" href="javascript:0">确定</a></div>
+            </div>
+           
+        </section>
+        <!-- over -->
+        <section class="page page2 hide">
+            <div class="text1">
+            <p class=" text-center">恭喜你抢到一张</p>
+            <p class="red text-center">发过桃红葡萄酒一瓶</p>
+
+            </div>
+         
+            <div class="imghbox"><img src="images/hb.png" alt=""></div>
+            <div class="btn"><a href="">点击分享</a></div>
+            <p class="text3 ">5月28-6月5日凭中奖截图致奕欧来苏州迎宾中心领取奖品；凭乘车点在奕欧来苏州迎宾中心加入奕欧来会员，即可领取Private sale邀请函，共享奕欧来苏州购物村两周年，近百家国际大牌倾情参与，私享低至两折起。<br><span>(每个红包限领一次，详情咨询奕欧来苏州迎宾中心)</span></p>
+            <p class="text4"></p>
+            <img class="car" src="images/car.png" alt="">
+            
+        </section>
+        <!-- over -->
+       <section class="page page2 page2-3 hide">
+            <div class="text1">
+            <p class=" text-center">恭喜你抢到一张</p>
+            <p class="red text-center">奕欧来苏州购物村<br>100元礼品卡一张</p>
+
+            </div>
+         
+            <div class="imghbox"><img class="j1" src="images/j1.png" alt=""></div>
+            <div class="btn"><a href="">点击分享</a></div>
+            <p class="text3 ">5月28-6月5日凭中奖截图致奕欧来苏州迎宾中心领取奖品；凭乘车点在奕欧来苏州迎宾中心加入奕欧来会员，即可领取Private sale邀请函，共享奕欧来苏州购物村两周年，近百家国际大牌倾情参与，私享低至两折起。<br><span>(每个红包限领一次，详情咨询奕欧来苏州迎宾中心)</span></p>
+            <p class="text4"></p>
+            <img class="car" src="images/car.png" alt="">
+            
+        </section>
+        <!--over -->
+           <section class="page page2 page2-4 hide">
+            <div class="text1">
+            <p class=" text-center">恭喜你抢到一张</p>
+            <p class="red text-center">意大利艺术家<br>独家设计购物袋一只</p>
+
+            </div>
+         
+            <div class="imghbox"><img class="j2" src="images/j2.png" alt=""></div>
+            <div class="btn"><a href="">点击分享</a></div>
+            <p class="text3 ">5月28-6月5日凭中奖截图致奕欧来苏州迎宾中心领取奖品；凭乘车点在奕欧来苏州迎宾中心加入奕欧来会员，即可领取Private sale邀请函，共享奕欧来苏州购物村两周年，近百家国际大牌倾情参与，私享低至两折起。<br><span>(每个红包限领一次，详情咨询奕欧来苏州迎宾中心)</span></p>
+            <p class="text4"></p>
+            <img class="car" src="images/car.png" alt="">
+            
+        </section>
+           <section class="page page2 page2-5 hide">
+            <div class="text1">
+            <p class=" text-center">恭喜你抢到一张</p>
+            <p class="red text-center">味栈餐厅<br>100元抵用劵一张</p>
+
+            </div>
+         
+            <div class="imghbox"><img class="j3" src="images/j3.png" alt=""></div>
+            <img class="j6" src="images/j6.png" alt="">
+            <div class="btn"><a href="">点击分享</a></div>
+            <p class="text3 ">5月28-6月5日凭中奖截图致奕欧来苏州迎宾中心领取奖品；凭乘车点在奕欧来苏州迎宾中心加入奕欧来会员，即可领取Private sale邀请函，共享奕欧来苏州购物村两周年，近百家国际大牌倾情参与，私享低至两折起。<br><span>(每个红包限领一次，详情咨询奕欧来苏州迎宾中心)</span></p>
+            <p class="text4"></p>
+            <img class="car" src="images/car.png" alt="">
+            
+        </section>
+        <section class="page page5 hide">
+            <img class="cloud" src="images/cloud.png" alt="">
+            <img class="car" src="images/car.png" alt="">
+            <p class="text1 text-center">手慢了，红包派完了</p>
+            <div class="btnbox"> <span class="btn">下次要早点下手哦</span></div>
+            <div class="shou"><img src="images/shou.png" alt=""></div>
+              <div class="logobox"> <img class="logo" src="images/uber.png" alt=""></div>
+               <div class="bottom"> <img class="logo" src="images/r1.png" alt=""></div>
+        </section>
+        <section class="page page6 hide">
+            <p style="font-size:1.34375rem;color:#fff;padding-left:1.3125rem;padding-top:2.5625rem"><span style="color:#da0000;">红包</span>派送<br>礼品多多<br></p>
+            <p style="font-size:0.40625rem;padding-left:1.3125rem;color:#fff">手快有手慢无先到先得</p>
+            <div class="textbox">
+              
+              <div class="imghbox">
+               
+                  
+                </div>
+                 
+            </div>
+          
+        </section>
+        <!-- over -->
+        <section class="page page7 hide">
+            <img class="share" src="images/fx_03.png" alt="">
+            <img class="car" src="images/carf.png" alt="">
+            <p class="text1">打开优步APP
+                <br>在<span>“优惠”</span>选项中
+                <br>查询到你抢到的最新优惠</p>
+            <img class="xiaou" src="images/yh_03.png" alt="">
+           
+        </section>
+    </div>
+    <script src="vendor/zepto/zepto.min.js"></script>
+    <script type="text/javascript" src="js/main.js"> </script>
+    <script>
+           var tel=document.querySelector('#tel');
+        var page1=document.querySelectorAll(".page1")[0];
+        console.log(page1);
+        tel.onfocus=function () {
+          page1.classList.add('trany')
+        }
+           tel.onblur=function () {
+          page1.classList.remove('trany')
+        }
+    </script>
+   
+</body>
+
+</html>
