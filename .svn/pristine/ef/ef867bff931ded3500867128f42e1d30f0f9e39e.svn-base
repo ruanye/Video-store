@@ -1,1 +1,0 @@
-function paybill(){WeixinJSBridge.invoke("getBrandWCPayRequest",{appId:jsticket.appId,timeStamp:js_params.timestamp,nonceStr:js_params.nonce_str,"package":js_params["package"],signType:"MD5",paySign:js_params.paySign},function(a){"get_brand_wcpay_request:ok"==a.err_msg&&($.toast("操作成功"),setTimeout("location.href = 'index.html?toPage=orderlist'",1500))})}var js_params;
